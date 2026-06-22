@@ -8,6 +8,7 @@ tags:
   - TypeScript
   - Supabase
   - UX
+  - Vibe coding
 featured: true
 draft: false
 ---

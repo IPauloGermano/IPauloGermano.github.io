@@ -1,0 +1,401 @@
+<dialog class="mermaid-dialog" id="mermaid-viewer" aria-labelledby="mermaid-viewer-title">
+  <div class="mermaid-dialog-shell">
+    <header class="mermaid-dialog-header">
+      <div class="mermaid-dialog-title">
+        <strong id="mermaid-viewer-title">Diagrama ampliado</strong>
+      </div>
+
+      <div class="mermaid-dialog-actions">
+        <div class="mermaid-zoom-controls" role="group" aria-label="Controles de zoom">
+          <button type="button" data-mermaid-action="zoom-out" aria-label="Diminuir zoom">−</button>
+          <output class="mermaid-zoom-value" aria-label="Zoom atual" aria-live="polite">100%</output>
+          <button type="button" data-mermaid-action="zoom-in" aria-label="Aumentar zoom">+</button>
+          <button type="button" data-mermaid-action="reset" aria-label="Restaurar zoom para 100%">100%</button>
+          <button type="button" data-mermaid-action="fit" aria-label="Ajustar diagrama à tela">Ajustar</button>
+        </div>
+        <button class="mermaid-dialog-close" type="button" data-mermaid-action="close" aria-label="Fechar visualizador">
+          Fechar
+        </button>
+      </div>
+    </header>
+
+    <div
+      class="mermaid-dialog-stage"
+      data-mermaid-stage
+      role="region"
+      aria-label="Área ampliada do diagrama. Arraste para movimentar quando houver zoom."
+      tabindex="0"
+    ></div>
+  </div>
+</dialog>
+
+<script>
+  import mermaid from 'mermaid';
+
+  const MIN_ZOOM = 0.5;
+  const MAX_ZOOM = 3;
+  const ZOOM_STEP = 0.25;
+
+  type ViewerElements = {
+    dialog: HTMLDialogElement;
+    stage: HTMLElement;
+    zoomValue: HTMLOutputElement;
+    zoomOut: HTMLButtonElement;
+    zoomIn: HTMLButtonElement;
+    reset: HTMLButtonElement;
+    fit: HTMLButtonElement;
+    close: HTMLButtonElement;
+  };
+
+  type ViewerController = {
+    dialog: HTMLDialogElement;
+    open: (canvas: HTMLElement, trigger: HTMLButtonElement, home: HTMLElement) => void;
+  };
+
+  type ViewerState = {
+    scale: number;
+    x: number;
+    y: number;
+    fitting: boolean;
+  };
+
+  let diagramId = 0;
+  let setupFrame = 0;
+  let renderQueue = Promise.resolve();
+  let viewerController: ViewerController | null = null;
+
+  const clamp = (value: number, minimum: number, maximum: number) =>
+    Math.min(Math.max(value, minimum), maximum);
+
+  const getTheme = () => document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
+
+  function getViewerElements(dialog: HTMLDialogElement): ViewerElements | null {
+    const stage = dialog.querySelector<HTMLElement>('[data-mermaid-stage]');
+    const zoomValue = dialog.querySelector<HTMLOutputElement>('.mermaid-zoom-value');
+    const zoomOut = dialog.querySelector<HTMLButtonElement>('[data-mermaid-action="zoom-out"]');
+    const zoomIn = dialog.querySelector<HTMLButtonElement>('[data-mermaid-action="zoom-in"]');
+    const reset = dialog.querySelector<HTMLButtonElement>('[data-mermaid-action="reset"]');
+    const fit = dialog.querySelector<HTMLButtonElement>('[data-mermaid-action="fit"]');
+    const close = dialog.querySelector<HTMLButtonElement>('[data-mermaid-action="close"]');
+
+    if (!stage || !zoomValue || !zoomOut || !zoomIn || !reset || !fit || !close) return null;
+    return { dialog, stage, zoomValue, zoomOut, zoomIn, reset, fit, close };
+  }
+
+  function createViewer(dialog: HTMLDialogElement): ViewerController | null {
+    const elements = getViewerElements(dialog);
+    if (!elements) return null;
+
+    const { stage, zoomValue, zoomOut, zoomIn, reset, fit, close } = elements;
+    const state: ViewerState = { scale: 1, x: 0, y: 0, fitting: false };
+    let activeCanvas: HTMLElement | null = null;
+    let homeViewport: HTMLElement | null = null;
+    let opener: HTMLButtonElement | null = null;
+    let dragPointer: number | null = null;
+    let dragStartX = 0;
+    let dragStartY = 0;
+    let originX = 0;
+    let originY = 0;
+
+    const getPanLimits = () => {
+      if (!activeCanvas) return { x: 0, y: 0 };
+      const scaledWidth = activeCanvas.offsetWidth * state.scale;
+      const scaledHeight = activeCanvas.offsetHeight * state.scale;
+      return {
+        x: Math.max(0, (scaledWidth - stage.clientWidth) / 2),
+        y: Math.max(0, (scaledHeight - stage.clientHeight) / 2)
+      };
+    };
+
+    const applyTransform = () => {
+      if (!activeCanvas) return;
+      const limits = getPanLimits();
+      state.x = clamp(state.x, -limits.x, limits.x);
+      state.y = clamp(state.y, -limits.y, limits.y);
+
+      activeCanvas.style.transform = `translate3d(${state.x}px, ${state.y}px, 0) scale(${state.scale})`;
+      zoomValue.value = `${Math.round(state.scale * 100)}%`;
+      zoomValue.textContent = zoomValue.value;
+      zoomOut.disabled = state.scale <= MIN_ZOOM;
+      zoomIn.disabled = state.scale >= MAX_ZOOM;
+
+      const canPan = state.scale > 1 || limits.x > 0 || limits.y > 0;
+      stage.dataset.canPan = String(canPan);
+    };
+
+    const setZoom = (scale: number, fitting = false) => {
+      const previousScale = state.scale;
+      state.scale = clamp(scale, MIN_ZOOM, MAX_ZOOM);
+      state.fitting = fitting;
+      if (previousScale !== 0) {
+        state.x *= state.scale / previousScale;
+        state.y *= state.scale / previousScale;
+      }
+      applyTransform();
+    };
+
+    const restore = () => {
+      state.scale = 1;
+      state.x = 0;
+      state.y = 0;
+      state.fitting = false;
+      applyTransform();
+    };
+
+    const fitToStage = () => {
+      if (!activeCanvas) return;
+      const horizontalPadding = 32;
+      const verticalPadding = 32;
+      const availableWidth = Math.max(stage.clientWidth - horizontalPadding, 1);
+      const availableHeight = Math.max(stage.clientHeight - verticalPadding, 1);
+      const scale = Math.min(
+        availableWidth / Math.max(activeCanvas.offsetWidth, 1),
+        availableHeight / Math.max(activeCanvas.offsetHeight, 1)
+      );
+      state.x = 0;
+      state.y = 0;
+      setZoom(scale, true);
+    };
+
+    const returnCanvas = () => {
+      if (activeCanvas && homeViewport) {
+        activeCanvas.style.removeProperty('transform');
+        activeCanvas.classList.remove('is-expanded');
+        homeViewport.append(activeCanvas);
+        homeViewport.style.removeProperty('min-height');
+      }
+      activeCanvas = null;
+      homeViewport = null;
+    };
+
+    close.addEventListener('click', () => dialog.close());
+    zoomOut.addEventListener('click', () => setZoom(state.scale - ZOOM_STEP));
+    zoomIn.addEventListener('click', () => setZoom(state.scale + ZOOM_STEP));
+    reset.addEventListener('click', restore);
+    fit.addEventListener('click', fitToStage);
+
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+
+    dialog.addEventListener('close', () => {
+      returnCanvas();
+      const focusTarget = opener;
+      opener = null;
+      requestAnimationFrame(() => focusTarget?.focus());
+    });
+
+    stage.addEventListener('pointerdown', (event) => {
+      if (event.button !== 0 || event.target instanceof Element && event.target.closest('button')) return;
+      if (stage.dataset.canPan !== 'true') return;
+      event.preventDefault();
+      dragPointer = event.pointerId;
+      dragStartX = event.clientX;
+      dragStartY = event.clientY;
+      originX = state.x;
+      originY = state.y;
+      stage.dataset.dragging = 'true';
+      stage.setPointerCapture(event.pointerId);
+    });
+
+    stage.addEventListener('pointermove', (event) => {
+      if (dragPointer !== event.pointerId) return;
+      state.x = originX + event.clientX - dragStartX;
+      state.y = originY + event.clientY - dragStartY;
+      applyTransform();
+    });
+
+    const stopDragging = (event: PointerEvent) => {
+      if (dragPointer !== event.pointerId) return;
+      dragPointer = null;
+      delete stage.dataset.dragging;
+      if (stage.hasPointerCapture(event.pointerId)) stage.releasePointerCapture(event.pointerId);
+    };
+
+    stage.addEventListener('pointerup', stopDragging);
+    stage.addEventListener('pointercancel', stopDragging);
+
+    const resizeObserver = new ResizeObserver(() => {
+      if (!dialog.open || !activeCanvas) return;
+      if (state.fitting) fitToStage();
+      else applyTransform();
+    });
+    resizeObserver.observe(stage);
+
+    return {
+      dialog,
+      open(canvas, trigger, home) {
+        if (activeCanvas) return;
+        activeCanvas = canvas;
+        homeViewport = home;
+        opener = trigger;
+        home.style.minHeight = `${home.clientHeight}px`;
+        canvas.classList.add('is-expanded');
+        stage.append(canvas);
+        dialog.showModal();
+        restore();
+        requestAnimationFrame(() => stage.focus());
+      }
+    };
+  }
+
+  function ensureViewer() {
+    const dialog = document.querySelector<HTMLDialogElement>('#mermaid-viewer');
+    if (!dialog) return null;
+    if (!viewerController || viewerController.dialog !== dialog) {
+      viewerController = createViewer(dialog);
+    }
+    return viewerController;
+  }
+
+  function createDiagram(code: HTMLElement) {
+    const pre = code.parentElement;
+    if (!pre || pre.dataset.mermaidProcessed === 'true') return null;
+
+    const source = code.textContent?.trim() ?? '';
+    const figure = document.createElement('figure');
+    figure.className = 'mermaid-block';
+    figure.dataset.mermaidSource = source;
+
+    const toolbar = document.createElement('div');
+    toolbar.className = 'mermaid-toolbar';
+
+    const label = document.createElement('span');
+    label.className = 'mermaid-label';
+    label.textContent = 'Diagrama';
+
+    const expand = document.createElement('button');
+    expand.type = 'button';
+    expand.className = 'mermaid-expand';
+    expand.textContent = 'Ampliar';
+    expand.setAttribute('aria-label', 'Ampliar diagrama');
+
+    const viewport = document.createElement('div');
+    viewport.className = 'mermaid-viewport';
+    viewport.tabIndex = 0;
+    viewport.setAttribute('role', 'region');
+    viewport.setAttribute('aria-label', 'Diagrama com rolagem horizontal e vertical quando necessário');
+
+    const canvas = document.createElement('div');
+    canvas.className = 'mermaid-canvas';
+    viewport.append(canvas);
+    toolbar.append(label, expand);
+    figure.append(toolbar, viewport);
+
+    expand.addEventListener('click', () => ensureViewer()?.open(canvas, expand, viewport));
+    pre.dataset.mermaidProcessed = 'true';
+    pre.replaceWith(figure);
+    return figure;
+  }
+
+  function showRenderError(figure: HTMLElement, error: unknown) {
+    console.error('Falha ao renderizar diagrama Mermaid:', error);
+    const canvas = figure.querySelector<HTMLElement>('.mermaid-canvas');
+    if (!canvas) return;
+
+    const message = document.createElement('div');
+    message.className = 'mermaid-error';
+    const text = document.createElement('p');
+    text.textContent = 'Não foi possível renderizar este diagrama.';
+    const details = document.createElement('details');
+    const summary = document.createElement('summary');
+    summary.textContent = 'Mostrar código-fonte';
+    const pre = document.createElement('pre');
+    const code = document.createElement('code');
+    code.textContent = figure.dataset.mermaidSource ?? '';
+    pre.append(code);
+    details.append(summary, pre);
+    message.append(text, details);
+    canvas.replaceChildren(message);
+    figure.dataset.mermaidState = 'error';
+  }
+
+  async function renderDiagram(figure: HTMLElement, theme: string) {
+    const canvas = figure.querySelector<HTMLElement>('.mermaid-canvas');
+    const source = figure.dataset.mermaidSource;
+    if (!canvas || !source) return;
+
+    figure.dataset.mermaidState = 'loading';
+    canvas.setAttribute('aria-busy', 'true');
+
+    try {
+      const id = `mermaid-diagram-${Date.now()}-${diagramId++}`;
+      const { svg, bindFunctions } = await mermaid.render(id, source);
+      canvas.innerHTML = svg;
+      const renderedSvg = canvas.querySelector<SVGSVGElement>('svg');
+      if (!renderedSvg) throw new Error('Mermaid não retornou um SVG.');
+
+      const viewBox = renderedSvg.viewBox.baseVal;
+      if (viewBox.width > 0 && viewBox.height > 0) {
+        renderedSvg.setAttribute('width', `${Math.ceil(viewBox.width)}`);
+        renderedSvg.setAttribute('height', `${Math.ceil(viewBox.height)}`);
+      }
+      renderedSvg.style.maxWidth = 'none';
+      renderedSvg.style.fill = 'initial';
+      renderedSvg.style.stroke = 'initial';
+      renderedSvg.style.strokeWidth = 'initial';
+      renderedSvg.style.strokeLinecap = 'initial';
+      renderedSvg.style.strokeLinejoin = 'initial';
+      renderedSvg.setAttribute('role', 'img');
+      renderedSvg.setAttribute('aria-label', 'Diagrama Mermaid');
+      bindFunctions?.(canvas);
+
+      figure.dataset.mermaidTheme = theme;
+      figure.dataset.mermaidState = 'ready';
+    } catch (error) {
+      showRenderError(figure, error);
+      figure.dataset.mermaidTheme = theme;
+    } finally {
+      canvas.removeAttribute('aria-busy');
+    }
+  }
+
+  function queueRender() {
+    const theme = getTheme();
+    const figures = Array.from(document.querySelectorAll<HTMLElement>('.mermaid-block'))
+      .filter((figure) => figure.dataset.mermaidTheme !== theme && figure.dataset.mermaidQueuedTheme !== theme);
+    if (figures.length === 0) return;
+    figures.forEach((figure) => { figure.dataset.mermaidQueuedTheme = theme; });
+
+    renderQueue = renderQueue.then(async () => {
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: 'strict',
+        theme: theme === 'dark' ? 'dark' : 'default',
+        flowchart: {
+          htmlLabels: false,
+          useMaxWidth: false
+        }
+      });
+
+      for (const figure of figures) {
+        await renderDiagram(figure, theme);
+        delete figure.dataset.mermaidQueuedTheme;
+      }
+    });
+  }
+
+  function setupMermaid() {
+    ensureViewer();
+    document.querySelectorAll<HTMLElement>('.prose-body pre > code.language-mermaid')
+      .forEach(createDiagram);
+    queueRender();
+  }
+
+  function scheduleSetup() {
+    cancelAnimationFrame(setupFrame);
+    setupFrame = requestAnimationFrame(setupMermaid);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', scheduleSetup, { once: true });
+  } else {
+    scheduleSetup();
+  }
+  document.addEventListener('astro:page-load', scheduleSetup);
+
+  const themeObserver = new MutationObserver((mutations) => {
+    if (mutations.some((mutation) => mutation.attributeName === 'data-theme')) scheduleSetup();
+  });
+  themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+</script>

@@ -9,5 +9,8 @@
   },
   "devDependencies": {
     "astro": "^6.4.8"
+  },
+  "dependencies": {
+    "mermaid": "^11.15.0"
   }
 }
