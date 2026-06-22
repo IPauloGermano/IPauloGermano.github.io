@@ -40,11 +40,11 @@ const archive = [...grouped.entries()].map(([label, items]) => {
 
       {featured.length > 0 && (
         <details class="featured-panel" open>
-          <summary>
+          <summary aria-expanded="true" aria-controls="featured-posts">
             <span>Destaques</span>
             <small><span class="show-label">mostrar</span><span class="hide-label">ocultar</span></small>
           </summary>
-          <div class="featured-grid">
+          <div class="featured-grid" id="featured-posts">
             {featured.map((post, index) => (
               <a href={`/blog/${post.id}/`}>
                 <span>0{index + 1}</span>
@@ -105,3 +105,16 @@ const archive = [...grouped.entries()].map(([label, items]) => {
     </aside>
   </div>
 </BaseLayout>
+
+
+<script is:inline>
+  const featuredPanel = document.querySelector('.featured-panel');
+  const featuredSummary = featuredPanel?.querySelector('summary');
+
+  const syncFeaturedState = () => {
+    featuredSummary?.setAttribute('aria-expanded', featuredPanel?.open ? 'true' : 'false');
+  };
+
+  syncFeaturedState();
+  featuredPanel?.addEventListener('toggle', syncFeaturedState);
+</script>
