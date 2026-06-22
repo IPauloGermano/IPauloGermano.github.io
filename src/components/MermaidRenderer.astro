@@ -233,8 +233,10 @@
         canvas.classList.add('is-expanded');
         stage.append(canvas);
         dialog.showModal();
-        restore();
-        requestAnimationFrame(() => stage.focus());
+        requestAnimationFrame(() => {
+          fitToStage();
+          stage.focus();
+        });
       }
     };
   }
