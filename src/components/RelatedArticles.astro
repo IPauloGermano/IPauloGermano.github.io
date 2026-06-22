@@ -1,0 +1,27 @@
+---
+interface ArticleLink {
+  id: string;
+  title: string;
+}
+
+interface Props {
+  articles: ArticleLink[];
+}
+
+const { articles } = Astro.props;
+---
+{articles.length > 0 && (
+  <section class="related-articles" aria-labelledby="related-articles-title">
+    <h2 id="related-articles-title">Leituras relacionadas</h2>
+    <ul>
+      {articles.map((article) => (
+        <li>
+          <a href={`/blog/${article.id}/`}>
+            <span aria-hidden="true">→</span>
+            <span>{article.title}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}

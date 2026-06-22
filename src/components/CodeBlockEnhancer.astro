@@ -1,0 +1,111 @@
+<script>
+  const languageNames: Record<string, string> = {
+    bash: 'Bash',
+    css: 'CSS',
+    html: 'HTML',
+    javascript: 'JavaScript',
+    js: 'JavaScript',
+    json: 'JSON',
+    mermaid: 'Mermaid',
+    shell: 'Shell',
+    sql: 'SQL',
+    text: 'Texto',
+    plaintext: 'Texto',
+    ts: 'TypeScript',
+    typescript: 'TypeScript',
+    yaml: 'YAML',
+    yml: 'YAML'
+  };
+
+  const resetTimers = new WeakMap<HTMLButtonElement, number>();
+  let setupFrame = 0;
+
+  function getLanguage(pre: HTMLPreElement, code: HTMLElement) {
+    if (pre.closest('.mermaid-error')) return 'Mermaid';
+    const classLanguage = Array.from(code.classList)
+      .find((className) => className.startsWith('language-'))
+      ?.replace('language-', '');
+    const language = (pre.dataset.language || classLanguage || 'text').toLowerCase();
+    return languageNames[language] || language.toUpperCase();
+  }
+
+  function setCopyState(button: HTMLButtonElement, status: HTMLElement, label: string, announcement: string) {
+    button.textContent = label;
+    status.textContent = announcement;
+    const activeTimer = resetTimers.get(button);
+    if (activeTimer) window.clearTimeout(activeTimer);
+    const timer = window.setTimeout(() => {
+      button.textContent = 'Copiar';
+      status.textContent = '';
+      resetTimers.delete(button);
+    }, 2000);
+    resetTimers.set(button, timer);
+  }
+
+  function enhanceCodeBlock(pre: HTMLPreElement) {
+    if (pre.dataset.codeEnhanced === 'true') return;
+    const code = pre.querySelector<HTMLElement>(':scope > code');
+    if (!code) return;
+
+    const isPendingMermaid = code.classList.contains('language-mermaid') && !pre.closest('.mermaid-error');
+    if (isPendingMermaid) return;
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'code-block';
+
+    const toolbar = document.createElement('div');
+    toolbar.className = 'code-block-toolbar';
+
+    const language = document.createElement('span');
+    language.className = 'code-block-language';
+    language.textContent = getLanguage(pre, code);
+
+    const copyButton = document.createElement('button');
+    copyButton.type = 'button';
+    copyButton.className = 'code-copy-button';
+    copyButton.textContent = 'Copiar';
+    copyButton.setAttribute('aria-label', 'Copiar código');
+
+    const copyStatus = document.createElement('span');
+    copyStatus.className = 'sr-only';
+    copyStatus.setAttribute('aria-live', 'polite');
+
+    copyButton.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(code.textContent ?? '');
+        setCopyState(copyButton, copyStatus, 'Copiado ✓', 'Código copiado');
+      } catch (error) {
+        console.error('Não foi possível copiar o bloco de código:', error);
+        setCopyState(copyButton, copyStatus, 'Não copiado', 'Não foi possível copiar o código');
+      }
+    });
+
+    pre.dataset.codeEnhanced = 'true';
+    pre.replaceWith(wrapper);
+    toolbar.append(language, copyStatus, copyButton);
+    wrapper.append(toolbar, pre);
+  }
+
+  function enhanceAllCodeBlocks() {
+    document.querySelectorAll<HTMLPreElement>('.prose-body pre').forEach(enhanceCodeBlock);
+
+    document.querySelectorAll<HTMLElement>('.prose-body').forEach((prose) => {
+      if (prose.dataset.codeObserver === 'true') return;
+      prose.dataset.codeObserver = 'true';
+      const observer = new MutationObserver(() => scheduleEnhancement());
+      observer.observe(prose, { childList: true, subtree: true });
+    });
+  }
+
+  function scheduleEnhancement() {
+    cancelAnimationFrame(setupFrame);
+    setupFrame = requestAnimationFrame(enhanceAllCodeBlocks);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', scheduleEnhancement, { once: true });
+  } else {
+    scheduleEnhancement();
+  }
+  document.addEventListener('astro:page-load', scheduleEnhancement);
+</script>
