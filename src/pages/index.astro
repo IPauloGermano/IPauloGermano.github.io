@@ -1,0 +1,107 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+
+const featured = posts.filter((post) => post.data.featured).slice(0, 3);
+const grouped = new Map<string, typeof posts>();
+const monthFormatter = new Intl.DateTimeFormat('pt-BR', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+const dayFormatter = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', timeZone: 'UTC' });
+
+for (const post of posts) {
+  const key = monthFormatter.format(post.data.publishedAt);
+  const group = grouped.get(key) ?? [];
+  group.push(post);
+  grouped.set(key, group);
+}
+
+const archive = [...grouped.entries()].map(([label, items]) => {
+  const [month, year] = label.split(' de ');
+  const id = `${year}-${month.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()}`;
+  return { label, month, year, id, items };
+});
+---
+<BaseLayout>
+  <div class="archive-layout">
+    <section class="archive-content">
+      <header class="archive-hero">
+        <p class="archive-kicker">ADS · desenvolvimento de software · notas públicas</p>
+        <h1>Caderno de<br /><em>desenvolvimento.</em></h1>
+        <p class="archive-intro">
+          Registro o que estou aprendendo, construindo e corrigindo — de fundamentos de programação a arquitetura, APIs, Docker e produtos reais.
+        </p>
+        <div class="archive-links" aria-label="Atalhos">
+          <a href="/sobre">Sobre este espaço</a>
+          <a href="/projetos">Projetos em andamento</a>
+        </div>
+      </header>
+
+      {featured.length > 0 && (
+        <details class="featured-panel" open>
+          <summary>
+            <span>Destaques</span>
+            <small><span class="show-label">mostrar</span><span class="hide-label">ocultar</span></small>
+          </summary>
+          <div class="featured-grid">
+            {featured.map((post, index) => (
+              <a href={`/blog/${post.id}/`}>
+                <span>0{index + 1}</span>
+                <strong>{post.data.title}</strong>
+                <small>{post.data.tags.slice(0, 2).join(' · ')}</small>
+              </a>
+            ))}
+          </div>
+        </details>
+      )}
+
+      <div class="archive-groups">
+        {archive.map((group) => (
+          <section class="archive-group" id={group.id}>
+            <header class="month-heading">
+              <h2>{group.month}<span>{group.year}</span></h2>
+              <small>{group.items.length} {group.items.length === 1 ? 'nota' : 'notas'}</small>
+            </header>
+
+            <div class="post-index">
+              {group.items.map((post) => (
+                <article class="post-index-row">
+                  <time datetime={post.data.publishedAt.toISOString()}>{dayFormatter.format(post.data.publishedAt)}</time>
+                  <div>
+                    <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+                    <p>{post.data.description}</p>
+                  </div>
+                  <span class="post-category">{post.data.tags[0] ?? 'nota'}</span>
+                </article>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </section>
+
+    <aside class="archive-aside" aria-label="Índice do arquivo">
+      <div class="archive-aside-inner">
+        <p class="aside-title">Neste arquivo</p>
+        <nav>
+          {archive.map((group, index) => (
+            <a class={index === 0 ? 'is-current' : ''} href={`#${group.id}`}>
+              <span>{group.year}</span> {group.month}
+            </a>
+          ))}
+        </nav>
+
+        <div class="aside-block">
+          <p class="aside-title">Em estudo</p>
+          <ul>
+            <li>Python e lógica</li>
+            <li>TypeScript e APIs</li>
+            <li>Arquitetura de software</li>
+            <li>Docker e Linux</li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+  </div>
+</BaseLayout>

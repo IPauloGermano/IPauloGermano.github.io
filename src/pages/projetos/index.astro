@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const projects = [
+  {
+    name: 'ParkFlow',
+    status: 'em evolução',
+    description: 'SaaS para operação de estacionamentos, com fluxo orientado pela placa, controle de vagas, mensalistas e automações.',
+    stack: ['React', 'TypeScript', 'PostgreSQL'],
+    note: 'produto e regras de negócio'
+  }
+];
+---
+<BaseLayout title="Projetos — PauloGerm.dev" description="Projeto em desenvolvimento.">
+  <div class="narrow-page">
+    <header class="page-heading">
+      <p>Em construção</p>
+      <h1>Projetos</h1>
+      <div class="heading-rule"></div>
+      <span>Produto em desenvolvimento usado como prática deliberada de engenharia, UX e regras de negócio.</span>
+    </header>
+
+    <div class="project-ledger">
+      {projects.map((project, index) => (
+        <article class="ledger-row">
+          <div class="ledger-index">0{index + 1}</div>
+          <div class="ledger-main">
+            <div class="ledger-title">
+              <h2>{project.name}</h2>
+              <span>{project.status}</span>
+            </div>
+            <p>{project.description}</p>
+            <div class="ledger-foot">
+              <span>{project.note}</span>
+              <ul>{project.stack.map((item) => <li>{item}</li>)}</ul>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

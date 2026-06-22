@@ -1,0 +1,36 @@
+---
+import '../styles/global.css';
+import SiteShell from '../components/SiteShell.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'PauloGerm.dev — Caderno de desenvolvimento',
+  description = 'Artigos, projetos e anotações sobre desenvolvimento de software, ADS e engenharia de sistemas.'
+} = Astro.props;
+---
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#13110f" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title="PauloGerm.dev" href="/rss.xml" />
+    <title>{title}</title>
+    <script is:inline>
+      const storedTheme = localStorage.getItem('theme');
+      if (storedTheme) document.documentElement.dataset.theme = storedTheme;
+    </script>
+  </head>
+  <body>
+    <SiteShell><slot /></SiteShell>
+  </body>
+</html>

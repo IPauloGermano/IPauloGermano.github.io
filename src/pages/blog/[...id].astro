@@ -1,0 +1,39 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+const date = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'long', year: 'numeric', timeZone: 'UTC' })
+  .format(post.data.publishedAt);
+const toc = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
+---
+<BaseLayout title={`${post.data.title} — PauloGerm.dev`} description={post.data.description}>
+  <div class="article-layout">
+    <article class="article-prose">
+      <a class="back-link" href="/blog">← Voltar ao arquivo</a>
+      <header class="article-header">
+        <div class="article-meta"><time>{date}</time><span>{post.data.tags.join(' · ')}</span></div>
+        <h1>{post.data.title}</h1>
+        <p>{post.data.description}</p>
+      </header>
+      <div class="prose-body"><Content /></div>
+    </article>
+
+    {toc.length > 0 && (
+      <aside class="article-toc">
+        <p>Nesta nota</p>
+        <nav>
+          {toc.map((heading) => (
+            <a class:list={[`depth-${heading.depth}`]} href={`#${heading.slug}`}>{heading.text}</a>
+          ))}
+        </nav>
+      </aside>
+    )}
+  </div>
+</BaseLayout>

@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const dateFormatter = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC' });
+---
+<BaseLayout title="Artigos — PauloGerm.dev" description="Arquivo completo de artigos e anotações técnicas.">
+  <div class="narrow-page">
+    <header class="page-heading">
+      <p>Arquivo completo</p>
+      <h1>Artigos e notas</h1>
+      <div class="heading-rule"></div>
+      <span>{posts.length} publicações sobre estudo, projetos e engenharia de software.</span>
+    </header>
+
+    <div class="full-archive">
+      {posts.map((post, index) => (
+        <article class="full-archive-row">
+          <span class="archive-number">{String(index + 1).padStart(2, '0')}</span>
+          <div>
+            <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+            <p>{post.data.description}</p>
+            <div class="row-meta">
+              <time>{dateFormatter.format(post.data.publishedAt)}</time>
+              <span>{post.data.tags.join(' · ')}</span>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

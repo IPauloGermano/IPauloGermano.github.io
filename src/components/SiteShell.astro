@@ -1,0 +1,160 @@
+---
+import { getCollection } from 'astro:content';
+
+const pathname = Astro.url.pathname;
+const isCurrent = (path: string) => path === '/' ? pathname === '/' : pathname.startsWith(path);
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const searchData = posts.map((post) => ({
+  title: post.data.title,
+  description: post.data.description,
+  href: `/blog/${post.id}/`,
+  tags: post.data.tags
+}));
+---
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-brand" href="/" aria-label="PauloGerm.dev — início">
+      <span class="brand-bracket">[</span>PauloGerm.dev<span class="brand-bracket">]</span>
+    </a>
+
+    <nav class="main-nav" aria-label="Navegação principal">
+      <a href="/blog" aria-current={isCurrent('/blog') ? 'page' : undefined}>Artigos</a>
+      <a href="/projetos" aria-current={isCurrent('/projetos') ? 'page' : undefined}>Projetos</a>
+      <a href="/sobre" aria-current={isCurrent('/sobre') ? 'page' : undefined}>Sobre</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-icon" href="https://github.com/IPauloGermano" target="_blank" rel="noreferrer" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.3-.4 6.8-1.6 6.8-7A5.5 5.5 0 0 0 19.3 4 5.1 5.1 0 0 0 19.1.5S17.9.1 15 2a13.4 13.4 0 0 0-7 0C5.1.1 3.9.5 3.9.5A5.1 5.1 0 0 0 3.7 4a5.5 5.5 0 0 0-1.5 3.8c0 5.4 3.5 6.6 6.8 7A4.8 4.8 0 0 0 8 18v4"/><path d="M8 19c-3 .9-3-1.5-4-2"/></svg>
+      </a>
+
+      <button class="search-trigger" id="search-trigger" type="button" aria-haspopup="dialog" aria-controls="search-dialog">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <span>Buscar artigos</span>
+        <kbd>Ctrl K</kbd>
+      </button>
+
+      <a class="header-icon rss-link" href="/rss.xml" aria-label="RSS">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14"/><circle cx="5" cy="19" r="1"/></svg>
+      </a>
+
+      <button class="header-icon" id="theme-toggle" type="button" aria-label="Alternar tema">
+        <svg class="theme-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
+        <svg class="theme-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo"><slot /></main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>© {new Date().getFullYear()} PauloGerm.dev</p>
+    <p>Um caderno público de estudo e construção de software.</p>
+  </div>
+</footer>
+
+<dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title">
+  <div class="search-box">
+    <div class="search-head">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+      <label class="sr-only" for="search-input" id="search-title">Buscar artigos</label>
+      <input id="search-input" type="search" placeholder="Busque por título, assunto ou tecnologia…" autocomplete="off" />
+      <button id="search-close" type="button" aria-label="Fechar busca">Esc</button>
+    </div>
+    <div class="search-results" id="search-results" aria-live="polite"></div>
+    <p class="search-hint">Use ↑ ↓ para navegar e Enter para abrir.</p>
+  </div>
+</dialog>
+
+<script id="search-data" type="application/json" set:html={JSON.stringify(searchData)}></script>
+<script is:inline>
+  const root = document.documentElement;
+  const themeButton = document.getElementById('theme-toggle');
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) root.dataset.theme = savedTheme;
+
+  themeButton?.addEventListener('click', () => {
+    const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+    root.dataset.theme = next;
+    localStorage.setItem('theme', next);
+  });
+
+  const dialog = document.getElementById('search-dialog');
+  const trigger = document.getElementById('search-trigger');
+  const close = document.getElementById('search-close');
+  const input = document.getElementById('search-input');
+  const results = document.getElementById('search-results');
+  const dataNode = document.getElementById('search-data');
+  const searchItems = JSON.parse(dataNode?.textContent || '[]');
+  let selectedIndex = 0;
+
+  const normalize = (value) => value
+    .toLocaleLowerCase('pt-BR')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+
+  const renderResults = () => {
+    if (!results || !input) return;
+    const query = normalize(input.value.trim());
+    const filtered = searchItems.filter((item) => {
+      const haystack = normalize(`${item.title} ${item.description} ${item.tags.join(' ')}`);
+      return !query || haystack.includes(query);
+    }).slice(0, 8);
+
+    selectedIndex = Math.min(selectedIndex, Math.max(filtered.length - 1, 0));
+    results.innerHTML = filtered.length
+      ? filtered.map((item, index) => `
+          <a class="search-result${index === selectedIndex ? ' is-selected' : ''}" href="${item.href}" data-index="${index}">
+            <strong>${item.title}</strong>
+            <span>${item.description}</span>
+          </a>`).join('')
+      : '<p class="search-empty">Nenhum artigo encontrado.</p>';
+  };
+
+  const openSearch = () => {
+    if (!dialog) return;
+    dialog.showModal();
+    selectedIndex = 0;
+    if (input) input.value = '';
+    renderResults();
+    requestAnimationFrame(() => input?.focus());
+  };
+
+  const closeSearch = () => dialog?.close();
+  trigger?.addEventListener('click', openSearch);
+  close?.addEventListener('click', closeSearch);
+  input?.addEventListener('input', () => { selectedIndex = 0; renderResults(); });
+  dialog?.addEventListener('click', (event) => {
+    if (event.target === dialog) closeSearch();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+      event.preventDefault();
+      openSearch();
+      return;
+    }
+    if (!dialog?.open) return;
+    const links = [...results.querySelectorAll('.search-result')];
+    if (event.key === 'Escape') closeSearch();
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      selectedIndex = Math.min(selectedIndex + 1, links.length - 1);
+      renderResults();
+    }
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      selectedIndex = Math.max(selectedIndex - 1, 0);
+      renderResults();
+    }
+    if (event.key === 'Enter' && links[selectedIndex]) {
+      event.preventDefault();
+      window.location.href = links[selectedIndex].href;
+    }
+  });
+</script>
