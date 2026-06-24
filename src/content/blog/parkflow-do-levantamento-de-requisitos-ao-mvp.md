@@ -1,6 +1,7 @@
 ---
 title: "ParkFlow: do levantamento de requisitos a um MVP assistido por IA"
 description: "Como transformamos um problema real de estacionamento em um MVP com TypeScript, Supabase, UX orientada à placa e desenvolvimento assistido por IA."
+image: /images/blog/parkflow/dashboard-refinado.png
 publishedAt: 2026-06-22
 tags:
   - Engenharia de Software

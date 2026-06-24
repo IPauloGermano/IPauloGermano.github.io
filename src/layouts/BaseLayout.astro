@@ -5,12 +5,20 @@ import SiteShell from '../components/SiteShell.astro';
 interface Props {
   title?: string;
   description?: string;
+  type?: 'website' | 'article';
+  image?: string;
 }
 
 const {
   title = 'Caderno de desenvolvimento — Paulo Germano',
-  description = 'Artigos, projetos e anotações sobre desenvolvimento de software, ADS e engenharia de sistemas.'
+  description = 'Artigos, projetos e anotações sobre desenvolvimento de software, ADS e engenharia de sistemas.',
+  type = 'website',
+  image = '/images/og-default.png'
 } = Astro.props;
+
+const site = Astro.site ?? Astro.url;
+const canonicalURL = new URL(Astro.url.pathname, site);
+const socialImageURL = new URL(image, site);
 ---
 <!doctype html>
 <html lang="pt-BR" data-theme="dark">
@@ -21,8 +29,16 @@ const {
     <meta name="theme-color" content="#13110f" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={socialImageURL} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageURL} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="alternate" type="application/rss+xml" title="PauloGerm.dev" href="/rss.xml" />
     <title>{title}</title>
     <script is:inline>

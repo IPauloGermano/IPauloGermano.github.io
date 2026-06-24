@@ -22,7 +22,12 @@ const relatedArticles = getRelatedPosts(post, publishedPosts).map((relatedPost) 
   title: relatedPost.data.title
 }));
 ---
-<BaseLayout title={`${post.data.title} — PauloGerm.dev`} description={post.data.description}>
+<BaseLayout
+  title={`${post.data.title} — PauloGerm.dev`}
+  description={post.data.description}
+  type="article"
+  image={post.data.image}
+>
   <div class="article-layout">
     <article class="article-prose">
       <a class="back-link" href="/blog">← Voltar ao arquivo</a>
