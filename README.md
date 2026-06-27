@@ -36,6 +36,7 @@ npm run dev -- --port 4322
 - `src/components/SiteShell.astro`: cabeçalho, busca, tema e rodapé.
 - `src/styles/global.css`: identidade visual completa.
 - `src/pages/rss.xml.ts`: feed RSS sem dependência externa.
+- `EMBEDS.md`: guia para incorporar vídeos, documentos e ferramentas externas nos artigos.
 
 ## Criar artigo
 

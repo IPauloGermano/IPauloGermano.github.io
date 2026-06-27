@@ -1,0 +1,169 @@
+<script>
+  import { embedAdapters } from './embed/adapters';
+  import { embedLayouts, isAllowedEmbedSource } from './embed/config';
+  import type { EmbedDefinition, EmbedLayout } from './embed/types';
+
+  const embedLabelPattern = /^embed\s*:\s*/i;
+  const embedOnlyPattern = /^embed$/i;
+  const setupAttribute = 'data-pg-embed-processed';
+  let setupFrame = 0;
+
+  type EmbedLinkRequest = {
+    anchor: HTMLAnchorElement;
+    rawUrl: string;
+    url: URL;
+    title: string;
+  };
+
+  function getEmbedLinkRequest(anchor: HTMLAnchorElement): EmbedLinkRequest | null {
+    if (anchor.getAttribute(setupAttribute) === 'true') return null;
+
+    const label = anchor.textContent?.trim() ?? '';
+    const titleAttribute = anchor.getAttribute('title')?.trim() ?? '';
+    const rawUrl = anchor.getAttribute('href')?.trim() ?? '';
+
+    if (!rawUrl) return null;
+
+    let title = '';
+    if (embedLabelPattern.test(label)) {
+      title = label.replace(embedLabelPattern, '').trim();
+    } else if (embedOnlyPattern.test(label)) {
+      title = titleAttribute;
+    } else {
+      return null;
+    }
+
+    try {
+      return {
+        anchor,
+        rawUrl,
+        url: new URL(rawUrl, window.location.href),
+        title: title || titleAttribute || 'Conteúdo incorporado'
+      };
+    } catch {
+      return null;
+    }
+  }
+
+  function applyLayout(frame: HTMLElement, layout: EmbedLayout) {
+    frame.dataset.layout = layout.mode;
+    frame.dataset.scroll = String(Boolean(layout.scrollable));
+
+    if (layout.aspectRatio) frame.style.setProperty('--pg-embed-aspect-ratio', layout.aspectRatio);
+    if (layout.height) frame.style.setProperty('--pg-embed-height', layout.height);
+    if (layout.maxHeight) frame.style.setProperty('--pg-embed-max-height', layout.maxHeight);
+  }
+
+  function createIframe(definition: Extract<EmbedDefinition, { kind: 'iframe' }>) {
+    const iframe = document.createElement('iframe');
+    iframe.src = definition.src;
+    iframe.title = definition.title;
+    iframe.loading = 'lazy';
+    iframe.referrerPolicy = definition.referrerPolicy ?? 'strict-origin-when-cross-origin';
+
+    if (definition.allow) iframe.allow = definition.allow;
+    if (definition.allowFullscreen) iframe.allowFullscreen = true;
+    if (definition.sandbox) iframe.setAttribute('sandbox', definition.sandbox);
+
+    return iframe;
+  }
+
+  function createVideo(definition: Extract<EmbedDefinition, { kind: 'video' }>) {
+    const video = document.createElement('video');
+    video.controls = true;
+    video.preload = 'metadata';
+    video.setAttribute('aria-label', definition.title);
+
+    const source = document.createElement('source');
+    source.src = definition.src;
+    if (definition.type) source.type = definition.type;
+    video.append(source);
+
+    return video;
+  }
+
+  function createEmbedElement(definition: EmbedDefinition) {
+    const layout = embedLayouts[definition.layout];
+    const figure = document.createElement('figure');
+    figure.className = 'pg-embed';
+    figure.dataset.platform = definition.platform;
+    figure.setAttribute('aria-label', `${definition.label}: ${definition.title}`);
+
+    const frame = document.createElement('div');
+    frame.className = 'pg-embed-frame';
+    applyLayout(frame, layout);
+
+    const media = definition.kind === 'iframe'
+      ? createIframe(definition)
+      : createVideo(definition);
+
+    const caption = document.createElement('figcaption');
+    caption.className = 'sr-only';
+    caption.textContent = `${definition.label}: ${definition.title}`;
+
+    frame.append(media);
+    figure.append(frame, caption);
+    return figure;
+  }
+
+  function createUnsupportedElement(rawUrl: string) {
+    const notice = document.createElement('aside');
+    notice.className = 'pg-embed pg-embed--unsupported';
+    notice.setAttribute('role', 'note');
+
+    const title = document.createElement('strong');
+    title.textContent = 'Embed não suportado';
+
+    const description = document.createElement('span');
+    description.textContent = 'Esta URL não pertence a uma plataforma permitida ou não pôde ser convertida com segurança.';
+
+    const link = document.createElement('a');
+    link.href = rawUrl;
+    link.textContent = 'Abrir conteúdo original';
+    link.rel = 'noreferrer';
+
+    notice.append(title, description, link);
+    return notice;
+  }
+
+  function getEmbedDefinition(request: EmbedLinkRequest) {
+    if (!isAllowedEmbedSource(request.url, request.rawUrl, window.location.origin)) return null;
+
+    const adapter = embedAdapters.find((candidate) => candidate.matches(request.url, request.rawUrl));
+    return adapter?.create({
+      url: request.url,
+      rawUrl: request.rawUrl,
+      title: request.title
+    }) ?? null;
+  }
+
+  function renderEmbedLink(anchor: HTMLAnchorElement) {
+    const request = getEmbedLinkRequest(anchor);
+    if (!request) return;
+
+    anchor.setAttribute(setupAttribute, 'true');
+    const definition = getEmbedDefinition(request);
+    const replacement = definition
+      ? createEmbedElement(definition)
+      : createUnsupportedElement(request.rawUrl);
+
+    anchor.replaceWith(replacement);
+  }
+
+  function renderEmbeds() {
+    document.querySelectorAll<HTMLAnchorElement>('.prose-body a').forEach(renderEmbedLink);
+  }
+
+  function scheduleRender() {
+    cancelAnimationFrame(setupFrame);
+    setupFrame = requestAnimationFrame(renderEmbeds);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', scheduleRender, { once: true });
+  } else {
+    scheduleRender();
+  }
+
+  document.addEventListener('astro:page-load', scheduleRender);
+</script>
