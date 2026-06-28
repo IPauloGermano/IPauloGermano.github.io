@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getSeriesGroups } from '../../utils/series';
+
+const allPosts = await getCollection('blog');
+const seriesGroups = getSeriesGroups(allPosts);
+const dateFormatter = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC' });
+---
+<BaseLayout
+  title="Séries — PauloGerm.dev"
+  description="Coleções de artigos organizadas em sequências de estudo e construção."
+>
+  <div class="narrow-page">
+    <header class="page-heading">
+      <p>Arquivo por sequência</p>
+      <h1>Séries</h1>
+      <div class="heading-rule"></div>
+      <span>{seriesGroups.length} {seriesGroups.length === 1 ? 'série organizada' : 'séries organizadas'} por tema, projeto ou estudo.</span>
+    </header>
+
+    <div class="series-list">
+      {seriesGroups.map((series, index) => (
+        <article class="series-list-row">
+          <span class="archive-number">{String(index + 1).padStart(2, '0')}</span>
+          <div>
+            <a href={`/series/${series.id}/`}>{series.title}</a>
+            {series.description && <p>{series.description}</p>}
+            <div class="row-meta">
+              <span>{series.posts.length} {series.posts.length === 1 ? 'parte' : 'partes'}</span>
+              <time datetime={series.updatedAt.toISOString()}>Atualizada em {dateFormatter.format(series.updatedAt)}</time>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

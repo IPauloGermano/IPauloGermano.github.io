@@ -1,0 +1,35 @@
+---
+interface SeriesLink {
+  id: string;
+  title: string;
+}
+
+interface Props {
+  indexHref: string;
+  previous?: SeriesLink;
+  next?: SeriesLink;
+}
+
+const { indexHref, previous, next } = Astro.props;
+---
+<nav class="series-navigation" aria-label="Navegação da série">
+  <div>
+    {previous && (
+      <a href={`/blog/${previous.id}/`} rel="prev">
+        <span>← Parte anterior</span>
+        <strong>{previous.title}</strong>
+      </a>
+    )}
+  </div>
+
+  <a class="series-index-link" href={indexHref}>Índice da série</a>
+
+  <div>
+    {next && (
+      <a href={`/blog/${next.id}/`} rel="next">
+        <span>Próxima parte →</span>
+        <strong>{next.title}</strong>
+      </a>
+    )}
+  </div>
+</nav>

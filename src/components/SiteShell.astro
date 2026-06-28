@@ -1,15 +1,21 @@
 ---
 import { getCollection } from 'astro:content';
+import { showSeriesUI } from '../data/featureFlags';
+import { getSeriesTitle, validateSeriesEntries } from '../utils/series';
 
 const pathname = Astro.url.pathname;
 const isCurrent = (path: string) => path === '/' ? pathname === '/' : pathname.startsWith(path);
-const posts = (await getCollection('blog', ({ data }) => !data.draft))
+const allPosts = await getCollection('blog');
+validateSeriesEntries(allPosts);
+const posts = allPosts
+  .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
 const searchData = posts.map((post) => ({
   title: post.data.title,
   description: post.data.description,
   href: `/blog/${post.id}/`,
-  tags: post.data.tags
+  tags: post.data.tags,
+  series: getSeriesTitle(post)
 }));
 ---
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -22,6 +28,7 @@ const searchData = posts.map((post) => ({
 
     <nav class="main-nav" aria-label="Navegação principal">
       <a href="/blog" aria-current={isCurrent('/blog') ? 'page' : undefined}>Artigos</a>
+      {showSeriesUI && <a href="/series" aria-current={isCurrent('/series') ? 'page' : undefined}>Séries</a>}
       <a href="/projetos" aria-current={isCurrent('/projetos') ? 'page' : undefined}>Projetos</a>
       <a href="/sobre" aria-current={isCurrent('/sobre') ? 'page' : undefined}>Sobre</a>
     </nav>
@@ -102,7 +109,7 @@ const searchData = posts.map((post) => ({
     if (!results || !input) return;
     const query = normalize(input.value.trim());
     const filtered = searchItems.filter((item) => {
-      const haystack = normalize(`${item.title} ${item.description} ${item.tags.join(' ')}`);
+      const haystack = normalize(`${item.title} ${item.description} ${item.tags.join(' ')} ${item.series || ''}`);
       return !query || haystack.includes(query);
     }).slice(0, 8);
 

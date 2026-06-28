@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getSeriesGroups } from '../../utils/series';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+  const seriesGroups = getSeriesGroups(allPosts);
+
+  return seriesGroups.map((series) => ({
+    params: { id: series.id },
+    props: { series }
+  }));
+}
+
+const { series } = Astro.props;
+const dateFormatter = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC' });
+const description = series.description ?? `Artigos da série ${series.title}.`;
+---
+<BaseLayout
+  title={`${series.title} — Série — PauloGerm.dev`}
+  description={description}
+>
+  <div class="narrow-page">
+    <header class="page-heading">
+      <p>Série</p>
+      <h1>{series.title}</h1>
+      <div class="heading-rule"></div>
+      <span>{description}</span>
+    </header>
+
+    <div class="series-index">
+      {series.posts.map((post) => (
+        <article class="series-index-row" id={`parte-${post.data.series?.order}`}>
+          <span class="archive-number">{String(post.data.series?.order).padStart(2, '0')}</span>
+          <div>
+            <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+            <p>{post.data.description}</p>
+            <div class="row-meta">
+              <time datetime={post.data.publishedAt.toISOString()}>{dateFormatter.format(post.data.publishedAt)}</time>
+              <span>Publicado</span>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

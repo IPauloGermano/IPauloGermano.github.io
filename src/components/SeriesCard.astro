@@ -1,0 +1,15 @@
+---
+interface Props {
+  title: string;
+  href: string;
+  currentIndex: number;
+  total: number;
+}
+
+const { title, href, currentIndex, total } = Astro.props;
+---
+<aside class="series-card" aria-label={`Série ${title}`}>
+  <p>Série</p>
+  <a href={href}>{title}</a>
+  <span>Parte {currentIndex} de {total}</span>
+</aside>
