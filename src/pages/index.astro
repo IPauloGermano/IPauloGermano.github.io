@@ -1,6 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { books } from '../data/books';
+import { featureFlags } from '../data/featureFlags';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
@@ -22,6 +24,10 @@ const archive = [...grouped.entries()].map(([label, items]) => {
   const id = `${year}-${month.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()}`;
   return { label, month, year, id, items };
 });
+const sidebarBooks = featureFlags.showBookshelfSidebar
+  ? books.slice(0, 5)
+  : [];
+const hasBookLink = (link?: string) => Boolean(link?.trim());
 ---
 <BaseLayout>
   <div class="archive-layout">
@@ -102,6 +108,23 @@ const archive = [...grouped.entries()].map(([label, items]) => {
             <li>Docker</li>
           </ul>
         </div>
+
+        {sidebarBooks.length > 0 && (
+          <div class="aside-block">
+            <p class="aside-title">Na estante</p>
+            <ul>
+              {sidebarBooks.map((book) => (
+                <li>
+                  {hasBookLink(book.link) ? (
+                    <a href={book.link} target="_blank" rel="noopener noreferrer">{book.title}</a>
+                  ) : (
+                    book.title
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </aside>
   </div>

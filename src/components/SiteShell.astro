@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import { showSeriesUI } from '../data/featureFlags';
+import { featureFlags, showSeriesUI } from '../data/featureFlags';
 import { getSeriesTitle, validateSeriesEntries } from '../utils/series';
 
 const pathname = Astro.url.pathname;
@@ -30,6 +30,7 @@ const searchData = posts.map((post) => ({
       <a href="/blog" aria-current={isCurrent('/blog') ? 'page' : undefined}>Artigos</a>
       {showSeriesUI && <a href="/series" aria-current={isCurrent('/series') ? 'page' : undefined}>Séries</a>}
       <a href="/projetos" aria-current={isCurrent('/projetos') ? 'page' : undefined}>Projetos</a>
+      {featureFlags.showBookshelfNav && <a href="/estante" aria-current={isCurrent('/estante') ? 'page' : undefined}>Na estante</a>}
       <a href="/sobre" aria-current={isCurrent('/sobre') ? 'page' : undefined}>Sobre</a>
     </nav>
 

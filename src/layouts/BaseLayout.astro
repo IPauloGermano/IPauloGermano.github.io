@@ -7,13 +7,15 @@ interface Props {
   description?: string;
   type?: 'website' | 'article';
   image?: string;
+  noindex?: boolean;
 }
 
 const {
   title = 'Caderno de desenvolvimento — Paulo Germano',
   description = 'Artigos, projetos e anotações sobre desenvolvimento de software, ADS e engenharia de sistemas.',
   type = 'website',
-  image = '/images/og-default.png'
+  image = '/images/og-default.png',
+  noindex = false
 } = Astro.props;
 
 const site = Astro.site ?? Astro.url;
@@ -26,6 +28,7 @@ const socialImageURL = new URL(image, site);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <meta name="theme-color" content="#13110f" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

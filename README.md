@@ -33,6 +33,7 @@ npm run dev -- --port 4322
 - `src/content/blog`: artigos em Markdown.
 - `src/pages/index.astro`: página inicial e arquivo cronológico.
 - `src/pages/projetos/index.astro`: página de projetos, atualmente com o ParkFlow.
+- `src/pages/estante/index.astro`: página "Na estante", com livros cadastrados em `src/data/books.ts`.
 - `src/components/SiteShell.astro`: cabeçalho, busca, tema e rodapé.
 - `src/styles/global.css`: identidade visual completa.
 - `src/pages/rss.xml.ts`: feed RSS sem dependência externa.
@@ -52,6 +53,66 @@ draft: false
 
 Conteúdo do artigo.
 ```
+
+## Adicionar livro na estante
+
+Cadastre livros em `src/data/books.ts`.
+
+Exemplo simples:
+
+```ts
+{
+  title: 'Clean Code'
+}
+```
+
+Exemplo completo:
+
+```ts
+{
+  title: 'Clean Code',
+  author: 'Robert C. Martin',
+  status: 'want-to-read',
+  year: 2008,
+  description: 'Livro sobre legibilidade, manutenção e qualidade de código.',
+  link: 'https://www.oreilly.com/library/view/clean-code-a/9780136083238/',
+  cover: {
+    src: '/images/books/clean-code.jpg',
+    alt: 'Capa do livro Clean Code'
+  },
+  relatedSeriesIds: ['fundamentos-backend']
+}
+```
+
+Campos obrigatórios:
+
+- `title`
+
+Status aceitos:
+
+- `reading`: Lendo
+- `read`: Lido
+- `want-to-read`: Quero ler
+
+Campos opcionais:
+
+- `author`
+- `status`
+- `year`
+- `description`
+- `link`
+- `cover`
+- `relatedSeriesIds`
+
+Para livro sem link, omita o campo `link`.
+
+Capas locais devem ficar em `public/images/books/` e ser referenciadas sem o prefixo `public`, como `/images/books/clean-code.jpg`.
+
+As flags da estante ficam em `src/data/featureFlags.ts`:
+
+- `featureFlags.showBookshelfSidebar`: mostra a lista simples na lateral da home.
+- `featureFlags.showBookshelfPage`: ativa a página completa `/estante`.
+- `featureFlags.showBookshelfNav`: mostra o link "Na estante" no menu principal.
 
 ## Antes de publicar
 

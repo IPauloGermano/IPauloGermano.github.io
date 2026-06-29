@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { books, type BookStatus } from '../../data/books';
+import { featureFlags } from '../../data/featureFlags';
+import { seriesCatalog } from '../../data/series';
+
+const description = 'Livros que estou lendo, já li ou quero estudar com mais profundidade.';
+const disabledDescription = 'Esta seção ainda não está disponível publicamente.';
+
+const statusLabels = {
+  reading: 'Lendo',
+  read: 'Lido',
+  'want-to-read': 'Quero ler'
+} satisfies Record<BookStatus, string>;
+
+const isSafeExternalUrl = (value?: string) => {
+  if (!value?.trim()) return false;
+  try {
+    return new URL(value).protocol === 'https:';
+  } catch {
+    return false;
+  }
+};
+
+const isSafeCoverSource = (value?: string) => {
+  const source = value?.trim();
+  if (!source) return false;
+  if (source.startsWith('/') && !source.startsWith('//')) return true;
+  return isSafeExternalUrl(source);
+};
+
+const getRelatedSeries = (book: (typeof books)[number]) => {
+  if (!featureFlags.showSeriesUI || !book.relatedSeriesIds?.length) return [];
+
+  return book.relatedSeriesIds.flatMap((seriesId) => {
+    const series = seriesCatalog[seriesId as keyof typeof seriesCatalog];
+    if (!series) {
+      console.warn(
+        `[books] Série relacionada inexistente "${seriesId}" no livro "${book.title}". ` +
+        'Cadastre a série em src/data/series.ts ou remova relatedSeriesIds.'
+      );
+      return [];
+    }
+
+    return [{ id: seriesId, title: series.title }];
+  });
+};
+
+const bookItems = books.map((book) => ({
+  book,
+  relatedSeries: getRelatedSeries(book)
+}));
+---
+<BaseLayout
+  title={featureFlags.showBookshelfPage ? 'Na estante — PauloGerm.dev' : 'Seção indisponível — PauloGerm.dev'}
+  description={featureFlags.showBookshelfPage ? description : disabledDescription}
+  noindex={!featureFlags.showBookshelfPage}
+>
+  <div class="narrow-page">
+    {featureFlags.showBookshelfPage ? (
+      <>
+        <header class="page-heading">
+          <p>Biblioteca de estudo</p>
+          <h1>Na estante</h1>
+          <div class="heading-rule"></div>
+          <span>{description}</span>
+        </header>
+
+        {bookItems.length > 0 ? (
+          <div class="bookshelf-list">
+            {bookItems.map(({ book, relatedSeries }, index) => (
+              <article class:list={['bookshelf-row', isSafeCoverSource(book.cover?.src) && 'has-cover']}>
+                <span class="archive-number">{String(index + 1).padStart(2, '0')}</span>
+                {isSafeCoverSource(book.cover?.src) && book.cover && (
+                  <img
+                    class="bookshelf-cover"
+                    src={book.cover.src}
+                    alt={book.cover.alt}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                )}
+                <div class="bookshelf-main">
+                  <h2>{book.title}</h2>
+                  {book.author && <p class="bookshelf-author">{book.author}</p>}
+                  {(book.status || book.year) && (
+                    <div class="row-meta">
+                      {book.status && <span>{statusLabels[book.status]}</span>}
+                      {book.year && <span>{book.year}</span>}
+                    </div>
+                  )}
+                  {book.description && <p class="bookshelf-description">{book.description}</p>}
+                  {relatedSeries.length > 0 && (
+                    <div class="bookshelf-related">
+                      <span>Séries relacionadas:</span>
+                      <ul>
+                        {relatedSeries.map((series) => (
+                          <li><a href={`/series/${series.id}/`}>{series.title}</a></li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {isSafeExternalUrl(book.link) && (
+                    <a class="bookshelf-link" href={book.link} target="_blank" rel="noopener noreferrer">
+                      Ver livro →
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div class="bookshelf-empty" role="note">
+            <strong>Nenhum livro cadastrado ainda.</strong>
+            <p>Esta seção será usada para registrar livros de estudo, referência e aprofundamento técnico.</p>
+          </div>
+        )}
+      </>
+    ) : (
+      <>
+        <header class="page-heading">
+          <p>Biblioteca de estudo</p>
+          <h1>Seção em preparação</h1>
+          <div class="heading-rule"></div>
+          <span>{disabledDescription}</span>
+        </header>
+
+        <div class="bookshelf-empty" role="note">
+          <strong>Na estante ainda não está disponível por aqui.</strong>
+          <p>Por enquanto, a seleção de livros aparece apenas na lateral da página inicial.</p>
+        </div>
+      </>
+    )}
+  </div>
+</BaseLayout>
