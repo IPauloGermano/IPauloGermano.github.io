@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { featureFlags } from '../data/featureFlags';
+
+const description = 'Esta página não existe, foi movida ou ainda não foi publicada.';
+
+Astro.response.status = 404;
+---
+<BaseLayout
+  title="Página não encontrada"
+  description={description}
+  noindex
+>
+  <div class="narrow-page">
+    <header class="page-heading">
+      <p>Arquivo não encontrado</p>
+      <h1>Página não encontrada</h1>
+      <div class="heading-rule"></div>
+      <span>{description}</span>
+    </header>
+
+    <div class="bookshelf-empty" role="note">
+      <strong>Caminhos disponíveis</strong>
+      <p>Você pode voltar para a página inicial, explorar os artigos ou acessar os projetos.</p>
+      <div class="archive-links" aria-label="Caminhos disponíveis">
+        <a href="/">Voltar para o início</a>
+        <a href="/blog">Ver artigos</a>
+        <a href="/projetos">Ver projetos</a>
+        {featureFlags.showSeriesUI && <a href="/series">Ver séries</a>}
+      </div>
+    </div>
+  </div>
+</BaseLayout>
