@@ -663,6 +663,15 @@ kbd {
   border: 0;
   background: var(--bg);
 }
+.prose-body .pg-embed[data-platform='spotify'] .pg-embed-frame {
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+}
+.prose-body .pg-embed[data-platform='spotify'] iframe {
+  border-radius: 12px;
+  background: transparent;
+}
 .prose-body .pg-embed-frame video {
   object-fit: contain;
 }

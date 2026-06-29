@@ -2,6 +2,8 @@ export type EmbedLayoutKey =
   | 'video'
   | 'presentation'
   | 'spotifyCompact'
+  | 'spotifyAlbum'
+  | 'spotifyPlaylist'
   | 'spotifyLarge'
   | 'googlePreview'
   | 'googleDocument'

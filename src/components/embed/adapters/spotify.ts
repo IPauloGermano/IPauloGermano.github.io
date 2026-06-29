@@ -2,8 +2,10 @@ import type { EmbedAdapter, EmbedLayoutKey } from '../types';
 import { createIframeEmbed, iframeAllow, pathSegments } from '../utils';
 
 const compactTypes = new Set(['track', 'episode']);
-const largeTypes = new Set(['album', 'artist', 'playlist', 'show']);
-const supportedTypes = new Set([...compactTypes, ...largeTypes]);
+const albumTypes = new Set(['album']);
+const playlistTypes = new Set(['playlist']);
+const largeTypes = new Set(['artist', 'show']);
+const supportedTypes = new Set([...compactTypes, ...albumTypes, ...playlistTypes, ...largeTypes]);
 
 const getSpotifyTarget = (url: URL) => {
   const segments = pathSegments(url);
@@ -13,8 +15,12 @@ const getSpotifyTarget = (url: URL) => {
   return { type, id };
 };
 
-const getLayout = (type: string): EmbedLayoutKey =>
-  compactTypes.has(type) ? 'spotifyCompact' : 'spotifyLarge';
+const getLayout = (type: string): EmbedLayoutKey => {
+  if (compactTypes.has(type)) return 'spotifyCompact';
+  if (albumTypes.has(type)) return 'spotifyAlbum';
+  if (playlistTypes.has(type)) return 'spotifyPlaylist';
+  return 'spotifyLarge';
+};
 
 export const spotifyAdapter: EmbedAdapter = {
   id: 'spotify',

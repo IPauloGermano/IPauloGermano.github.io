@@ -26,7 +26,7 @@ export async function GET({ site }: { site: URL | undefined }) {
   const xml = `<?xml version="1.0" encoding="UTF-8" ?>
   <rss version="2.0">
     <channel>
-      <title>PauloGerm.dev</title>
+      <title>PauloGerm</title>
       <description>Caderno de desenvolvimento, projetos e estudos.</description>
       <link>${base.toString()}</link>
       ${items}

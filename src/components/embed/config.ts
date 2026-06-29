@@ -31,8 +31,18 @@ export const embedLayouts: Record<EmbedLayoutKey, EmbedLayout> = {
   },
   spotifyCompact: {
     mode: 'fixed',
+    height: '5.5rem',
+    maxHeight: '5.5rem'
+  },
+  spotifyAlbum: {
+    mode: 'fixed',
     height: '9.5rem',
     maxHeight: '9.5rem'
+  },
+  spotifyPlaylist: {
+    mode: 'fixed',
+    height: '22rem',
+    maxHeight: '22rem'
   },
   spotifyLarge: {
     mode: 'fixed',
