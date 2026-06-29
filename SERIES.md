@@ -40,6 +40,31 @@ Cada entrada deve ter:
 
 O `id` da série é a chave do objeto e deve ser usado no frontmatter dos artigos.
 
+Regra importante: sempre que um artigo usar `series.id`, esse mesmo id precisa existir em `src/data/series.ts`. O artigo informa que pertence a uma série; o catálogo informa que essa série existe e quais são seu título e descrição.
+
+Se ainda não houver nenhuma série real, mantenha o catálogo vazio:
+
+```ts
+export const seriesCatalog = {} as const;
+
+export type SeriesId = keyof typeof seriesCatalog;
+```
+
+Exemplo didático de uma série demo, apenas para entender o formato:
+
+```ts
+export const seriesCatalog = {
+  'demo-series': {
+    title: 'Demonstração de séries',
+    description: 'Série de exemplo usada apenas para entender como o cadastro funciona.'
+  }
+} as const;
+
+export type SeriesId = keyof typeof seriesCatalog;
+```
+
+Nesse caso, o id oficial da série seria `demo-series`.
+
 ## Como criar uma nova série
 
 Adicione uma nova entrada em `src/data/series.ts`.
@@ -63,6 +88,8 @@ series:
   order: 1
 ```
 
+O valor de `series.id` no artigo deve ser exatamente igual à chave cadastrada no catálogo. No exemplo acima, o id é `parkflow` nos dois lugares.
+
 ## Como adicionar um artigo a uma série
 
 No frontmatter do artigo Markdown ou MDX, adicione:
@@ -79,6 +106,31 @@ Campos:
 - `order`: obrigatório quando `series` existir. Deve ser inteiro maior ou igual a `1`.
 
 O campo `series.title` pode existir por compatibilidade com o schema, mas não deve ser usado como fonte oficial do nome da série. Use sempre `src/data/series.ts`.
+
+Se o artigo usar um id que não existe no catálogo, o build falha de propósito. Isso evita publicar uma série sem página, título ou descrição oficiais.
+
+Exemplo usando a série demo da documentação:
+
+```yaml
+---
+title: "Artigo de demonstração da série"
+description: "Exemplo de frontmatter para entender séries."
+publishedAt: 2026-06-29
+tags:
+  - Demo
+draft: true
+series:
+  id: demo-series
+  order: 1
+---
+```
+
+Repare que o valor `demo-series` aparece nos dois lugares:
+
+```txt
+src/data/series.ts      -> 'demo-series'
+frontmatter do artigo   -> id: demo-series
+```
 
 ## Ordenação
 
