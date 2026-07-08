@@ -1,0 +1,225 @@
+<!DOCTYPE html><html lang="pt-BR" data-theme="dark"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Explicação sobre os motivos técnicos que ajudaram Java a crescer, com foco em portabilidade, JVM, bytecode e arquivos .class."><meta name="theme-color" content="#13110f"><meta property="og:title" content="Java Fundamentos: por que o Java deu certo — PauloGerm.dev"><meta property="og:description" content="Explicação sobre os motivos técnicos que ajudaram Java a crescer, com foco em portabilidade, JVM, bytecode e arquivos .class."><meta property="og:type" content="article"><meta property="og:url" content="https://ipaulogermano.github.io/blog/java-fundamentos/java-fundamentos-por-que-o-java-deu-certo/"><meta property="og:image" content="https://ipaulogermano.github.io/images/og-default.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Java Fundamentos: por que o Java deu certo — PauloGerm.dev"><meta name="twitter:description" content="Explicação sobre os motivos técnicos que ajudaram Java a crescer, com foco em portabilidade, JVM, bytecode e arquivos .class."><meta name="twitter:image" content="https://ipaulogermano.github.io/images/og-default.png"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="canonical" href="https://ipaulogermano.github.io/blog/java-fundamentos/java-fundamentos-por-que-o-java-deu-certo/"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="PauloGerm.dev" href="/rss.xml"><title>Java Fundamentos: por que o Java deu certo — PauloGerm.dev</title><script>
+      const storedTheme = localStorage.getItem('theme');
+      if (storedTheme) document.documentElement.dataset.theme = storedTheme;
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.DPY2T5p4.css"></head> <body> <div class="site-shell"> <a class="skip-link" href="#conteudo">Pular para o conteúdo</a> <header class="site-header" id="site-header" data-reader-toggle="true" data-auto-hide="true"> <div class="header-inner"> <a class="site-brand" href="/" aria-label="~/PauloGerm — início"> <span class="brand-bracket">| </span>~/PauloGerm<span class="brand-bracket"> |</span> </a> <div class="mobile-reader-bar"> <nav class="main-nav" aria-label="Navegação principal"> <a href="/blog" aria-current="page">Artigos</a> <a href="/series">Séries</a> <a href="/projetos">Projetos</a>  <a href="/sobre">Sobre</a> </nav> <button class="reader-side-toggle" id="reader-side-toggle" type="button" aria-label="Alternar lado da navegação mobile" aria-disabled="false" aria-pressed="false"> <svg class="reader-hand-icon" viewBox="0 0 24 24" aria-hidden="true"> <path class="reader-hand-base" pathLength="1" d="M8 12V7.5a1.5 1.5 0 0 1 3 0V12 M11 11V5.5a1.5 1.5 0 0 1 3 0V12 M14 11V7a1.5 1.5 0 0 1 3 0v6 M17 12.5v-2a1.5 1.5 0 0 1 3 0V14a7 7 0 0 1-7 7h-1.6a6 6 0 0 1-4.3-1.8L4 16.1a1.7 1.7 0 0 1 2.4-2.4L8 15.2V12"></path> <path class="reader-hand-progress" pathLength="1" d="M8 12V7.5a1.5 1.5 0 0 1 3 0V12 M11 11V5.5a1.5 1.5 0 0 1 3 0V12 M14 11V7a1.5 1.5 0 0 1 3 0v6 M17 12.5v-2a1.5 1.5 0 0 1 3 0V14a7 7 0 0 1-7 7h-1.6a6 6 0 0 1-4.3-1.8L4 16.1a1.7 1.7 0 0 1 2.4-2.4L8 15.2V12"></path> </svg> <span class="sr-only">Alternar lado da navegação</span> </button> </div> <div class="header-actions"> <a class="header-icon" href="https://github.com/IPauloGermano" target="_blank" rel="noreferrer" aria-label="GitHub"> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.3-.4 6.8-1.6 6.8-7A5.5 5.5 0 0 0 19.3 4 5.1 5.1 0 0 0 19.1.5S17.9.1 15 2a13.4 13.4 0 0 0-7 0C5.1.1 3.9.5 3.9.5A5.1 5.1 0 0 0 3.7 4a5.5 5.5 0 0 0-1.5 3.8c0 5.4 3.5 6.6 6.8 7A4.8 4.8 0 0 0 8 18v4"></path><path d="M8 19c-3 .9-3-1.5-4-2"></path></svg> </a> <button class="search-trigger" id="search-trigger" type="button" aria-haspopup="dialog" aria-controls="search-dialog" aria-label="Buscar artigos"> <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg> <span>Buscar artigos</span> <kbd>Ctrl K</kbd> </button> <a class="header-icon rss-link" href="/rss.xml" aria-label="RSS"> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14"></path><circle cx="5" cy="19" r="1"></circle></svg> </a> <button class="header-icon" id="theme-toggle" type="button" aria-label="Alternar tema"> <svg class="theme-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"></path></svg> <svg class="theme-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> </button> </div> </div> </header> <main id="conteudo" class="site-main"> <div class="article-layout"> <article class="article-prose"> <a class="back-link" href="/blog">← Voltar ao arquivo</a> <header class="article-header"> <div class="article-meta"><time>07 de julho de 2026</time><span>Java · JVM · Portabilidade</span></div> <h1>Java Fundamentos: por que o Java deu certo</h1> <p>Explicação sobre os motivos técnicos que ajudaram Java a crescer, com foco em portabilidade, JVM, bytecode e arquivos .class.</p> </header> <aside class="series-card" aria-label="Série Java Fundamentos"> <p>Série</p> <a href="/series/java-fundamentos-fiap/#parte-6">Java Fundamentos</a> <span>Parte 6 de 6</span> </aside> <div class="prose-body"><blockquote>
+<p>Java ganhou força porque sua proposta de portabilidade resolvia um problema importante: executar software em ambientes diferentes com menos dependência da plataforma.</p>
+</blockquote>
+<h2 id="o-contexto-do-java">O contexto do Java</h2>
+<p>Java foi apresentado publicamente em 1995, em um período de forte crescimento da internet.</p>
+<p>A proposta da linguagem estava muito ligada à portabilidade.</p>
+<p>Ou seja, a ideia era permitir que programas Java pudessem ser executados em diferentes sistemas operacionais e arquiteturas, desde que existisse uma JVM compatível naquele ambiente.</p>
+<p>Esse ponto é importante: Java não roda automaticamente em qualquer máquina sem preparação.</p>
+<p>Ele depende de uma Máquina Virtual Java adequada para executar o bytecode.</p>
+<h2 id="a-portabilidade-do-java">A portabilidade do Java</h2>
+<p>A portabilidade do Java está diretamente ligada à <strong>JVM</strong>, sigla para <strong>Java Virtual Machine</strong>.</p>
+<p>A JVM pode existir em diferentes sistemas operacionais e servidores.</p>
+<p>Com isso, um mesmo programa Java pode ser executado em ambientes diferentes sem que o programador precise reescrever todo o código para cada sistema.</p>
+<p>Essa separação foi uma das grandes vantagens da linguagem.</p>
+<h2 id="como-o-código-java-funciona">Como o código Java funciona</h2>
+<p>O programador escreve um arquivo com código Java.</p>
+<p>Esse código possui comandos, regras de sintaxe e significado definidos pela linguagem.</p>
+<p>Esse é o código que conseguimos ler e escrever como desenvolvedores.</p>
+<p>Depois, esse código passa pela compilação.</p>
+<p>A compilação verifica regras da linguagem e transforma o código-fonte em um formato intermediário que a JVM consegue executar.</p>
+<h2 id="o-arquivo-class">O arquivo <code>.class</code></h2>
+<p>Depois da compilação, o Java gera arquivos <code>.class</code>.</p>
+<p>Um arquivo <code>.class</code> segue um formato específico e contém informações da classe, além de instruções chamadas <strong>bytecodes</strong>.</p>
+<p>Esses bytecodes não foram feitos para serem lidos diretamente por humanos no dia a dia.</p>
+<p>Eles são instruções compreendidas pela JVM.</p>
+<p>De forma simples:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>.java  -> código-fonte Java</span></span>
+<span class="line"><span>.class -> arquivo gerado pela compilação, com bytecodes</span></span></code></pre>
+<h2 id="o-papel-dos-bytecodes">O papel dos bytecodes</h2>
+<p>Bytecodes são instruções intermediárias.</p>
+<p>Eles não dependem diretamente de um único sistema operacional, como aconteceria com um executável nativo específico de uma plataforma.</p>
+<p>A JVM entende esses bytecodes e executa o programa no ambiente onde está instalada.</p>
+<p>Em uma explicação introdutória, podemos dizer que a JVM interpreta bytecodes.</p>
+<p>Mas, em JVMs modernas, partes do programa também podem ser otimizadas e compiladas durante a execução.</p>
+<h2 id="por-que-isso-ajudou-java-a-crescer">Por que isso ajudou Java a crescer</h2>
+<p>Essa arquitetura ajudou Java a se tornar uma linguagem relevante porque reduziu o acoplamento direto entre o programa e o sistema operacional.</p>
+<p>O desenvolvedor escreve o código Java e compila para bytecode.</p>
+<p>Depois, uma JVM compatível executa esse bytecode em diferentes ambientes.</p>
+<p>Isso facilitou o uso de Java em cenários variados, como aplicações corporativas, servidores, sistemas web e softwares de grande porte.</p>
+<h2 id="recapitulando">Recapitulando</h2>
+<p>Java deu certo por vários motivos, mas a portabilidade foi um dos mais importantes.</p>
+<p>A ideia central é:</p>
+<ol>
+<li>o desenvolvedor escreve código Java;</li>
+<li>o código é compilado;</li>
+<li>a compilação gera arquivos <code>.class</code>;</li>
+<li>os arquivos <code>.class</code> contêm bytecodes;</li>
+<li>a JVM executa esses bytecodes;</li>
+<li>o programa pode rodar em diferentes ambientes com JVM compatível.</li>
+</ol>
+<p>Essa combinação tornou Java uma linguagem forte para sistemas que precisam funcionar em plataformas diferentes.</p></div> <nav class="series-navigation" aria-labelledby="series-navigation-title"> <div class="series-navigation-head"> <p id="series-navigation-title">Continuar na série</p> <a class="series-index-link" href="/series/java-fundamentos-fiap/#parte-6">Ver índice da série</a> </div> <div class="series-navigation-grid"> <div class="series-navigation-item"> <a href="/blog/java-fundamentos/java-fundamentos-o-que-e-uma-linguagem-de-programacao/" rel="prev"> <span>← Parte anterior</span> <strong>Java Fundamentos: o que é uma linguagem de programação</strong> </a> </div> <div class="series-navigation-item series-navigation-item--next">  </div> </div> </nav> <section class="related-articles" aria-labelledby="related-articles-title"><h2 id="related-articles-title">Leituras relacionadas</h2><ul><li><a href="/blog/java-fundamentos/java-fundamentos-orientacao-a-objetos/"><span aria-hidden="true">→</span><span>Java Fundamentos: orientação a objetos</span></a></li><li><a href="/blog/java-fundamentos/java-fundamentos-linguagem-java/"><span aria-hidden="true">→</span><span>Java Fundamentos: linguagem Java</span></a></li><li><a href="/blog/java-fundamentos/java-fundamentos-portabilidade/"><span aria-hidden="true">→</span><span>Java Fundamentos: portabilidade</span></a></li></ul></section> </article> <aside class="article-toc"> <p>Nesta nota</p> <nav> <a class="depth-2" href="#o-contexto-do-java">O contexto do Java</a><a class="depth-2" href="#a-portabilidade-do-java">A portabilidade do Java</a><a class="depth-2" href="#como-o-código-java-funciona">Como o código Java funciona</a><a class="depth-2" href="#o-arquivo-class">O arquivo .class</a><a class="depth-2" href="#o-papel-dos-bytecodes">O papel dos bytecodes</a><a class="depth-2" href="#por-que-isso-ajudou-java-a-crescer">Por que isso ajudou Java a crescer</a><a class="depth-2" href="#recapitulando">Recapitulando</a> </nav> </aside> </div> <dialog class="mermaid-dialog" id="mermaid-viewer" aria-labelledby="mermaid-viewer-title"> <div class="mermaid-dialog-shell"> <header class="mermaid-dialog-header"> <div class="mermaid-dialog-title"> <strong id="mermaid-viewer-title">Diagrama ampliado</strong> </div> <div class="mermaid-dialog-actions"> <div class="mermaid-zoom-controls" role="group" aria-label="Controles de zoom"> <button type="button" data-mermaid-action="zoom-out" aria-label="Diminuir zoom">−</button> <output class="mermaid-zoom-value" aria-label="Zoom atual" aria-live="polite">100%</output> <button type="button" data-mermaid-action="zoom-in" aria-label="Aumentar zoom">+</button> <button type="button" data-mermaid-action="reset" aria-label="Restaurar zoom para 100%">100%</button> <button type="button" data-mermaid-action="fit" aria-label="Ajustar diagrama à tela">Ajustar</button> </div> <button class="mermaid-dialog-close" type="button" data-mermaid-action="close" aria-label="Fechar visualizador">
+Fechar
+</button> </div> </header> <div class="mermaid-dialog-stage" data-mermaid-stage role="region" aria-label="Área ampliada do diagrama com rolagem quando necessário." tabindex="0"></div> </div> </dialog> <script type="module" src="/_astro/MermaidRenderer.astro_astro_type_script_index_0_lang.BQx0RONY.js"></script> <script type="module" src="/_astro/EmbedRenderer.astro_astro_type_script_index_0_lang.BmzSx4j_.js"></script> <script type="module">const p={bash:"Bash",css:"CSS",html:"HTML",javascript:"JavaScript",js:"JavaScript",json:"JSON",mermaid:"Mermaid",shell:"Shell",sql:"SQL",text:"Texto",plaintext:"Texto",ts:"TypeScript",typescript:"TypeScript",yaml:"YAML",yml:"YAML"},d=new WeakMap;let l=0;function g(e,t){if(e.closest(".mermaid-error"))return"Mermaid";const s=Array.from(t.classList).find(a=>a.startsWith("language-"))?.replace("language-",""),o=(e.dataset.language||s||"text").toLowerCase();return p[o]||o.toUpperCase()}function u(e,t,s,o){e.textContent=s,t.textContent=o;const a=d.get(e);a&&window.clearTimeout(a);const c=window.setTimeout(()=>{e.textContent="Copiar",t.textContent="",d.delete(e)},2e3);d.set(e,c)}function y(e){if(e.dataset.codeEnhanced==="true")return;const t=e.querySelector(":scope > code");if(!t||t.classList.contains("language-mermaid")&&!e.closest(".mermaid-error"))return;const o=document.createElement("div");o.className="code-block";const a=document.createElement("div");a.className="code-block-toolbar";const c=document.createElement("span");c.className="code-block-language",c.textContent=g(e,t);const n=document.createElement("button");n.type="button",n.className="code-copy-button",n.textContent="Copiar",n.setAttribute("aria-label","Copiar código");const r=document.createElement("span");r.className="sr-only",r.setAttribute("aria-live","polite"),n.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(t.textContent??""),u(n,r,"Copiado ✓","Código copiado")}catch(m){console.error("Não foi possível copiar o bloco de código:",m),u(n,r,"Não copiado","Não foi possível copiar o código")}}),e.dataset.codeEnhanced="true",e.replaceWith(o),a.append(c,r,n),o.append(a,e)}function b(){document.querySelectorAll(".prose-body pre").forEach(y),document.querySelectorAll(".prose-body").forEach(e=>{if(e.dataset.codeObserver==="true")return;e.dataset.codeObserver="true",new MutationObserver(()=>i()).observe(e,{childList:!0,subtree:!0})})}function i(){cancelAnimationFrame(l),l=requestAnimationFrame(b)}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",i,{once:!0}):i();document.addEventListener("astro:page-load",i);</script> </main> <footer class="site-footer"> <div class="footer-inner"> <p>© 2026 ~/pgerm</p> <p>Um caderno público de estudo e construção de software.</p> </div> </footer> </div> <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title"> <div class="search-box"> <div class="search-head"> <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg> <label class="sr-only" for="search-input" id="search-title">Buscar artigos</label> <input id="search-input" type="search" placeholder="Busque por título, assunto ou tecnologia…" autocomplete="off"> <button id="search-close" type="button" aria-label="Fechar busca">Esc</button> </div> <div class="search-results" id="search-results" aria-live="polite"></div> <p class="search-hint">Use ↑ ↓ para navegar e Enter para abrir.</p> </div> </dialog> <script id="search-data" type="application/json">[{"title":"Java Fundamentos: linguagem Java","description":"Visão geral da linguagem Java, sua relação com orientação a objetos, internet, bytecode e Máquina Virtual Java.","href":"/blog/java-fundamentos/java-fundamentos-linguagem-java/","tags":["Java","JVM","Fundamentos"],"series":"Java Fundamentos"},{"title":"Java Fundamentos: o que é uma linguagem de programação","description":"Explicação introdutória sobre linguagens de programação, Java, bytecode, JVM e áreas comuns de uso da linguagem.","href":"/blog/java-fundamentos/java-fundamentos-o-que-e-uma-linguagem-de-programacao/","tags":["Java","Linguagem de Programação","Fundamentos"],"series":"Java Fundamentos"},{"title":"Java Fundamentos: orientação a objetos","description":"Introdução ao paradigma orientado a objetos e à ideia de representar problemas por entidades, objetos, classes e interações.","href":"/blog/java-fundamentos/java-fundamentos-orientacao-a-objetos/","tags":["Java","Fundamentos","Programação Orientada a Objetos"],"series":"Java Fundamentos"},{"title":"Java Fundamentos: por que o Java deu certo","description":"Explicação sobre os motivos técnicos que ajudaram Java a crescer, com foco em portabilidade, JVM, bytecode e arquivos .class.","href":"/blog/java-fundamentos/java-fundamentos-por-que-o-java-deu-certo/","tags":["Java","JVM","Portabilidade"],"series":"Java Fundamentos"},{"title":"Java Fundamentos: portabilidade","description":"Explicação introdutória sobre portabilidade em Java, JVM, bytecode e execução em diferentes ambientes.","href":"/blog/java-fundamentos/java-fundamentos-portabilidade/","tags":["Java","JVM","Portabilidade"],"series":"Java Fundamentos"},{"title":"Java Fundamentos: princípios da orientação a objetos","description":"Explicação prática dos principais conceitos da POO, como abstração, encapsulamento, herança, polimorfismo, associação, composição e modularização.","href":"/blog/java-fundamentos/java-fundamentos-principios-da-orientacao-a-objetos/","tags":["Java","Programação Orientada a Objetos","POO"],"series":"Java Fundamentos"},{"title":"ParkFlow: do levantamento de requisitos a um MVP assistido por IA","description":"Como transformamos um problema real de estacionamento em um MVP com TypeScript, Supabase, UX orientada à placa e desenvolvimento assistido por IA.","href":"/blog/parkflow-do-levantamento-de-requisitos-ao-mvp/","tags":["Engenharia de Software","Inteligência Artificial","TypeScript","Supabase","UX","Vibe coding"],"series":""}]</script> <script>
+  const root = document.documentElement;
+  const themeButton = document.getElementById('theme-toggle');
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) root.dataset.theme = savedTheme;
+
+  themeButton?.addEventListener('click', () => {
+    const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+    root.dataset.theme = next;
+    localStorage.setItem('theme', next);
+  });
+
+  const dialog = document.getElementById('search-dialog');
+  const trigger = document.getElementById('search-trigger');
+  const close = document.getElementById('search-close');
+  const input = document.getElementById('search-input');
+  const results = document.getElementById('search-results');
+  const dataNode = document.getElementById('search-data');
+  const searchItems = JSON.parse(dataNode?.textContent || '[]');
+  let selectedIndex = 0;
+
+  const normalize = (value) => value
+    .toLocaleLowerCase('pt-BR')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+
+  const renderResults = () => {
+    if (!results || !input) return;
+    const query = normalize(input.value.trim());
+    const filtered = searchItems.filter((item) => {
+      const haystack = normalize(`${item.title} ${item.description} ${item.tags.join(' ')} ${item.series || ''}`);
+      return !query || haystack.includes(query);
+    }).slice(0, 8);
+
+    selectedIndex = Math.min(selectedIndex, Math.max(filtered.length - 1, 0));
+    results.innerHTML = filtered.length
+      ? filtered.map((item, index) => `
+          <a class="search-result${index === selectedIndex ? ' is-selected' : ''}" href="${item.href}" data-index="${index}">
+            <strong>${item.title}</strong>
+            <span>${item.description}</span>
+          </a>`).join('')
+      : '<p class="search-empty">Nenhum artigo encontrado.</p>';
+  };
+
+  const openSearch = () => {
+    if (!dialog) return;
+    document.getElementById('site-header')?.classList.remove('is-hidden');
+    dialog.showModal();
+    selectedIndex = 0;
+    if (input) input.value = '';
+    renderResults();
+    requestAnimationFrame(() => input?.focus());
+  };
+
+  const closeSearch = () => dialog?.close();
+  trigger?.addEventListener('click', openSearch);
+  close?.addEventListener('click', closeSearch);
+  input?.addEventListener('input', () => { selectedIndex = 0; renderResults(); });
+  dialog?.addEventListener('click', (event) => {
+    if (event.target === dialog) closeSearch();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+      event.preventDefault();
+      openSearch();
+      return;
+    }
+    if (!dialog?.open) return;
+    const links = [...results.querySelectorAll('.search-result')];
+    if (event.key === 'Escape') closeSearch();
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      selectedIndex = Math.min(selectedIndex + 1, links.length - 1);
+      renderResults();
+    }
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      selectedIndex = Math.max(selectedIndex - 1, 0);
+      renderResults();
+    }
+    if (event.key === 'Enter' && links[selectedIndex]) {
+      event.preventDefault();
+      window.location.href = links[selectedIndex].href;
+    }
+  });
+</script> <script>
+    const readerSideMedia = window.matchMedia('(max-width: 1024px)');
+    if (readerSideMedia.matches) {
+      const readerSideRoot = document.documentElement;
+      const readerSideToggle = document.getElementById('reader-side-toggle');
+      const readerSideStorageKey = 'reader-side';
+      const readerSideCooldownMs = 3000;
+      const savedReaderSide = localStorage.getItem(readerSideStorageKey);
+      let readerSideCoolingDown = false;
+      const getReaderSide = (value) => value === 'right' ? 'right' : 'left';
+      const setReaderSide = (side) => {
+        const nextSide = getReaderSide(side);
+        readerSideRoot.dataset.readerSide = nextSide;
+        readerSideToggle?.setAttribute('aria-pressed', String(nextSide === 'right'));
+        readerSideToggle?.setAttribute(
+          'aria-label',
+          nextSide === 'right'
+            ? 'Mover navegação mobile para a esquerda'
+            : 'Mover navegação mobile para a direita'
+        );
+      };
+      const startReaderSideCooldown = () => {
+        if (!readerSideToggle) return;
+        readerSideCoolingDown = true;
+        readerSideToggle.disabled = true;
+        readerSideToggle.setAttribute('aria-disabled', 'true');
+        readerSideToggle.classList.add('is-cooling-down');
+
+        window.setTimeout(() => {
+          readerSideCoolingDown = false;
+          readerSideToggle.disabled = false;
+          readerSideToggle.setAttribute('aria-disabled', 'false');
+          readerSideToggle.classList.remove('is-cooling-down');
+        }, readerSideCooldownMs);
+      };
+
+      setReaderSide(savedReaderSide);
+      readerSideToggle?.addEventListener('click', () => {
+        if (readerSideCoolingDown) return;
+        const nextSide = readerSideRoot.dataset.readerSide === 'right' ? 'left' : 'right';
+        setReaderSide(nextSide);
+        localStorage.setItem(readerSideStorageKey, nextSide);
+        startReaderSideCooldown();
+      });
+    }
+  </script> <script>
+    const autoHideMedia = window.matchMedia('(max-width: 1024px)');
+    if (autoHideMedia.matches) {
+      const autoHideHeader = document.getElementById('site-header');
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+      const minimumScroll = 120;
+      const directionThreshold = 8;
+
+      const hasOpenDialog = () => Boolean(document.querySelector('dialog[open]'));
+
+      const updateHeaderVisibility = () => {
+        ticking = false;
+        if (!autoHideHeader) return;
+
+        const currentScrollY = Math.max(window.scrollY, 0);
+        const delta = currentScrollY - lastScrollY;
+
+        if (currentScrollY <= minimumScroll || hasOpenDialog()) {
+          autoHideHeader.classList.remove('is-hidden');
+          lastScrollY = currentScrollY;
+          return;
+        }
+
+        if (Math.abs(delta) < directionThreshold) return;
+
+        if (delta > 0) autoHideHeader.classList.add('is-hidden');
+        else autoHideHeader.classList.remove('is-hidden');
+
+        lastScrollY = currentScrollY;
+      };
+
+      window.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(updateHeaderVisibility);
+      }, { passive: true });
+    }
+  </script> </body></html>

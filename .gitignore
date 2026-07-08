@@ -1,0 +1,64 @@
+# ==========================================
+# Public GitHub Pages repo
+# This repository should contain only built static files.
+# Do NOT publish Astro source files here.
+# ==========================================
+
+# Source code
+src/
+components/
+layouts/
+pages/
+content/
+scripts/
+docs/
+
+# Dependencies / build internals
+node_modules/
+dist/
+.astro/
+.vite/
+.cache/
+.tmp/
+.temp/
+
+# Environment / secrets
+.env
+.env.*
+*.env
+!.env.example
+
+# Package / project config
+package.json
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+bun.lockb
+astro.config.*
+vite.config.*
+tsconfig.json
+jsconfig.json
+tailwind.config.*
+postcss.config.*
+eslint.config.*
+prettier.config.*
+
+# GitHub Actions / automation
+.github/
+
+# Source Markdown / MDX
+*.md
+*.mdx
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

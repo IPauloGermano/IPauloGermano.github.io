@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <rss version="2.0">
+    <channel>
+      <title>PauloGerm</title>
+      <description>Caderno de desenvolvimento, projetos e estudos.</description>
+      <link>https://ipaulogermano.github.io/</link>
+      <item>
+      <title>Java Fundamentos: linguagem Java</title>
+      <description>Visão geral da linguagem Java, sua relação com orientação a objetos, internet, bytecode e Máquina Virtual Java.</description>
+      <link>https://ipaulogermano.github.io/blog/java-fundamentos/java-fundamentos-linguagem-java/</link>
+      <guid>https://ipaulogermano.github.io/blog/java-fundamentos/java-fundamentos-linguagem-java/</guid>
+      <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>Java Fundamentos: o que é uma linguagem de programação</title>
+      <description>Explicação introdutória sobre linguagens de programação, Java, bytecode, JVM e áreas comuns de uso da linguagem.</description>
+      <link>https://ipaulogermano.github.io/blog/java-fundamentos/java-fundamentos-o-que-e-uma-linguagem-de-programacao/</link>
+      <guid>https://ipaulogermano.github.io/blog/java-fundamentos/java-fundamentos-o-que-e-uma-linguagem-de-programacao/</guid>
+      <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>Java Fundamentos: orientação a objetos</title>
+      <description>Introdução ao paradigma orientado a objetos e à ideia de representar problemas por entidades, objetos, classes e interações.</description>
+      <link>https://ipaulogermano.github.io/blog/java-fundamentos/java-fundamentos-orientacao-a-objetos/</link>
+      <guid>https://ipaulogermano.github.io/blog/java-fundamentos/java-fundamentos-orientacao-a-objetos/</guid>
+      <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>Java Fundamentos: por que o Java deu certo</title>
+      <description>Explicação sobre os motivos técnicos que ajudaram Java a crescer, com foco em portabilidade, JVM, bytecode e arquivos .class.</description>
+      <link>https://ipaulogermano.github.io/blog/java-fundamentos/java-fundamentos-por-que-o-java-deu-certo/</link>
+      <guid>https://ipaulogermano.github.io/blog/java-fundamentos/java-fundamentos-por-que-o-java-deu-certo/</guid>
+      <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>Java Fundamentos: portabilidade</title>
+      <description>Explicação introdutória sobre portabilidade em Java, JVM, bytecode e execução em diferentes ambientes.</description>
+      <link>https://ipaulogermano.github.io/blog/java-fundamentos/java-fundamentos-portabilidade/</link>
+      <guid>https://ipaulogermano.github.io/blog/java-fundamentos/java-fundamentos-portabilidade/</guid>
+      <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>Java Fundamentos: princípios da orientação a objetos</title>
+      <description>Explicação prática dos principais conceitos da POO, como abstração, encapsulamento, herança, polimorfismo, associação, composição e modularização.</description>
+      <link>https://ipaulogermano.github.io/blog/java-fundamentos/java-fundamentos-principios-da-orientacao-a-objetos/</link>
+      <guid>https://ipaulogermano.github.io/blog/java-fundamentos/java-fundamentos-principios-da-orientacao-a-objetos/</guid>
+      <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>ParkFlow: do levantamento de requisitos a um MVP assistido por IA</title>
+      <description>Como transformamos um problema real de estacionamento em um MVP com TypeScript, Supabase, UX orientada à placa e desenvolvimento assistido por IA.</description>
+      <link>https://ipaulogermano.github.io/blog/parkflow-do-levantamento-de-requisitos-ao-mvp/</link>
+      <guid>https://ipaulogermano.github.io/blog/parkflow-do-levantamento-de-requisitos-ao-mvp/</guid>
+      <pubDate>Mon, 22 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    </channel>
+  </rss>
