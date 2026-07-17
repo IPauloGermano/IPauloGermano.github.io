@@ -4,6 +4,10 @@ Site pessoal de Paulo Germano, publicado com GitHub Pages.
 
 Acesse:
 
+https://paulogerm.dev/
+
+ou
+
 https://ipaulogermano.github.io/
 
 ## Stack
