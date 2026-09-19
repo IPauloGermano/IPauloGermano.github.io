@@ -5,6 +5,27 @@
       <description>Caderno de desenvolvimento, projetos e estudos.</description>
       <link>https://ipaulogermano.github.io/</link>
       <item>
+      <title>Local Player: fallback de transcode e Whisper em fila P0-P3</title>
+      <description>Compatível toca direto via Range. Incompatível vira MP4 fragmentado com seek 416. Legenda é adicional: nunca await antes de video.play().</description>
+      <link>https://ipaulogermano.github.io/blog/local-player-fallback-transcode-whisper-p0-p3/</link>
+      <guid>https://ipaulogermano.github.io/blog/local-player-fallback-transcode-whisper-p0-p3/</guid>
+      <pubDate>Mon, 21 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>Local Player: progresso atômico que viaja com o HD</title>
+      <description>Como writeFileAtomic + fila serial + .bak + .corrupt-&lt;ts&gt; eliminaram perda de posição mesmo matando o servidor no meio do save.</description>
+      <link>https://ipaulogermano.github.io/blog/local-player-progresso-atomico-portatil/</link>
+      <guid>https://ipaulogermano.github.io/blog/local-player-progresso-atomico-portatil/</guid>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>Local Player: vibecoding com invariantes e zero build step</title>
+      <description>Como um player local/offline em Express + vanilla JS organiza milhares de aulas sem bundler: AGENTS.md como contrato, estrutura física como fonte de verdade e scan com cache em disco.</description>
+      <link>https://ipaulogermano.github.io/blog/local-player-vibecoding-sem-build-step/</link>
+      <guid>https://ipaulogermano.github.io/blog/local-player-vibecoding-sem-build-step/</guid>
+      <pubDate>Sat, 19 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
       <title>Java Fundamentos: por que o Java deu certo</title>
       <description>Explicação sobre os motivos técnicos que ajudaram Java a crescer, com foco em portabilidade, JVM, bytecode e arquivos .class.</description>
       <link>https://ipaulogermano.github.io/blog/java-fundamentos/java-fundamentos-por-que-o-java-deu-certo/</link>

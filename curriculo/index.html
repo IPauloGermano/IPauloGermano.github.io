@@ -1,0 +1,361 @@
+<!DOCTYPE html><html lang="pt-BR"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Artigos, projetos e anotações sobre desenvolvimento de software, ADS e engenharia de sistemas."><meta name="theme-color" content="#1C1B19"><meta property="og:title" content="Currículo — Paulo Germano"><meta property="og:description" content="Artigos, projetos e anotações sobre desenvolvimento de software, ADS e engenharia de sistemas."><meta property="og:type" content="website"><meta property="og:url" content="https://ipaulogermano.github.io/curriculo/"><meta property="og:image" content="https://ipaulogermano.github.io/images/og-default.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Currículo — Paulo Germano"><meta name="twitter:description" content="Artigos, projetos e anotações sobre desenvolvimento de software, ADS e engenharia de sistemas."><meta name="twitter:image" content="https://ipaulogermano.github.io/images/og-default.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Schibsted+Grotesk:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="canonical" href="https://ipaulogermano.github.io/curriculo/"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="PauloGerm.dev" href="/rss.xml"><title>Currículo — Paulo Germano</title><script>
+      (() => {
+        const root = document.documentElement;
+        const themeColor = { dark: '#1C1B19', light: '#EFECE6' };
+        const getSystemTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+        let theme = getSystemTheme();
+        try {
+          const saved = localStorage.getItem('theme');
+          if (saved === 'light' || saved === 'dark') theme = saved;
+        } catch {
+          theme = getSystemTheme();
+        }
+
+        root.dataset.theme = theme;
+        root.style.colorScheme = theme;
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', themeColor[theme]);
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.D5NJLdcA.css"><style>@media print{#site-header,footer,.skip-link,#back-to-top,.cv-lang-btn[data-astro-cid-l6xd76ut],#print-cv-btn[data-astro-cid-l6xd76ut],.btn-primary[data-astro-cid-l6xd76ut],nav[data-astro-cid-l6xd76ut]{display:none!important}body,.site-shell[data-astro-cid-l6xd76ut]{background:#fff!important;color:#000!important}.cv-document[data-astro-cid-l6xd76ut]{border:none!important;padding:0!important;background:transparent!important}}
+</style></head> <body> <div class="site-shell min-h-screen bg-[var(--bg-canvas)] text-[var(--text-primary)] selection:bg-[var(--accent-signal)] selection:text-white transition-colors duration-200"> <a class="skip-link sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--accent-signal)] focus:text-white focus:rounded" href="#conteudo">Pular para o conteúdo</a> <header class="sticky top-0 z-40 w-full border-b border-[var(--border-rule)] bg-[var(--bg-canvas)]/90 backdrop-blur-md transition-colors duration-200" id="site-header"> <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">  <a href="/" class="group flex items-center gap-2 font-code text-xs font-semibold tracking-wide text-[var(--text-primary)] hover:text-[var(--accent-signal)] transition-colors" aria-label="Paulo Germano — início"> <span class="text-[var(--text-muted)] group-hover:text-[var(--accent-signal)] transition-colors">[</span> <svg class="h-3.5 w-3.5 text-[var(--accent-signal)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg> <span class="font-semibold text-sm">~/PauloGerm</span> <span class="text-[var(--text-muted)] group-hover:text-[var(--accent-signal)] transition-colors">]</span> </a>  <nav class="hidden md:flex items-center gap-6 text-xs font-medium tracking-wide uppercase font-code" aria-label="Navegação principal"> <a href="/blog" class="transition-colors hover:text-[var(--text-primary)] text-[var(--text-secondary)]">
+Artigos
+</a> <a href="/series" class="transition-colors hover:text-[var(--text-primary)] text-[var(--text-secondary)]">
+Séries
+</a> <a href="/projetos" class="transition-colors hover:text-[var(--text-primary)] text-[var(--text-secondary)]">
+Projetos
+</a>  <a href="/sobre" class="transition-colors hover:text-[var(--text-primary)] text-[var(--text-secondary)]">
+Sobre
+</a> </nav>  <div class="flex items-center gap-2 sm:gap-3">  <button id="search-trigger" type="button" aria-haspopup="dialog" aria-controls="search-dialog" aria-label="Buscar no site (Ctrl K)" class="flex min-h-[44px] sm:min-h-0 items-center gap-2 rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] px-3 py-2 sm:px-2.5 sm:py-1.5 text-xs text-[var(--text-secondary)] hover:border-[var(--text-muted)] hover:text-[var(--text-primary)] transition-all focus-visible:outline-none cursor-pointer"> <svg class="h-4 w-4 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> <span class="hidden sm:inline text-xs font-code">Buscar</span> <kbd class="hidden font-code text-[10px] sm:inline-flex items-center px-1.5 py-0.5 rounded border border-[var(--border-rule)] bg-[var(--bg-canvas)] text-[var(--text-muted)]">
+⌘K
+</kbd> </button>  <a href="https://github.com/IPauloGermano" target="_blank" rel="noreferrer" aria-label="GitHub de Paulo Germano" class="flex h-11 w-11 sm:h-8 sm:w-8 items-center justify-center rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] transition-all"> <svg class="h-4 w-4 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.3-.4 6.8-1.6 6.8-7A5.5 5.5 0 0 0 19.3 4 5.1 5.1 0 0 0 19.1.5S17.9.1 15 2a13.4 13.4 0 0 0-7 0C5.1.1 3.9.5 3.9.5A5.1 5.1 0 0 0 3.7 4a5.5 5.5 0 0 0-1.5 3.8c0 5.4 3.5 6.6 6.8 7A4.8 4.8 0 0 0 8 18v4"></path><path d="M8 19c-3 .9-3-1.5-4-2"></path></svg> </a>  <a href="/rss.xml" aria-label="Feed RSS" class="flex h-11 w-11 sm:h-8 sm:w-8 items-center justify-center rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] transition-all"> <svg class="h-4 w-4 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg> </a>  <button id="theme-toggle" type="button" aria-label="Alternar tema" class="flex h-11 w-11 sm:h-8 sm:w-8 items-center justify-center rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] transition-all cursor-pointer"> <svg class="theme-sun h-4 w-4 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> <svg class="theme-moon h-4 w-4 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> <span class="sr-only">Alternar tema</span> </button> </div> </div>  <nav class="flex md:hidden items-center justify-around border-t border-[var(--border-rule)] px-2 py-1 bg-[var(--bg-surface)] text-xs font-code" aria-label="Navegação móvel"> <a href="/blog" class="flex items-center justify-center min-h-[44px] px-3.5 rounded hover:text-[var(--text-primary)] transition-colors text-[var(--text-secondary)]">Artigos</a> <a href="/series" class="flex items-center justify-center min-h-[44px] px-3.5 rounded hover:text-[var(--text-primary)] transition-colors text-[var(--text-secondary)]">Séries</a> <a href="/projetos" class="flex items-center justify-center min-h-[44px] px-3.5 rounded hover:text-[var(--text-primary)] transition-colors text-[var(--text-secondary)]">Projetos</a>  <a href="/sobre" class="flex items-center justify-center min-h-[44px] px-3.5 rounded hover:text-[var(--text-primary)] transition-colors text-[var(--text-secondary)]">Sobre</a> </nav> </header> <main id="conteudo" class="site-main"> <div class="px-4 py-10 sm:px-6 sm:py-16 max-w-4xl mx-auto space-y-12" data-astro-cid-l6xd76ut>  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[var(--border-rule)]" data-astro-cid-l6xd76ut> <div class="flex items-center gap-2 font-code text-xs text-[var(--text-muted)]" data-astro-cid-l6xd76ut> <a href="/" class="hover:text-[var(--text-primary)] transition-colors" data-astro-cid-l6xd76ut>Início</a> <span data-astro-cid-l6xd76ut>/</span> <span class="text-[var(--text-primary)] font-semibold" data-astro-cid-l6xd76ut>Currículo</span> </div>  <div class="flex items-center flex-wrap gap-2.5" data-astro-cid-l6xd76ut>  <div class="min-h-[40px] sm:h-9 inline-flex items-center p-1 rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] font-code text-xs" role="tablist" aria-label="Idioma do currículo" data-astro-cid-l6xd76ut> <button type="button" id="lang-pt-btn" class="cv-lang-btn min-h-[32px] sm:h-7 px-3 inline-flex items-center justify-center rounded font-medium transition-all cursor-pointer bg-[var(--accent-signal)] text-white" data-target="pt" data-astro-cid-l6xd76ut>
+PT-BR
+</button> <button type="button" id="lang-en-btn" class="cv-lang-btn min-h-[32px] sm:h-7 px-3 inline-flex items-center justify-center rounded font-medium transition-all cursor-pointer text-[var(--text-secondary)] hover:text-[var(--text-primary)]" data-target="en" data-astro-cid-l6xd76ut>
+EN
+</button> </div>  <button type="button" id="print-cv-btn" class="min-h-[40px] sm:h-9 px-3.5 inline-flex items-center justify-center gap-2 rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] font-code text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] transition-all cursor-pointer" aria-label="Imprimir ou salvar currículo em PDF" data-astro-cid-l6xd76ut> <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-astro-cid-l6xd76ut><polyline points="6 9 6 2 18 2 18 9" data-astro-cid-l6xd76ut></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" data-astro-cid-l6xd76ut></path><rect x="6" y="14" width="12" height="8" data-astro-cid-l6xd76ut></rect></svg> <span data-astro-cid-l6xd76ut>Imprimir / Salvar</span> </button>  <a href="/curriculo.pdf" download="curriculo-paulo-germano.pdf" class="btn-primary min-h-[40px] sm:h-9 px-4 inline-flex items-center justify-center gap-2 rounded-md font-code text-xs font-semibold shadow-sm cursor-pointer" data-astro-cid-l6xd76ut> <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-astro-cid-l6xd76ut><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" data-astro-cid-l6xd76ut></path><polyline points="7 10 12 15 17 10" data-astro-cid-l6xd76ut></polyline><line x1="12" y1="15" x2="12" y2="3" data-astro-cid-l6xd76ut></line></svg> <span data-astro-cid-l6xd76ut>Baixar PDF (121 KB)</span> </a> </div> </div>  <article class="cv-document space-y-12" data-astro-cid-l6xd76ut>  <header class="space-y-6 pb-8 border-b border-[var(--border-rule)]" data-astro-cid-l6xd76ut> <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4" data-astro-cid-l6xd76ut> <div class="space-y-2" data-astro-cid-l6xd76ut> <h1 class="font-editorial text-4xl sm:text-5xl font-normal text-[var(--text-primary)] tracking-tight" data-astro-cid-l6xd76ut>
+Paulo Germano
+</h1> <p class="font-sans text-base text-[var(--accent-signal)] font-medium" data-astro-cid-l6xd76ut> <span class="lang-pt" data-astro-cid-l6xd76ut>Estudante de Análise e Desenvolvimento de Sistemas · Unipê</span> <span class="lang-en hidden" data-astro-cid-l6xd76ut>Computer Science & Software Development Student · Unipê</span> </p> <p class="font-code text-xs text-[var(--text-muted)] flex items-center gap-1.5" data-astro-cid-l6xd76ut> <svg class="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-astro-cid-l6xd76ut><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" data-astro-cid-l6xd76ut></path><circle cx="12" cy="10" r="3" data-astro-cid-l6xd76ut></circle></svg> <span data-astro-cid-l6xd76ut>João Pessoa, PB · Brasil (Aberto a oportunidades presenciais e remotas)</span> </p> </div>  <div class="h-9 px-3.5 shrink-0 inline-flex items-center gap-2 rounded-full border border-[var(--border-rule)] bg-[var(--bg-surface)] font-code text-xs text-[var(--text-secondary)]" data-astro-cid-l6xd76ut> <span class="relative flex h-2 w-2" data-astro-cid-l6xd76ut> <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent-signal)] opacity-75" data-astro-cid-l6xd76ut></span> <span class="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent-signal)]" data-astro-cid-l6xd76ut></span> </span> <span class="lang-pt" data-astro-cid-l6xd76ut>Disponível para estágio</span> <span class="lang-en hidden" data-astro-cid-l6xd76ut>Available for internships</span> </div> </div>  <div class="flex flex-wrap items-center gap-2.5" data-astro-cid-l6xd76ut> <button type="button" id="cv-copy-email-btn" data-email="impaulogermano@gmail.com" class="min-h-[40px] sm:h-9 px-3.5 inline-flex items-center justify-center gap-2 rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] font-code text-xs text-[var(--text-primary)] hover:border-[var(--text-muted)] transition-all cursor-pointer" aria-label="Copiar e-mail" data-astro-cid-l6xd76ut> <svg class="h-4 w-4 text-[var(--text-muted)] cv-copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-astro-cid-l6xd76ut><rect x="9" y="9" width="13" height="13" rx="2" ry="2" data-astro-cid-l6xd76ut></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" data-astro-cid-l6xd76ut></path></svg> <span class="cv-copy-text" data-astro-cid-l6xd76ut>impaulogermano@gmail.com</span> </button> <a href="https://www.linkedin.com/in/ipaulogermano/" target="_blank" rel="noreferrer" class="min-h-[40px] sm:h-9 px-3.5 inline-flex items-center justify-center gap-2 rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] font-code text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] transition-all" data-astro-cid-l6xd76ut> <svg class="h-4 w-4 text-[var(--accent-signal)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-astro-cid-l6xd76ut><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" data-astro-cid-l6xd76ut></path><rect x="2" y="9" width="4" height="12" data-astro-cid-l6xd76ut></rect><circle cx="4" cy="4" r="2" data-astro-cid-l6xd76ut></circle></svg> <span data-astro-cid-l6xd76ut>LinkedIn ↗</span> </a> <a href="https://github.com/IPauloGermano" target="_blank" rel="noreferrer" class="min-h-[40px] sm:h-9 px-3.5 inline-flex items-center justify-center gap-2 rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] font-code text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] transition-all" data-astro-cid-l6xd76ut> <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-astro-cid-l6xd76ut><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.1.5S17.9.1 15 2a13.4 13.4 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" data-astro-cid-l6xd76ut></path></svg> <span data-astro-cid-l6xd76ut>GitHub ↗</span> </a> </div> </header>  <section class="space-y-4" data-astro-cid-l6xd76ut> <h2 class="font-editorial text-2xl font-normal text-[var(--text-primary)] flex items-center gap-2 border-b border-[var(--border-rule)] pb-2" data-astro-cid-l6xd76ut> <span class="text-[var(--accent-signal)] font-code text-xs font-semibold tracking-wider" data-astro-cid-l6xd76ut>01.</span> <span class="lang-pt" data-astro-cid-l6xd76ut>Resumo Profissional</span> <span class="lang-en hidden" data-astro-cid-l6xd76ut>Professional Summary</span> </h2> <div class="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed font-sans space-y-3 pt-1" data-astro-cid-l6xd76ut> <p class="lang-pt" data-astro-cid-l6xd76ut>
+Estudante de Ciência da Computação e Desenvolvimento de Software cursando <strong data-astro-cid-l6xd76ut>Análise e Desenvolvimento de Sistemas no Unipê</strong>. Experiência prática com <strong data-astro-cid-l6xd76ut>Python e Django</strong>, abrangendo desenvolvimento de aplicações web, integração com APIs REST, modelagem relacional de dados, autenticação, controle de acesso e testes automatizados.
+</p> <p class="lang-pt" data-astro-cid-l6xd76ut>
+Forte interesse em inteligência artificial, desenvolvimento de software e aprendizado por projetos práticos. Utiliza <strong data-astro-cid-l6xd76ut>Git, GitHub, Linux</strong> e ferramentas de IA generativa para acelerar o aprendizado, pesquisa técnica e documentação.
+</p> <p class="lang-en hidden" data-astro-cid-l6xd76ut>
+Computer Science and Software Development student pursuing a degree in <strong data-astro-cid-l6xd76ut>Analysis and Systems Development at Unipê</strong>. Hands-on experience with <strong data-astro-cid-l6xd76ut>Python and Django</strong>, including web application development, REST API integration, relational database modeling, authentication, access control, and automated testing.
+</p> <p class="lang-en hidden" data-astro-cid-l6xd76ut>
+Strong interest in artificial intelligence, software development, and learning through practical projects. Uses <strong data-astro-cid-l6xd76ut>Git, GitHub, Linux</strong>, and generative AI tools to support development, research, documentation, and continuous learning.
+</p> </div> </section>  <section class="space-y-4" data-astro-cid-l6xd76ut> <h2 class="font-editorial text-2xl font-normal text-[var(--text-primary)] flex items-center gap-2 border-b border-[var(--border-rule)] pb-2" data-astro-cid-l6xd76ut> <span class="text-[var(--accent-signal)] font-code text-xs font-semibold tracking-wider" data-astro-cid-l6xd76ut>02.</span> <span class="lang-pt" data-astro-cid-l6xd76ut>Formação Acadêmica</span> <span class="lang-en hidden" data-astro-cid-l6xd76ut>Education</span> </h2> <div class="space-y-1 pt-1" data-astro-cid-l6xd76ut> <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1" data-astro-cid-l6xd76ut> <h3 class="font-editorial text-xl font-medium text-[var(--text-primary)]" data-astro-cid-l6xd76ut>
+Unipê — Centro Universitário de João Pessoa
+</h3> <span class="font-code text-xs text-[var(--accent-signal)] font-semibold" data-astro-cid-l6xd76ut>
+2026 – 2027 · <span class="lang-pt" data-astro-cid-l6xd76ut>Em andamento</span><span class="lang-en hidden" data-astro-cid-l6xd76ut>In Progress</span> </span> </div> <p class="text-sm font-sans text-[var(--text-secondary)]" data-astro-cid-l6xd76ut> <strong class="text-[var(--text-primary)]" data-astro-cid-l6xd76ut>Análise e Desenvolvimento de Sistemas (ADS)</strong> · Graduação Tecnológica
+</p> <p class="font-code text-xs text-[var(--text-muted)]" data-astro-cid-l6xd76ut>
+João Pessoa, PB · Brasil
+</p> </div> </section>  <section class="space-y-8" data-astro-cid-l6xd76ut> <h2 class="font-editorial text-2xl font-normal text-[var(--text-primary)] flex items-center gap-2 border-b border-[var(--border-rule)] pb-2" data-astro-cid-l6xd76ut> <span class="text-[var(--accent-signal)] font-code text-xs font-semibold tracking-wider" data-astro-cid-l6xd76ut>03.</span> <span class="lang-pt" data-astro-cid-l6xd76ut>Projetos & Prática Técnica</span> <span class="lang-en hidden" data-astro-cid-l6xd76ut>Projects & Technical Practice</span> </h2> <div class="space-y-8 pt-1" data-astro-cid-l6xd76ut>  <div class="space-y-3" data-astro-cid-l6xd76ut> <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2" data-astro-cid-l6xd76ut> <div data-astro-cid-l6xd76ut> <h3 class="font-editorial text-xl font-medium text-[var(--text-primary)]" data-astro-cid-l6xd76ut>
+Library – Catalog & Favorites
+</h3> <p class="font-code text-xs text-[var(--text-muted)] mt-0.5" data-astro-cid-l6xd76ut>
+Full-Stack Web App · Python, Django, SQLite, Open Library REST API, Git
+</p> </div> </div> <ul class="space-y-2 text-sm text-[var(--text-secondary)] font-sans list-disc list-outside pl-5 leading-relaxed" data-astro-cid-l6xd76ut> <li class="lang-pt" data-astro-cid-l6xd76ut>Desenvolveu uma aplicação web full-stack para gerenciamento de acervo de livros, progresso de leitura, notas pessoais, avaliações e favoritos.</li> <li class="lang-en hidden" data-astro-cid-l6xd76ut>Developed a full-stack web application for book catalog management, reading progress tracking, personal notes, ratings, and favorites.</li> <li class="lang-pt" data-astro-cid-l6xd76ut>Projetou a arquitetura, modelos de banco de dados relacionais, regras de negócio, views, formulários, autenticação, permissões e testes automatizados.</li> <li class="lang-en hidden" data-astro-cid-l6xd76ut>Designed application architecture, database models, business logic, views, forms, authentication, permissions, and automated tests.</li> <li class="lang-pt" data-astro-cid-l6xd76ut>Integrou a API REST do Open Library com camada de serviço dedicada para tratamento de erros, timeouts, normalização de dados e persistência sob demanda.</li> <li class="lang-en hidden" data-astro-cid-l6xd76ut>Integrated Open Library REST API with a dedicated service layer handling API errors, timeouts, data normalization, and on-demand persistence.</li> <li class="lang-pt" data-astro-cid-l6xd76ut>Implementou isolamento estrito de dados por usuário, proteção CSRF e mutações de dados restritas ao método POST.</li> <li class="lang-en hidden" data-astro-cid-l6xd76ut>Implemented user-specific data isolation, CSRF protection, and POST-only mutations.</li> <li class="lang-pt" data-astro-cid-l6xd76ut>Criou suíte de testes unitários e de integração utilizando o framework de testes do Django.</li> <li class="lang-en hidden" data-astro-cid-l6xd76ut>Created unit and integration tests covering models, views, permissions, and database operations with Django's test framework.</li> </ul> </div>  <div class="space-y-3 pt-2" data-astro-cid-l6xd76ut> <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2" data-astro-cid-l6xd76ut> <div data-astro-cid-l6xd76ut> <div class="flex items-center gap-2" data-astro-cid-l6xd76ut> <h3 class="font-editorial text-xl font-medium text-[var(--text-primary)]" data-astro-cid-l6xd76ut>
+ParkFlow – SaaS para Gestão de Estacionamentos
+</h3> <a href="/projetos" class="font-code text-xs text-[var(--accent-signal)] hover:underline" data-astro-cid-l6xd76ut>
+[Estudo Técnico ↗]
+</a> </div> <p class="font-code text-xs text-[var(--text-muted)] mt-0.5" data-astro-cid-l6xd76ut>
+SaaS & MVP Assistido por IA · TypeScript, React, PostgreSQL, Supabase
+</p> </div> </div> <ul class="space-y-2 text-sm text-[var(--text-secondary)] font-sans list-disc list-outside pl-5 leading-relaxed" data-astro-cid-l6xd76ut> <li class="lang-pt" data-astro-cid-l6xd76ut>Construção de MVP com regras de negócio reais: fluxo orientado pela placa do veículo, conciliação de tempo de permanência, períodos de tolerância e tarifação fracionada.</li> <li class="lang-en hidden" data-astro-cid-l6xd76ut>Built MVP based on real parking operations: license-plate-oriented workflow, dwell-time reconciliation, grace periods, and fractional pricing.</li> <li class="lang-pt" data-astro-cid-l6xd76ut>Modelagem relacional estrita no PostgreSQL para garantir integridade referencial, histórico de entradas/saídas e separação de responsabilidades.</li> <li class="lang-en hidden" data-astro-cid-l6xd76ut>Strict relational modeling in PostgreSQL ensuring data integrity, audit history, and clean separation between business logic and UI.</li> </ul> </div>  <div class="space-y-3 pt-2" data-astro-cid-l6xd76ut> <div data-astro-cid-l6xd76ut> <h3 class="font-editorial text-xl font-medium text-[var(--text-primary)]" data-astro-cid-l6xd76ut> <span class="lang-pt" data-astro-cid-l6xd76ut>Projetos Python & Prática Contínua de Algoritmos</span> <span class="lang-en hidden" data-astro-cid-l6xd76ut>Python Projects & Algorithm Practice</span> </h3> <p class="font-code text-xs text-[var(--text-muted)] mt-0.5" data-astro-cid-l6xd76ut>
+Lógica de Programação, Estruturas de Dados e Resolução de Problemas
+</p> </div> <ul class="space-y-2 text-sm text-[var(--text-secondary)] font-sans list-disc list-outside pl-5 leading-relaxed" data-astro-cid-l6xd76ut> <li class="lang-pt" data-astro-cid-l6xd76ut>Desenvolveu jogo da velha no terminal com manipulação de matrizes, funções modulares, detecção de vitória e alternância de turnos.</li> <li class="lang-en hidden" data-astro-cid-l6xd76ut>Developed terminal Tic-Tac-Toe using matrices, modular functions, win detection, and player alternation.</li> <li class="lang-pt" data-astro-cid-l6xd76ut>Construiu simulador de lançamento de dados com módulo random, funções reutilizáveis e validação estrita de entrada.</li> <li class="lang-en hidden" data-astro-cid-l6xd76ut>Built dice roll simulator with Python's random module, pure reusable functions, and input validation.</li> <li class="lang-pt" data-astro-cid-l6xd76ut>Prática contínua de decomposição de problemas, tratamento de exceções, validação e código modular.</li> <li class="lang-en hidden" data-astro-cid-l6xd76ut>Continuous practice in problem decomposition, exception handling, data structures, and clean code.</li> </ul> </div> </div> </section>  <section class="space-y-4" data-astro-cid-l6xd76ut> <h2 class="font-editorial text-2xl font-normal text-[var(--text-primary)] flex items-center gap-2 border-b border-[var(--border-rule)] pb-2" data-astro-cid-l6xd76ut> <span class="text-[var(--accent-signal)] font-code text-xs font-semibold tracking-wider" data-astro-cid-l6xd76ut>04.</span> <span class="lang-pt" data-astro-cid-l6xd76ut>Habilidades Técnicas & Ferramentas</span> <span class="lang-en hidden" data-astro-cid-l6xd76ut>Technical Skills & Tools</span> </h2> <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 pt-1 font-sans text-sm" data-astro-cid-l6xd76ut> <div data-astro-cid-l6xd76ut> <span class="font-code text-xs font-semibold text-[var(--accent-signal)] uppercase tracking-wider block mb-1" data-astro-cid-l6xd76ut> <span class="lang-pt" data-astro-cid-l6xd76ut>Programação & Lógica</span> <span class="lang-en hidden" data-astro-cid-l6xd76ut>Programming & Logic</span> </span> <p class="text-[var(--text-secondary)] leading-relaxed" data-astro-cid-l6xd76ut>
+Python, lógica de programação, algoritmos, funções, condicionais, laços de repetição, listas e matrizes.
+</p> </div> <div data-astro-cid-l6xd76ut> <span class="font-code text-xs font-semibold text-[var(--accent-signal)] uppercase tracking-wider block mb-1" data-astro-cid-l6xd76ut>
+Backend & Web
+</span> <p class="text-[var(--text-secondary)] leading-relaxed" data-astro-cid-l6xd76ut>
+Django, Django ORM, APIs REST, autenticação, formulários, CRUD, HTML5, CSS3, Bootstrap.
+</p> </div> <div data-astro-cid-l6xd76ut> <span class="font-code text-xs font-semibold text-[var(--accent-signal)] uppercase tracking-wider block mb-1" data-astro-cid-l6xd76ut> <span class="lang-pt" data-astro-cid-l6xd76ut>Bancos de Dados</span> <span class="lang-en hidden" data-astro-cid-l6xd76ut>Databases</span> </span> <p class="text-[var(--text-secondary)] leading-relaxed" data-astro-cid-l6xd76ut>
+SQLite, PostgreSQL, modelagem relacional, constraints, normalização e integridade referencial.
+</p> </div> <div data-astro-cid-l6xd76ut> <span class="font-code text-xs font-semibold text-[var(--accent-signal)] uppercase tracking-wider block mb-1" data-astro-cid-l6xd76ut> <span class="lang-pt" data-astro-cid-l6xd76ut>Testes & Segurança</span> <span class="lang-en hidden" data-astro-cid-l6xd76ut>Testing & Security</span> </span> <p class="text-[var(--text-secondary)] leading-relaxed" data-astro-cid-l6xd76ut>
+Testes unitários, testes de integração (Django test framework), proteção CSRF, controle de acesso e tratamento de erros.
+</p> </div> <div data-astro-cid-l6xd76ut> <span class="font-code text-xs font-semibold text-[var(--accent-signal)] uppercase tracking-wider block mb-1" data-astro-cid-l6xd76ut> <span class="lang-pt" data-astro-cid-l6xd76ut>Práticas de Engenharia</span> <span class="lang-en hidden" data-astro-cid-l6xd76ut>Development Practices</span> </span> <p class="text-[var(--text-secondary)] leading-relaxed" data-astro-cid-l6xd76ut>
+Git, GitHub, commits semânticos, variáveis de ambiente (.env), modularização, documentação e 12-Factor App.
+</p> </div> <div data-astro-cid-l6xd76ut> <span class="font-code text-xs font-semibold text-[var(--accent-signal)] uppercase tracking-wider block mb-1" data-astro-cid-l6xd76ut> <span class="lang-pt" data-astro-cid-l6xd76ut>Ambiente & Ferramentas</span> <span class="lang-en hidden" data-astro-cid-l6xd76ut>Environment & Tools</span> </span> <p class="text-[var(--text-secondary)] leading-relaxed" data-astro-cid-l6xd76ut>
+Linux, terminal bash, Visual Studio Code, Docker (fundamentos), redes e IA generativa para pesquisa técnica.
+</p> </div> </div> </section>  <section class="space-y-4 border-t border-[var(--border-rule-subtle)] pt-8" data-astro-cid-l6xd76ut> <h2 class="font-editorial text-2xl font-normal text-[var(--text-primary)] flex items-center gap-2 border-b border-[var(--border-rule)] pb-2" data-astro-cid-l6xd76ut> <span class="text-[var(--accent-signal)] font-code text-xs font-semibold tracking-wider" data-astro-cid-l6xd76ut>05.</span> <span class="lang-pt" data-astro-cid-l6xd76ut>Idiomas & Atitude</span> <span class="lang-en hidden" data-astro-cid-l6xd76ut>Languages & Strengths</span> </h2> <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-1 text-sm font-sans text-[var(--text-secondary)]" data-astro-cid-l6xd76ut> <div class="space-y-2" data-astro-cid-l6xd76ut> <h3 class="font-editorial text-lg font-medium text-[var(--text-primary)]" data-astro-cid-l6xd76ut> <span class="lang-pt" data-astro-cid-l6xd76ut>Idiomas</span> <span class="lang-en hidden" data-astro-cid-l6xd76ut>Languages</span> </h3> <p data-astro-cid-l6xd76ut> <strong class="text-[var(--text-primary)]" data-astro-cid-l6xd76ut>Português:</strong> Nativo
+</p> <p data-astro-cid-l6xd76ut> <strong class="text-[var(--text-primary)]" data-astro-cid-l6xd76ut>Inglês:</strong> Intermediário (B1) — leitura fluente de documentação técnica e comunicação.
+</p> </div> <div class="space-y-2" data-astro-cid-l6xd76ut> <h3 class="font-editorial text-lg font-medium text-[var(--text-primary)]" data-astro-cid-l6xd76ut> <span class="lang-pt" data-astro-cid-l6xd76ut>Diferenciais</span> <span class="lang-en hidden" data-astro-cid-l6xd76ut>Strengths</span> </h3> <p class="leading-relaxed" data-astro-cid-l6xd76ut> <span class="lang-pt" data-astro-cid-l6xd76ut>Raciocínio lógico estruturado, postura proativa na resolução de problemas, autonomia, dedicação ao aprendizado contínuo, rigor técnico e documentação aberta.</span> <span class="lang-en hidden" data-astro-cid-l6xd76ut>Logical thinking, structured problem solving, autonomy, continuous learning, technical rigor, and open documentation.</span> </p> </div> </div> </section> </article> </div> </main> <footer class="border-t border-[var(--border-rule)] bg-[var(--bg-canvas)] py-12 px-4 sm:px-6"> <div class="mx-auto max-w-6xl"> <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-[var(--border-rule-subtle)]"> <div class="md:col-span-6 space-y-2"> <a href="/" class="font-code text-sm font-semibold text-[var(--text-primary)] hover:text-[var(--accent-signal)] transition-colors">
+~/PauloGerm
+</a> <p class="text-xs sm:text-sm text-[var(--text-secondary)] max-w-md leading-relaxed">
+Caderno público de estudo e engenharia de software. Aprendendo em público, sem fingir experiência.
+</p> </div> <div class="md:col-span-3 space-y-2"> <span class="font-code text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] block">Conteúdo</span> <ul class="space-y-1.5 text-xs font-code text-[var(--text-secondary)]"> <li><a href="/blog" class="hover:text-[var(--text-primary)] transition-colors">Artigos</a></li> <li><a href="/series" class="hover:text-[var(--text-primary)] transition-colors">Séries</a></li> <li><a href="/projetos" class="hover:text-[var(--text-primary)] transition-colors">Projetos</a></li>  <li><a href="/sobre" class="hover:text-[var(--text-primary)] transition-colors">Sobre</a></li> </ul> </div> <div class="md:col-span-3 space-y-2"> <span class="font-code text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] block">Canais</span> <ul class="space-y-1.5 text-xs font-code text-[var(--text-secondary)]"> <li><a href="https://github.com/IPauloGermano" target="_blank" rel="noreferrer" class="hover:text-[var(--text-primary)] transition-colors">GitHub ↗</a></li> <li><a href="https://www.linkedin.com/in/ipaulogermano/" target="_blank" rel="noreferrer" class="hover:text-[var(--text-primary)] transition-colors">LinkedIn ↗</a></li> <li><a href="/curriculo.pdf" target="_blank" rel="noreferrer" class="hover:text-[var(--accent-signal)] transition-colors flex items-center gap-1"><span>Currículo (PDF)</span><svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a></li> <li><a href="/rss.xml" class="hover:text-[var(--text-primary)] transition-colors">Feed RSS</a></li> </ul> </div> </div> <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-code text-xs text-[var(--text-muted)]"> <span>© 2026 Paulo Germano · João Pessoa, PB, Brasil</span> <button type="button" class="back-to-top hover:text-[var(--text-primary)] cursor-pointer transition-colors" id="back-to-top" aria-label="Voltar ao início da página"> <span>Voltar ao topo ↑</span> </button> </div> </div> </footer> </div> <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title"> <div class="fixed inset-0 z-50 flex items-start justify-center bg-black/60 p-4 pt-16 sm:pt-24 backdrop-blur-sm" id="search-modal-backdrop"> <div class="w-full max-w-xl rounded-lg border border-[var(--border-rule)] bg-[var(--bg-canvas)] shadow-2xl overflow-hidden" onclick="event.stopPropagation()"> <div class="flex items-center border-b border-[var(--border-rule)] px-4 py-3 bg-[var(--bg-surface)]"> <svg class="h-4 w-4 text-[var(--text-muted)] mr-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> <label class="sr-only" for="search-input" id="search-title">Buscar no site</label> <input id="search-input" type="search" placeholder="Buscar projetos, artigos, notas..." autocomplete="off" class="w-full bg-transparent text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none font-code"> <button id="search-close" type="button" aria-label="Fechar busca" class="font-code text-[10px] text-[var(--text-muted)] border border-[var(--border-rule)] px-1.5 py-0.5 rounded cursor-pointer hover:text-[var(--text-primary)]">ESC</button> </div> <div class="max-h-[60vh] overflow-y-auto p-2 divide-y divide-[var(--border-rule-subtle)]" id="search-results" aria-live="polite"></div> <div class="flex items-center justify-between border-t border-[var(--border-rule)] px-4 py-2 bg-[var(--bg-surface)] font-code text-[11px] text-[var(--text-muted)]"> <span>↑↓ para navegar · Enter para abrir</span> <span id="search-count">8 itens no índice</span> </div> </div> </div> </dialog> <script id="search-data" type="application/json">[{"title":"Local Player: fallback de transcode e Whisper em fila P0-P3","description":"Compatível toca direto via Range. Incompatível vira MP4 fragmentado com seek 416. Legenda é adicional: nunca await antes de video.play().","href":"/blog/local-player-fallback-transcode-whisper-p0-p3/","tags":["Engenharia de Software","FFmpeg","Inteligência Artificial"],"series":"Local Player: vibecoding com invariantes","type":"Artigo"},{"title":"Local Player: progresso atômico que viaja com o HD","description":"Como writeFileAtomic + fila serial + .bak + .corrupt-<ts> eliminaram perda de posição mesmo matando o servidor no meio do save.","href":"/blog/local-player-progresso-atomico-portatil/","tags":["Engenharia de Software","Node.js","Persistência"],"series":"Local Player: vibecoding com invariantes","type":"Artigo"},{"title":"Local Player: vibecoding com invariantes e zero build step","description":"Como um player local/offline em Express + vanilla JS organiza milhares de aulas sem bundler: AGENTS.md como contrato, estrutura física como fonte de verdade e scan com cache em disco.","href":"/blog/local-player-vibecoding-sem-build-step/","tags":["Engenharia de Software","Node.js","Vibe coding"],"series":"Local Player: vibecoding com invariantes","type":"Artigo"},{"title":"Java Fundamentos: por que o Java deu certo","description":"Explicação sobre os motivos técnicos que ajudaram Java a crescer, com foco em portabilidade, JVM, bytecode e arquivos .class.","href":"/blog/java-fundamentos/java-fundamentos-por-que-o-java-deu-certo/","tags":["Java","JVM","Portabilidade"],"series":"Java Fundamentos","type":"Artigo"},{"title":"Java Fundamentos: o que é uma linguagem de programação","description":"Explicação introdutória sobre linguagens de programação, Java, bytecode, JVM e áreas comuns de uso da linguagem.","href":"/blog/java-fundamentos/java-fundamentos-o-que-e-uma-linguagem-de-programacao/","tags":["Java","Linguagem de Programação","Fundamentos"],"series":"Java Fundamentos","type":"Artigo"},{"title":"Java Fundamentos: princípios da orientação a objetos","description":"Explicação prática dos principais conceitos da POO, como abstração, encapsulamento, herança, polimorfismo, associação, composição e modularização.","href":"/blog/java-fundamentos/java-fundamentos-principios-da-orientacao-a-objetos/","tags":["Java","Programação Orientada a Objetos","POO"],"series":"Java Fundamentos","type":"Artigo"},{"title":"Java Fundamentos: portabilidade","description":"Explicação introdutória sobre portabilidade em Java, JVM, bytecode e execução em diferentes ambientes.","href":"/blog/java-fundamentos/java-fundamentos-portabilidade/","tags":["Java","JVM","Portabilidade"],"series":"Java Fundamentos","type":"Artigo"},{"title":"Java Fundamentos: linguagem Java","description":"Visão geral da linguagem Java, sua relação com orientação a objetos, internet, bytecode e Máquina Virtual Java.","href":"/blog/java-fundamentos/java-fundamentos-linguagem-java/","tags":["Java","JVM","Fundamentos"],"series":"Java Fundamentos","type":"Artigo"},{"title":"Java Fundamentos: orientação a objetos","description":"Introdução ao paradigma orientado a objetos e à ideia de representar problemas por entidades, objetos, classes e interações.","href":"/blog/java-fundamentos/java-fundamentos-orientacao-a-objetos/","tags":["Java","Fundamentos","Programação Orientada a Objetos"],"series":"Java Fundamentos","type":"Artigo"},{"title":"ParkFlow: do levantamento de requisitos a um MVP assistido por IA","description":"Como transformamos um problema real de estacionamento em um MVP com TypeScript, Supabase, UX orientada à placa e desenvolvimento assistido por IA.","href":"/blog/parkflow-do-levantamento-de-requisitos-ao-mvp/","tags":["Engenharia de Software","Inteligência Artificial","TypeScript","Supabase","UX","Vibe coding"],"series":"","type":"Artigo"},{"title":"ParkFlow — SaaS para Operação de Estacionamentos","description":"SaaS com fluxo orientado pela placa, controle de vagas, mensalistas e automações (React, TypeScript, PostgreSQL).","href":"/projetos","tags":["React","TypeScript","PostgreSQL","SaaS","Projeto"],"series":"Projeto em desenvolvimento","type":"Projeto"},{"title":"Currículo / CV — Paulo Germano","description":"Currículo profissional completo em PDF: formação em ADS (Unipê), projetos (Library, ParkFlow), stack técnica e práticas.","href":"/curriculo.pdf","tags":["Currículo","CV","Carreira","PDF","Perfil","Formação"],"series":"Documento","type":"PDF"}]</script> <script>
+  const root = document.documentElement;
+  const themeButton = document.getElementById('theme-toggle');
+  const themeButtonText = themeButton?.querySelector('.sr-only');
+  const themeMedia = window.matchMedia('(prefers-color-scheme: dark)');
+  const themeColor = { dark: '#1C1B19', light: '#EFECE6' };
+  const isValidTheme = (value) => value === 'light' || value === 'dark';
+  const getSystemTheme = () => themeMedia.matches ? 'dark' : 'light';
+  const getSavedTheme = () => {
+    try {
+      const saved = localStorage.getItem('theme');
+      return isValidTheme(saved) ? saved : null;
+    } catch {
+      return null;
+    }
+  };
+  const updateThemeButton = (theme) => {
+    const label = theme === 'dark' ? 'Ativar tema claro' : 'Ativar tema escuro';
+    themeButton?.setAttribute('aria-label', label);
+    themeButton?.setAttribute('title', label);
+    if (themeButtonText) themeButtonText.textContent = label;
+  };
+  const applyTheme = (theme) => {
+    root.dataset.theme = theme;
+    root.style.colorScheme = theme;
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', themeColor[theme]);
+    updateThemeButton(theme);
+  };
+
+  applyTheme(getSavedTheme() || (isValidTheme(root.dataset.theme) ? root.dataset.theme : getSystemTheme()));
+
+  themeButton?.addEventListener('click', () => {
+    const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+    applyTheme(next);
+    try {
+      localStorage.setItem('theme', next);
+    } catch {}
+  });
+
+  const handleThemeMediaChange = (event) => {
+    if (!getSavedTheme()) applyTheme(event.matches ? 'dark' : 'light');
+  };
+  if (typeof themeMedia.addEventListener === 'function') {
+    themeMedia.addEventListener('change', handleThemeMediaChange);
+  } else {
+    themeMedia.addListener(handleThemeMediaChange);
+  }
+
+  const dialog = document.getElementById('search-dialog');
+  const trigger = document.getElementById('search-trigger');
+  const close = document.getElementById('search-close');
+  const input = document.getElementById('search-input');
+  const results = document.getElementById('search-results');
+  const dataNode = document.getElementById('search-data');
+  const searchItems = JSON.parse(dataNode?.textContent || '[]');
+  let selectedIndex = 0;
+
+  const normalize = (value) => value
+    .toLocaleLowerCase('pt-BR')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+
+  const renderResults = () => {
+    if (!results || !input) return;
+    const query = normalize(input.value.trim());
+    const filtered = searchItems.filter((item) => {
+      const haystack = normalize(`${item.title} ${item.description} ${item.tags.join(' ')} ${item.series || ''}`);
+      return !query || haystack.includes(query);
+    }).slice(0, 8);
+
+    selectedIndex = Math.min(selectedIndex, Math.max(filtered.length - 1, 0));
+    results.innerHTML = filtered.length
+      ? filtered.map((item, index) => `
+          <a class="search-result flex items-center justify-between p-3 rounded text-left transition-colors font-sans ${index === selectedIndex ? 'bg-[var(--bg-surface-hover)] text-[var(--text-primary)]' : 'text-[var(--text-secondary)] hover:bg-[var(--bg-surface)]'}" href="${item.href}" data-index="${index}">
+            <div class="flex items-center gap-3 overflow-hidden">
+              <svg class="h-4 w-4 shrink-0 ${index === selectedIndex ? 'text-[var(--accent-signal)]' : 'text-[var(--text-muted)]'}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              <div class="overflow-hidden">
+                <div class="text-sm font-medium truncate text-[var(--text-primary)]">
+                  ${item.title}
+                </div>
+                <div class="text-xs text-[var(--text-muted)] truncate font-code">
+                  ${item.description}
+                </div>
+              </div>
+            </div>
+            <span class="text-xs font-code px-1.5 py-0.5 rounded border border-[var(--border-rule-subtle)] text-[var(--text-muted)] ml-2 shrink-0">${item.type || 'Artigo'}</span>
+          </a>`).join('')
+      : '<p class="py-8 text-center text-sm text-[var(--text-muted)] font-code">Nenhum resultado encontrado.</p>';
+    const countEl = document.getElementById('search-count');
+    if (countEl) countEl.textContent = `${filtered.length} ${filtered.length === 1 ? 'item' : 'itens'}`;
+  };
+
+  const openSearch = () => {
+    if (!dialog) return;
+    document.getElementById('site-header')?.classList.remove('is-hidden');
+    dialog.showModal();
+    selectedIndex = 0;
+    if (input) input.value = '';
+    renderResults();
+    requestAnimationFrame(() => input?.focus());
+  };
+
+  const closeSearch = () => dialog?.close();
+  trigger?.addEventListener('click', openSearch);
+  close?.addEventListener('click', closeSearch);
+  input?.addEventListener('input', () => { selectedIndex = 0; renderResults(); });
+  dialog?.addEventListener('click', (event) => {
+    if (event.target === dialog) closeSearch();
+  });
+  document.getElementById('search-modal-backdrop')?.addEventListener('click', (event) => {
+    if (event.target === event.currentTarget) closeSearch();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+      event.preventDefault();
+      openSearch();
+      return;
+    }
+    if (!dialog?.open) return;
+    const links = [...results.querySelectorAll('.search-result')];
+    if (event.key === 'Escape') closeSearch();
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      selectedIndex = Math.min(selectedIndex + 1, links.length - 1);
+      renderResults();
+    }
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      selectedIndex = Math.max(selectedIndex - 1, 0);
+      renderResults();
+    }
+    if (event.key === 'Enter' && links[selectedIndex]) {
+      event.preventDefault();
+      window.location.href = links[selectedIndex].href;
+    }
+  });
+
+  document.getElementById('back-to-top')?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script> <script>
+    const readerSideMedia = window.matchMedia('(max-width: 1024px)');
+    if (readerSideMedia.matches) {
+      const readerSideRoot = document.documentElement;
+      const readerSideToggle = document.getElementById('reader-side-toggle');
+      const readerSideStorageKey = 'reader-side';
+      const readerSideCooldownMs = 3000;
+      const savedReaderSide = localStorage.getItem(readerSideStorageKey);
+      let readerSideCoolingDown = false;
+      const getReaderSide = (value) => value === 'right' ? 'right' : 'left';
+      const setReaderSide = (side) => {
+        const nextSide = getReaderSide(side);
+        readerSideRoot.dataset.readerSide = nextSide;
+        readerSideToggle?.setAttribute('aria-pressed', String(nextSide === 'right'));
+        readerSideToggle?.setAttribute(
+          'aria-label',
+          nextSide === 'right'
+            ? 'Mover navegação mobile para a esquerda'
+            : 'Mover navegação mobile para a direita'
+        );
+      };
+      const startReaderSideCooldown = () => {
+        if (!readerSideToggle) return;
+        readerSideCoolingDown = true;
+        readerSideToggle.disabled = true;
+        readerSideToggle.setAttribute('aria-disabled', 'true');
+        readerSideToggle.classList.add('is-cooling-down');
+
+        window.setTimeout(() => {
+          readerSideCoolingDown = false;
+          readerSideToggle.disabled = false;
+          readerSideToggle.setAttribute('aria-disabled', 'false');
+          readerSideToggle.classList.remove('is-cooling-down');
+        }, readerSideCooldownMs);
+      };
+
+      setReaderSide(savedReaderSide);
+      readerSideToggle?.addEventListener('click', () => {
+        if (readerSideCoolingDown) return;
+        const nextSide = readerSideRoot.dataset.readerSide === 'right' ? 'left' : 'right';
+        setReaderSide(nextSide);
+        localStorage.setItem(readerSideStorageKey, nextSide);
+        startReaderSideCooldown();
+      });
+    }
+  </script> <script>
+    const autoHideMedia = window.matchMedia('(max-width: 1024px)');
+    if (autoHideMedia.matches) {
+      const autoHideHeader = document.getElementById('site-header');
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+      const minimumScroll = 120;
+      const directionThreshold = 8;
+
+      const hasOpenDialog = () => Boolean(document.querySelector('dialog[open]'));
+
+      const updateHeaderVisibility = () => {
+        ticking = false;
+        if (!autoHideHeader) return;
+
+        const currentScrollY = Math.max(window.scrollY, 0);
+        const delta = currentScrollY - lastScrollY;
+
+        if (currentScrollY <= minimumScroll || hasOpenDialog()) {
+          autoHideHeader.classList.remove('is-hidden');
+          lastScrollY = currentScrollY;
+          return;
+        }
+
+        if (Math.abs(delta) < directionThreshold) return;
+
+        if (delta > 0) autoHideHeader.classList.add('is-hidden');
+        else autoHideHeader.classList.remove('is-hidden');
+
+        lastScrollY = currentScrollY;
+      };
+
+      window.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(updateHeaderVisibility);
+      }, { passive: true });
+    }
+  </script> </body></html>  <script>
+  // Language Switcher Toggle
+  const ptBtn = document.getElementById('lang-pt-btn');
+  const enBtn = document.getElementById('lang-en-btn');
+  const ptElements = document.querySelectorAll('.lang-pt');
+  const enElements = document.querySelectorAll('.lang-en');
+
+  const setLanguage = (lang) => {
+    if (lang === 'en') {
+      ptElements.forEach(el => el.classList.add('hidden'));
+      enElements.forEach(el => el.classList.remove('hidden'));
+      enBtn?.classList.add('bg-[var(--accent-signal)]', 'text-white');
+      enBtn?.classList.remove('text-[var(--text-secondary)]');
+      ptBtn?.classList.remove('bg-[var(--accent-signal)]', 'text-white');
+      ptBtn?.classList.add('text-[var(--text-secondary)]');
+    } else {
+      enElements.forEach(el => el.classList.add('hidden'));
+      ptElements.forEach(el => el.classList.remove('hidden'));
+      ptBtn?.classList.add('bg-[var(--accent-signal)]', 'text-white');
+      ptBtn?.classList.remove('text-[var(--text-secondary)]');
+      enBtn?.classList.remove('bg-[var(--accent-signal)]', 'text-white');
+      enBtn?.classList.add('text-[var(--text-secondary)]');
+    }
+  };
+
+  ptBtn?.addEventListener('click', () => setLanguage('pt'));
+  enBtn?.addEventListener('click', () => setLanguage('en'));
+
+  // Print button
+  document.getElementById('print-cv-btn')?.addEventListener('click', () => {
+    window.print();
+  });
+
+  // Copy Email in CV
+  const copyBtn = document.getElementById('cv-copy-email-btn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async () => {
+      const email = copyBtn.getAttribute('data-email');
+      const textSpan = copyBtn.querySelector('.cv-copy-text');
+      if (email && textSpan) {
+        try {
+          await navigator.clipboard.writeText(email);
+          const original = textSpan.textContent;
+          textSpan.textContent = 'E-mail copiado!';
+          copyBtn.classList.add('border-[var(--accent-signal)]', 'text-[var(--accent-signal)]');
+          setTimeout(() => {
+            textSpan.textContent = original;
+            copyBtn.classList.remove('border-[var(--accent-signal)]', 'text-[var(--accent-signal)]');
+          }, 2000);
+        } catch {
+          window.location.href = `mailto:${email}`;
+        }
+      }
+    });
+  }
+</script>

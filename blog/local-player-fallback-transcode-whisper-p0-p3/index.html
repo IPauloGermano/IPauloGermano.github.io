@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="pt-BR"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Explicação prática dos principais conceitos da POO, como abstração, encapsulamento, herança, polimorfismo, associação, composição e modularização."><meta name="theme-color" content="#1C1B19"><meta property="og:title" content="Java Fundamentos: princípios da orientação a objetos — PauloGerm.dev"><meta property="og:description" content="Explicação prática dos principais conceitos da POO, como abstração, encapsulamento, herança, polimorfismo, associação, composição e modularização."><meta property="og:type" content="article"><meta property="og:url" content="https://ipaulogermano.github.io/blog/java-fundamentos/java-fundamentos-principios-da-orientacao-a-objetos/"><meta property="og:image" content="https://ipaulogermano.github.io/images/og-default.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Java Fundamentos: princípios da orientação a objetos — PauloGerm.dev"><meta name="twitter:description" content="Explicação prática dos principais conceitos da POO, como abstração, encapsulamento, herança, polimorfismo, associação, composição e modularização."><meta name="twitter:image" content="https://ipaulogermano.github.io/images/og-default.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Schibsted+Grotesk:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="canonical" href="https://ipaulogermano.github.io/blog/java-fundamentos/java-fundamentos-principios-da-orientacao-a-objetos/"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="PauloGerm.dev" href="/rss.xml"><title>Java Fundamentos: princípios da orientação a objetos — PauloGerm.dev</title><script>
+<!DOCTYPE html><html lang="pt-BR"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Compatível toca direto via Range. Incompatível vira MP4 fragmentado com seek 416. Legenda é adicional: nunca await antes de video.play()."><meta name="theme-color" content="#1C1B19"><meta property="og:title" content="Local Player: fallback de transcode e Whisper em fila P0-P3 — PauloGerm.dev"><meta property="og:description" content="Compatível toca direto via Range. Incompatível vira MP4 fragmentado com seek 416. Legenda é adicional: nunca await antes de video.play()."><meta property="og:type" content="article"><meta property="og:url" content="https://ipaulogermano.github.io/blog/local-player-fallback-transcode-whisper-p0-p3/"><meta property="og:image" content="https://ipaulogermano.github.io/images/og-default.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Local Player: fallback de transcode e Whisper em fila P0-P3 — PauloGerm.dev"><meta name="twitter:description" content="Compatível toca direto via Range. Incompatível vira MP4 fragmentado com seek 416. Legenda é adicional: nunca await antes de video.play()."><meta name="twitter:image" content="https://ipaulogermano.github.io/images/og-default.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Schibsted+Grotesk:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="canonical" href="https://ipaulogermano.github.io/blog/local-player-fallback-transcode-whisper-p0-p3/"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="PauloGerm.dev" href="/rss.xml"><title>Local Player: fallback de transcode e Whisper em fila P0-P3 — PauloGerm.dev</title><script>
       (() => {
         const root = document.documentElement;
         const themeColor = { dark: '#1C1B19', light: '#EFECE6' };
@@ -26,163 +26,79 @@ Projetos
 Sobre
 </a> </nav>  <div class="flex items-center gap-2 sm:gap-3">  <button id="search-trigger" type="button" aria-haspopup="dialog" aria-controls="search-dialog" aria-label="Buscar no site (Ctrl K)" class="flex min-h-[44px] sm:min-h-0 items-center gap-2 rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] px-3 py-2 sm:px-2.5 sm:py-1.5 text-xs text-[var(--text-secondary)] hover:border-[var(--text-muted)] hover:text-[var(--text-primary)] transition-all focus-visible:outline-none cursor-pointer"> <svg class="h-4 w-4 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> <span class="hidden sm:inline text-xs font-code">Buscar</span> <kbd class="hidden font-code text-[10px] sm:inline-flex items-center px-1.5 py-0.5 rounded border border-[var(--border-rule)] bg-[var(--bg-canvas)] text-[var(--text-muted)]">
 ⌘K
-</kbd> </button>  <a href="https://github.com/IPauloGermano" target="_blank" rel="noreferrer" aria-label="GitHub de Paulo Germano" class="flex h-11 w-11 sm:h-8 sm:w-8 items-center justify-center rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] transition-all"> <svg class="h-4 w-4 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.3-.4 6.8-1.6 6.8-7A5.5 5.5 0 0 0 19.3 4 5.1 5.1 0 0 0 19.1.5S17.9.1 15 2a13.4 13.4 0 0 0-7 0C5.1.1 3.9.5 3.9.5A5.1 5.1 0 0 0 3.7 4a5.5 5.5 0 0 0-1.5 3.8c0 5.4 3.5 6.6 6.8 7A4.8 4.8 0 0 0 8 18v4"></path><path d="M8 19c-3 .9-3-1.5-4-2"></path></svg> </a>  <a href="/rss.xml" aria-label="Feed RSS" class="flex h-11 w-11 sm:h-8 sm:w-8 items-center justify-center rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] transition-all"> <svg class="h-4 w-4 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg> </a>  <button id="theme-toggle" type="button" aria-label="Alternar tema" class="flex h-11 w-11 sm:h-8 sm:w-8 items-center justify-center rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] transition-all cursor-pointer"> <svg class="theme-sun h-4 w-4 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> <svg class="theme-moon h-4 w-4 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> <span class="sr-only">Alternar tema</span> </button> </div> </div>  <nav class="flex md:hidden items-center justify-around border-t border-[var(--border-rule)] px-2 py-1 bg-[var(--bg-surface)] text-xs font-code" aria-label="Navegação móvel"> <a href="/blog" class="flex items-center justify-center min-h-[44px] px-3.5 rounded hover:text-[var(--text-primary)] transition-colors text-[var(--text-primary)] font-semibold">Artigos</a> <a href="/series" class="flex items-center justify-center min-h-[44px] px-3.5 rounded hover:text-[var(--text-primary)] transition-colors text-[var(--text-secondary)]">Séries</a> <a href="/projetos" class="flex items-center justify-center min-h-[44px] px-3.5 rounded hover:text-[var(--text-primary)] transition-colors text-[var(--text-secondary)]">Projetos</a>  <a href="/sobre" class="flex items-center justify-center min-h-[44px] px-3.5 rounded hover:text-[var(--text-primary)] transition-colors text-[var(--text-secondary)]">Sobre</a> </nav> </header> <main id="conteudo" class="site-main"> <div class="article-layout"> <article class="article-prose"> <a class="back-link" href="/blog">← Voltar ao arquivo</a> <header class="article-header"> <div class="article-meta"><time>07 de julho de 2026</time><span>Java · Programação Orientada a Objetos · POO</span></div> <h1>Java Fundamentos: princípios da orientação a objetos</h1> <p>Explicação prática dos principais conceitos da POO, como abstração, encapsulamento, herança, polimorfismo, associação, composição e modularização.</p> </header> <aside class="series-card" aria-label="Série Java Fundamentos"> <p>Série</p> <a href="/series/java-fundamentos-fiap/#parte-4">Java Fundamentos</a> <span>Parte 4 de 6</span> </aside> <div class="prose-body"><blockquote>
-<p>A orientação a objetos fica mais clara quando entendemos seus conceitos na prática, e não apenas como definições soltas.</p>
+</kbd> </button>  <a href="https://github.com/IPauloGermano" target="_blank" rel="noreferrer" aria-label="GitHub de Paulo Germano" class="flex h-11 w-11 sm:h-8 sm:w-8 items-center justify-center rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] transition-all"> <svg class="h-4 w-4 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.3-.4 6.8-1.6 6.8-7A5.5 5.5 0 0 0 19.3 4 5.1 5.1 0 0 0 19.1.5S17.9.1 15 2a13.4 13.4 0 0 0-7 0C5.1.1 3.9.5 3.9.5A5.1 5.1 0 0 0 3.7 4a5.5 5.5 0 0 0-1.5 3.8c0 5.4 3.5 6.6 6.8 7A4.8 4.8 0 0 0 8 18v4"></path><path d="M8 19c-3 .9-3-1.5-4-2"></path></svg> </a>  <a href="/rss.xml" aria-label="Feed RSS" class="flex h-11 w-11 sm:h-8 sm:w-8 items-center justify-center rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] transition-all"> <svg class="h-4 w-4 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg> </a>  <button id="theme-toggle" type="button" aria-label="Alternar tema" class="flex h-11 w-11 sm:h-8 sm:w-8 items-center justify-center rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] transition-all cursor-pointer"> <svg class="theme-sun h-4 w-4 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> <svg class="theme-moon h-4 w-4 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> <span class="sr-only">Alternar tema</span> </button> </div> </div>  <nav class="flex md:hidden items-center justify-around border-t border-[var(--border-rule)] px-2 py-1 bg-[var(--bg-surface)] text-xs font-code" aria-label="Navegação móvel"> <a href="/blog" class="flex items-center justify-center min-h-[44px] px-3.5 rounded hover:text-[var(--text-primary)] transition-colors text-[var(--text-primary)] font-semibold">Artigos</a> <a href="/series" class="flex items-center justify-center min-h-[44px] px-3.5 rounded hover:text-[var(--text-primary)] transition-colors text-[var(--text-secondary)]">Séries</a> <a href="/projetos" class="flex items-center justify-center min-h-[44px] px-3.5 rounded hover:text-[var(--text-primary)] transition-colors text-[var(--text-secondary)]">Projetos</a>  <a href="/sobre" class="flex items-center justify-center min-h-[44px] px-3.5 rounded hover:text-[var(--text-primary)] transition-colors text-[var(--text-secondary)]">Sobre</a> </nav> </header> <main id="conteudo" class="site-main"> <div class="article-layout"> <article class="article-prose"> <a class="back-link" href="/blog">← Voltar ao arquivo</a> <header class="article-header"> <div class="article-meta"><time>21 de setembro de 2026</time><span>Engenharia de Software · FFmpeg · Inteligência Artificial</span></div> <h1>Local Player: fallback de transcode e Whisper em fila P0-P3</h1> <p>Compatível toca direto via Range. Incompatível vira MP4 fragmentado com seek 416. Legenda é adicional: nunca await antes de video.play().</p> </header> <aside class="series-card" aria-label="Série Local Player: vibecoding com invariantes"> <p>Série</p> <a href="/series/local-player-vibecoding/#parte-3">Local Player: vibecoding com invariantes</a> <span>Parte 3 de 3</span> </aside> <div class="prose-body"><blockquote>
+<p>O play nunca pode depender de IA. Transcode e legenda aqui são coadjuvantes — se faltarem, o vídeo toca igual.</p>
 </blockquote>
-<h2 id="orientação-a-objetos-na-prática">Orientação a objetos na prática</h2>
-<p>Orientação a objetos não é apenas teoria.</p>
-<p>Ela é um paradigma que pode ser aplicado na prática por meio de linguagens como Java, C#, Python, Kotlin e outras.</p>
-<p>A Programação Orientada a Objetos, também conhecida como <strong>POO</strong>, trabalha com alguns conceitos fundamentais, como:</p>
+<h2 id="o-contexto">O contexto</h2>
+<p>Nas partes 1 e 2 eu contei a base e o progresso. Agora a parte pesada: transcode de fallback (<code>server/transcode/jobs.js</code>) e legenda com Whisper local (<code>server/subtitles/pipeline.js</code> com 1300+ linhas).</p>
+<p>Minha regra desde o começo: arquivo compatível toca direto; o resto só entra em cena se o <code>&#x3C;video></code> der <code>error</code>. E legenda nunca trava o play.</p>
+<h2 id="o-problema-que-eu-queria-resolver">O problema que eu queria resolver</h2>
+<p>Minha biblioteca mistura <code>.mp4</code> com <code>.mkv</code>, <code>.avi</code> e <code>.mov</code> que o navegador não decodifica, e muita aula sem legenda e com áudio baixo. Converter tudo pela extensão ia torrar CPU e espaço à toa. E esperar IA antes de dar play ia matar a experiência.</p>
+<p>Então eu separei: decisão por codec com ffprobe (nunca por extensão), transcode progressivo no mesmo <code>&#x3C;video></code>, e fila de legendas por prioridade que nunca tenta fazer a biblioteca inteira de uma vez.</p>
+<h2 id="a-decisão-mais-importante">A decisão mais importante</h2>
+<p>Duas filas, um semáforo compartilhado.</p>
+<p>Transcode: jobs com dedup + FIFO, um por vez. Whisper: P0 o que eu abri, P1 a próxima aula, P2 a primeira de cada curso depois do scan, P3 o resto em lotes de 20. Os dois dividem <code>heavySlots</code> (1 por padrão) — um espera o outro de propósito, não é deadlock. LLM fica fora disso.</p>
+<pre><code class="language-mermaid">flowchart TD
+  Erro["&#x3C;video> error"] --> Fallback["/api/video/fallback"]
+  Fallback --> Probe["ffprobe por codec"]
+  Probe --> Direto["compatível: serve direto"]
+  Probe --> Transcode["incompatível: job FIFO"]
+  Aula["abrir aula"] --> P0["P0 demanda"]
+  P0 --> P1["P1 próxima aula"]
+  P1 --> P2["P2 primeiras pós-scan"]
+  P2 --> P3["P3 background"]
+  Transcode --> Heavy["heavySlots (1)"]
+  P0 --> Heavy
+</code></pre>
+<p>Eu descartei transcodificar tudo no scan: num pendrive ia ser inviável de tempo, CPU e espaço — e ia mexer em arquivo que já tocava bem.</p>
+<h2 id="como-usei-ia-no-desenvolvimento">Como usei IA no desenvolvimento</h2>
+<p>Ela me ajudou muito nos extratores de texto pra o tutor (PDF, Office, código, sem dependência), no web search com anti-SSRF e nos skills de economia de token (<code>server/ai/skills.js</code>: Caveman, RTK, Headroom, ADHD).</p>
+<p>Mas tentou três escorregadas: usar <code>+faststart</code> no MP4 progressivo (quebra o fragmentado), usar <code>shell:true</code> com caminho com espaço, e enfileirar a biblioteca inteira. Eu corrigi pra <code>-movflags frag_keyframe+empty_moov+default_base_moof</code>, <code>spawn</code> com array de args e P0-P3 com preempção só de job barato.</p>
+<h2 id="o-que-eu-descobri-implementando">O que eu descobri implementando</h2>
 <ul>
-<li>abstração;</li>
-<li>encapsulamento;</li>
-<li>herança;</li>
-<li>polimorfismo.</li>
+<li>Legenda: ffmpeg extrai WAV 16kHz mono → whisper.cpp → pós determinístico → VTT canônico em <code>&#x3C;lib>/.courseplayer/subtitles/&#x3C;hash>.vtt</code> + espelho em <code>data/subtitles/</code>. Raw nunca é sobrescrito; reusa se <code>mtime+size</code> batem; <code>force=1</code> regenera.</li>
+<li>Transcode: cache em <code>data/transcoded/sha1(...).mp4</code>, invalida por mtime; <code>.tmp</code> só vira final com rename após exit 0; <code>.tmp</code> órfão dá 404.</li>
+<li>Seek além do já convertido espera até 60s ou responde 416. Progresso no log a cada 25%.</li>
+<li>No frontend eu troco o <code>src</code> do <strong>mesmo</strong> <code>&#x3C;video></code> (pra não perder GainNode e listeners); posição e volume voltam quando o trecho fica em <code>buffered</code>; aparece um badge “Preparando compatibilidade…” com “Tentar novamente”.</li>
+<li>Legenda é overlay customizado, nunca <code>&#x3C;track></code>; status via <code>/api/subtitles/status</code>; ao abrir, gera P0 e já enfileira a próxima em P1. Sem binário, modelo ou internet, o status diz <code>available:false</code> e toca normal.</li>
+<li>Áudio: volume até 100% no controle, além disso via GainNode, com normalizador, velocidade 0.5–2x salva.</li>
 </ul>
-<p>Além desses pilares clássicos, existem outros conceitos importantes para organizar melhor um sistema, como:</p>
+<h2 id="o-que-funcionou">O que funcionou</h2>
 <ul>
-<li>modularização;</li>
-<li>hierarquia;</li>
-<li>associação;</li>
-<li>composição.</li>
+<li>Sem ffmpeg: mensagem clara, não 500 cru.</li>
+<li>Editor de legendas desligado no frontend (sem botão, <code>?editSubtitles=1</code> ignorado), mas rotas guardadas; save com versão divergente dá 409, com backup antes de regenerar.</li>
+<li>Tutor com contexto da aula (transcrição + materiais + timestamps) via SSE, chave só no backend, nunca em log.</li>
 </ul>
-<h2 id="abstração">Abstração</h2>
-<p>Abstração é a capacidade de observar uma entidade do mundo real, identificar suas características e comportamentos importantes e representá-los dentro de um sistema.</p>
-<p>Na abstração, não trazemos tudo do mundo real para o código.</p>
-<p>Trazemos apenas o que é necessário para resolver o problema.</p>
-<p>Imagine um sistema de cadastro de veículos.</p>
-<p>Nesse caso, pode fazer sentido representar informações como:</p>
+<h2 id="o-que-não-funcionou">O que não funcionou</h2>
 <ul>
-<li>quantidade de portas;</li>
-<li>motorização;</li>
-<li>modelo;</li>
-<li>marca;</li>
-<li>ano.</li>
+<li>Whisper não roda em FAT/vfat — documentei e o workspace temporário vai pro <code>os.tmpdir()</code>.</li>
+<li>Minha primeira legenda com <code>&#x3C;track></code> brigou com estilo e geometria; o overlay medido na área real do vídeo resolveu.</li>
 </ul>
-<p>Essas informações são extraídas do mundo real e representadas no sistema.</p>
-<p>Outro exemplo seria um sistema de faculdade.</p>
-<p>Para representar um aluno, talvez sejam necessárias informações como:</p>
+<h2 id="o-que-eu-faria-diferente-hoje">O que eu faria diferente hoje</h2>
+<p>Ter criado o <code>heavySlots</code> como módulo próprio desde o dia um, em vez de espalhar a lógica entre transcode e whisper. Nasceu como flag e virou invariante.</p>
+<h2 id="resultado">Resultado</h2>
+<p>Validado pelo <code>docs/VALIDATION.md</code>: <code>.mkv</code> mostra badge, toca em segundos, loga <code>[TRANSCODE]</code>, salva em <code>data/transcoded/</code>; legenda gera raw → VTT canônico + espelho; POST duplicado dedup; P0–P3 sem varrer tudo; limpar transcode não encosta no progresso.</p>
+<h2 id="o-que-aprendi">O que aprendi</h2>
+<h3 id="1-fallback-não-padrão">1. Fallback, não padrão</h3>
+<p>Decidir por codec depois do <code>error</code> economiza mais CPU que qualquer preset de ffmpeg.</p>
+<h3 id="2-prioridade-é-produto">2. Prioridade é produto</h3>
+<p>P0–P3 diz o que está na minha tela agora; FIFO puro trataria background como urgente.</p>
+<h3 id="3-adicional-tem-que-degradar">3. Adicional tem que degradar</h3>
+<p>Todo caminho de IA tem o <code>available:false</code> testado. Sem isso, vibecoding vira acoplamento.</p>
+<h2 id="próximos-passos">Próximos passos</h2>
 <ul>
-<li>nome;</li>
-<li>matrícula;</li>
-<li>curso;</li>
-<li>turma;</li>
-<li>disciplinas.</li>
+<li><a href="/blog/local-player-vibecoding-sem-build-step/">Parte 1: vibecoding com invariantes e zero build step</a></li>
+<li><a href="/blog/local-player-progresso-atomico-portatil/">Parte 2: progresso atômico que viaja com o HD</a></li>
 </ul>
-<p>A abstração consiste em escolher o que realmente importa para aquele sistema.</p>
-<h2 id="encapsulamento">Encapsulamento</h2>
-<p>Encapsulamento é o princípio de proteger os dados e comportamentos internos de um objeto, permitindo acesso e alteração apenas de forma controlada.</p>
-<p>Como a própria palavra sugere, encapsular é proteger algo dentro de uma estrutura.</p>
-<p>Um exemplo simples é um liquidificador.</p>
-<p>O liquidificador possui motor, fios e mecanismos internos. Porém, para usá-lo, a pessoa não precisa abrir o aparelho nem entender todos os detalhes internos.</p>
-<p>Ela interage apenas com os botões disponíveis, como:</p>
+<h2 id="conclusão">Conclusão</h2>
+<p>Transcode e Whisper são a parte mais vistosa e a mais fácil de errar. O acerto foi tratar os dois como segunda classe do play — com fila, semáforo e degradação explícita.</p>
+<h2 id="referências">Referências</h2>
 <ul>
-<li>ligar;</li>
-<li>desligar;</li>
-<li>velocidade 1;</li>
-<li>velocidade 2;</li>
-<li>pulsar.</li>
-</ul>
-<p>Na orientação a objetos, acontece algo parecido.</p>
-<p>O objeto protege seus detalhes internos e expõe apenas os métodos necessários para que outras partes do sistema possam interagir com ele.</p>
-<p>Em Java, isso normalmente é feito com modificadores de acesso, como <code>private</code>, <code>public</code> e <code>protected</code>.</p>
-<h2 id="herança-e-hierarquia">Herança e hierarquia</h2>
-<p>Hierarquia é a organização entre classes que possuem algum tipo de relação entre si.</p>
-<p>Uma das formas mais conhecidas de hierarquia na POO é a <strong>herança</strong>.</p>
-<p>Herança acontece quando uma classe herda características e comportamentos de outra classe.</p>
-<p>Para avaliar se a relação deve ser herança, uma pergunta ajuda bastante:</p>
-<blockquote>
-<p>Um aluno é uma pessoa ou um aluno tem uma pessoa?</p>
-</blockquote>
-<p>Nesse caso, faz sentido dizer que um aluno é uma pessoa.</p>
-<p>Então uma classe <code>Aluno</code> pode herdar características de uma classe <code>Pessoa</code>.</p>
-<p>Por exemplo, uma pessoa pode ter:</p>
-<ul>
-<li>nome;</li>
-<li>CPF;</li>
-<li>data de nascimento.</li>
-</ul>
-<p>Como um aluno também é uma pessoa, ele pode reutilizar essas características.</p>
-<p>Além disso, <code>Aluno</code> pode ter informações próprias, como:</p>
-<ul>
-<li>matrícula;</li>
-<li>curso;</li>
-<li>turma.</li>
-</ul>
-<p>Essa é uma relação do tipo <strong>“é um”</strong>.</p>
-<p>Ou seja:</p>
-<blockquote>
-<p>Aluno é uma Pessoa.</p>
-</blockquote>
-<h2 id="associação">Associação</h2>
-<p>Nem toda relação entre classes deve ser feita com herança.</p>
-<p>Às vezes, uma classe apenas usa ou possui referência a outra.</p>
-<p>Outra pergunta ajuda a diferenciar:</p>
-<blockquote>
-<p>O aluno é uma disciplina ou o aluno tem uma disciplina?</p>
-</blockquote>
-<p>Um aluno não é uma disciplina.</p>
-<p>Um aluno tem uma disciplina, ou várias disciplinas.</p>
-<p>Logo, isso não é herança.</p>
-<p>Nesse caso, a classe <code>Aluno</code> pode ter uma referência para <code>Disciplina</code>.</p>
-<p>Essa relação é chamada de <strong>associação</strong>.</p>
-<p>Ou seja:</p>
-<blockquote>
-<p>Aluno tem uma Disciplina.</p>
-</blockquote>
-<p>Em um cenário mais realista:</p>
-<blockquote>
-<p>Aluno tem várias Disciplinas.</p>
-</blockquote>
-<h2 id="composição">Composição</h2>
-<p>Composição é uma forma mais forte de associação.</p>
-<p>Ela acontece quando uma classe é formada por outra e essa parte normalmente pertence ao objeto principal naquele contexto.</p>
-<p>Um exemplo simples é um <code>Pedido</code> com seus <code>ItemPedido</code>.</p>
-<p>Um pedido pode ter vários itens.</p>
-<p>Esses itens fazem sentido dentro daquele pedido, porque representam os produtos escolhidos, quantidades e valores naquele momento da compra.</p>
-<p>A relação não é:</p>
-<blockquote>
-<p>Pedido é um ItemPedido.</p>
-</blockquote>
-<p>A relação correta é:</p>
-<blockquote>
-<p>Pedido tem itens de pedido.</p>
-</blockquote>
-<p>A composição ajuda a representar objetos formados por partes internas.</p>
-<h2 id="polimorfismo">Polimorfismo</h2>
-<p>Polimorfismo é a capacidade de objetos diferentes responderem à mesma ação de formas diferentes.</p>
-<p>Imagine uma classe <code>Animal</code> com um método <code>emitirSom()</code>.</p>
-<p>Uma classe <code>Cachorro</code> pode implementar esse método emitindo um latido.</p>
-<p>Uma classe <code>Gato</code> pode implementar o mesmo método emitindo um miado.</p>
-<p>A ação é a mesma:</p>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#B392F0">emitirSom</span><span style="color:#E1E4E8">()</span></span></code></pre>
-<p>Mas o comportamento muda conforme o objeto.</p>
-<p>Isso permite escrever código mais flexível, porque diferentes objetos podem seguir a mesma ideia geral, mas executar comportamentos específicos.</p>
-<h2 id="modularização">Modularização</h2>
-<p>Modularização é a ideia de dividir um sistema grande em partes menores, mais organizadas e mais fáceis de manter.</p>
-<p>Na Programação Orientada a Objetos, essa divisão acontece principalmente por meio de classes.</p>
-<p>Cada classe deve representar uma responsabilidade, entidade ou conceito importante do sistema.</p>
-<p>Em um sistema de faculdade, por exemplo, poderíamos ter classes como:</p>
-<ul>
-<li><code>Aluno</code>;</li>
-<li><code>Professor</code>;</li>
-<li><code>Disciplina</code>;</li>
-<li><code>Curso</code>;</li>
-<li><code>Turma</code>.</li>
-</ul>
-<p>Cada uma dessas classes representa uma parte do sistema.</p>
-<p>Isso deixa o código mais organizado, facilita a manutenção e melhora o reaproveitamento.</p>
-<h2 id="resumo">Resumo</h2>
-<p>A Orientação a Objetos permite representar problemas do mundo real dentro do código usando objetos, classes e relações entre entidades.</p>
-<p>Os pilares mais conhecidos da POO são:</p>
-<ul>
-<li>abstração;</li>
-<li>encapsulamento;</li>
-<li>herança;</li>
-<li>polimorfismo.</li>
-</ul>
-<p>Além deles, conceitos como modularização, hierarquia, associação e composição ajudam a estruturar melhor o sistema.</p>
-<p>A ideia principal é criar código mais organizado, reutilizável, protegido e fácil de manter.</p></div> <nav class="series-navigation" aria-labelledby="series-navigation-title"> <div class="series-navigation-head"> <p id="series-navigation-title">Continuar na série</p> <a class="series-index-link" href="/series/java-fundamentos-fiap/#parte-4">Ver índice da série</a> </div> <div class="series-navigation-grid"> <div class="series-navigation-item"> <a href="/blog/java-fundamentos/java-fundamentos-portabilidade/" rel="prev"> <span>← Parte anterior</span> <strong>Java Fundamentos: portabilidade</strong> </a> </div> <div class="series-navigation-item series-navigation-item--next"> <a href="/blog/java-fundamentos/java-fundamentos-o-que-e-uma-linguagem-de-programacao/" rel="next"> <span>Próxima parte →</span> <strong>Java Fundamentos: o que é uma linguagem de programação</strong> </a> </div> </div> </nav> <section class="related-articles" aria-labelledby="related-articles-title"><h2 id="related-articles-title">Leituras relacionadas</h2><ul><li><a href="/blog/java-fundamentos/java-fundamentos-orientacao-a-objetos/"><span aria-hidden="true">→</span><span>Java Fundamentos: orientação a objetos</span></a></li><li><a href="/blog/java-fundamentos/java-fundamentos-linguagem-java/"><span aria-hidden="true">→</span><span>Java Fundamentos: linguagem Java</span></a></li><li><a href="/blog/java-fundamentos/java-fundamentos-portabilidade/"><span aria-hidden="true">→</span><span>Java Fundamentos: portabilidade</span></a></li></ul></section> </article> <aside class="article-toc"> <p>Nesta nota</p> <nav> <a class="depth-2" href="#orientação-a-objetos-na-prática">Orientação a objetos na prática</a><a class="depth-2" href="#abstração">Abstração</a><a class="depth-2" href="#encapsulamento">Encapsulamento</a><a class="depth-2" href="#herança-e-hierarquia">Herança e hierarquia</a><a class="depth-2" href="#associação">Associação</a><a class="depth-2" href="#composição">Composição</a><a class="depth-2" href="#polimorfismo">Polimorfismo</a><a class="depth-2" href="#modularização">Modularização</a><a class="depth-2" href="#resumo">Resumo</a> </nav> </aside> </div> <script type="module" src="/_astro/EmbedRenderer.astro_astro_type_script_index_0_lang.BmzSx4j_.js"></script> <script type="module">const p={bash:"Bash",css:"CSS",html:"HTML",javascript:"JavaScript",js:"JavaScript",json:"JSON",mermaid:"Mermaid",shell:"Shell",sql:"SQL",text:"Texto",plaintext:"Texto",ts:"TypeScript",typescript:"TypeScript",yaml:"YAML",yml:"YAML"},d=new WeakMap;let l=0;function g(e,t){if(e.closest(".mermaid-error"))return"Mermaid";const s=Array.from(t.classList).find(a=>a.startsWith("language-"))?.replace("language-",""),o=(e.dataset.language||s||"text").toLowerCase();return p[o]||o.toUpperCase()}function u(e,t,s,o){e.textContent=s,t.textContent=o;const a=d.get(e);a&&window.clearTimeout(a);const c=window.setTimeout(()=>{e.textContent="Copiar",t.textContent="",d.delete(e)},2e3);d.set(e,c)}function y(e){if(e.dataset.codeEnhanced==="true")return;const t=e.querySelector(":scope > code");if(!t||t.classList.contains("language-mermaid")&&!e.closest(".mermaid-error"))return;const o=document.createElement("div");o.className="code-block";const a=document.createElement("div");a.className="code-block-toolbar";const c=document.createElement("span");c.className="code-block-language",c.textContent=g(e,t);const n=document.createElement("button");n.type="button",n.className="code-copy-button",n.textContent="Copiar",n.setAttribute("aria-label","Copiar código");const r=document.createElement("span");r.className="sr-only",r.setAttribute("aria-live","polite"),n.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(t.textContent??""),u(n,r,"Copiado ✓","Código copiado")}catch(m){console.error("Não foi possível copiar o bloco de código:",m),u(n,r,"Não copiado","Não foi possível copiar o código")}}),e.dataset.codeEnhanced="true",e.replaceWith(o),a.append(c,r,n),o.append(a,e)}function b(){document.querySelectorAll(".prose-body pre").forEach(y),document.querySelectorAll(".prose-body").forEach(e=>{if(e.dataset.codeObserver==="true")return;e.dataset.codeObserver="true",new MutationObserver(()=>i()).observe(e,{childList:!0,subtree:!0})})}function i(){cancelAnimationFrame(l),l=requestAnimationFrame(b)}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",i,{once:!0}):i();document.addEventListener("astro:page-load",i);</script> </main> <footer class="border-t border-[var(--border-rule)] bg-[var(--bg-canvas)] py-12 px-4 sm:px-6"> <div class="mx-auto max-w-6xl"> <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-[var(--border-rule-subtle)]"> <div class="md:col-span-6 space-y-2"> <a href="/" class="font-code text-sm font-semibold text-[var(--text-primary)] hover:text-[var(--accent-signal)] transition-colors">
+<li><code>server/transcode/jobs.js</code>, <code>server/subtitles/pipeline.js</code>, <code>server/subtitles/vtt.js</code>, <code>server/ai/skills.js</code></li>
+<li><code>docs/SUBTITLES.md</code>, <code>docs/whisper.md</code>, <code>docs/VALIDATION.md</code> seções 3 e 6</li>
+</ul></div> <nav class="series-navigation" aria-labelledby="series-navigation-title"> <div class="series-navigation-head"> <p id="series-navigation-title">Continuar na série</p> <a class="series-index-link" href="/series/local-player-vibecoding/#parte-3">Ver índice da série</a> </div> <div class="series-navigation-grid"> <div class="series-navigation-item"> <a href="/blog/local-player-progresso-atomico-portatil/" rel="prev"> <span>← Parte anterior</span> <strong>Local Player: progresso atômico que viaja com o HD</strong> </a> </div> <div class="series-navigation-item series-navigation-item--next">  </div> </div> </nav> <section class="related-articles" aria-labelledby="related-articles-title"><h2 id="related-articles-title">Leituras relacionadas</h2><ul><li><a href="/blog/local-player-vibecoding-sem-build-step/"><span aria-hidden="true">→</span><span>Local Player: vibecoding com invariantes e zero build step</span></a></li><li><a href="/blog/local-player-progresso-atomico-portatil/"><span aria-hidden="true">→</span><span>Local Player: progresso atômico que viaja com o HD</span></a></li><li><a href="/blog/parkflow-do-levantamento-de-requisitos-ao-mvp/"><span aria-hidden="true">→</span><span>ParkFlow: do levantamento de requisitos a um MVP assistido por IA</span></a></li></ul></section> </article> <aside class="article-toc"> <p>Nesta nota</p> <nav> <a class="depth-2" href="#o-contexto">O contexto</a><a class="depth-2" href="#o-problema-que-eu-queria-resolver">O problema que eu queria resolver</a><a class="depth-2" href="#a-decisão-mais-importante">A decisão mais importante</a><a class="depth-2" href="#como-usei-ia-no-desenvolvimento">Como usei IA no desenvolvimento</a><a class="depth-2" href="#o-que-eu-descobri-implementando">O que eu descobri implementando</a><a class="depth-2" href="#o-que-funcionou">O que funcionou</a><a class="depth-2" href="#o-que-não-funcionou">O que não funcionou</a><a class="depth-2" href="#o-que-eu-faria-diferente-hoje">O que eu faria diferente hoje</a><a class="depth-2" href="#resultado">Resultado</a><a class="depth-2" href="#o-que-aprendi">O que aprendi</a><a class="depth-3" href="#1-fallback-não-padrão">1. Fallback, não padrão</a><a class="depth-3" href="#2-prioridade-é-produto">2. Prioridade é produto</a><a class="depth-3" href="#3-adicional-tem-que-degradar">3. Adicional tem que degradar</a><a class="depth-2" href="#próximos-passos">Próximos passos</a><a class="depth-2" href="#conclusão">Conclusão</a><a class="depth-2" href="#referências">Referências</a> </nav> </aside> </div> <dialog class="mermaid-dialog" id="mermaid-viewer" aria-labelledby="mermaid-viewer-title"> <div class="mermaid-dialog-shell"> <header class="mermaid-dialog-header"> <div class="mermaid-dialog-title"> <strong id="mermaid-viewer-title">Diagrama ampliado</strong> </div> <div class="mermaid-dialog-actions"> <div class="mermaid-zoom-controls" role="group" aria-label="Controles de zoom"> <button type="button" data-mermaid-action="zoom-out" aria-label="Diminuir zoom">−</button> <output class="mermaid-zoom-value" aria-label="Zoom atual" aria-live="polite">100%</output> <button type="button" data-mermaid-action="zoom-in" aria-label="Aumentar zoom">+</button> <button type="button" data-mermaid-action="reset" aria-label="Restaurar zoom para 100%">100%</button> <button type="button" data-mermaid-action="fit" aria-label="Ajustar diagrama à tela">Ajustar</button> </div> <button class="mermaid-dialog-close" type="button" data-mermaid-action="close" aria-label="Fechar visualizador">
+Fechar
+</button> </div> </header> <div class="mermaid-dialog-stage" data-mermaid-stage role="region" aria-label="Área ampliada do diagrama com rolagem quando necessário." tabindex="0"></div> </div> </dialog> <script type="module" src="/_astro/MermaidRenderer.astro_astro_type_script_index_0_lang.BksAQ1DQ.js"></script><script type="module" src="/_astro/EmbedRenderer.astro_astro_type_script_index_0_lang.BmzSx4j_.js"></script> <script type="module">const p={bash:"Bash",css:"CSS",html:"HTML",javascript:"JavaScript",js:"JavaScript",json:"JSON",mermaid:"Mermaid",shell:"Shell",sql:"SQL",text:"Texto",plaintext:"Texto",ts:"TypeScript",typescript:"TypeScript",yaml:"YAML",yml:"YAML"},d=new WeakMap;let l=0;function g(e,t){if(e.closest(".mermaid-error"))return"Mermaid";const s=Array.from(t.classList).find(a=>a.startsWith("language-"))?.replace("language-",""),o=(e.dataset.language||s||"text").toLowerCase();return p[o]||o.toUpperCase()}function u(e,t,s,o){e.textContent=s,t.textContent=o;const a=d.get(e);a&&window.clearTimeout(a);const c=window.setTimeout(()=>{e.textContent="Copiar",t.textContent="",d.delete(e)},2e3);d.set(e,c)}function y(e){if(e.dataset.codeEnhanced==="true")return;const t=e.querySelector(":scope > code");if(!t||t.classList.contains("language-mermaid")&&!e.closest(".mermaid-error"))return;const o=document.createElement("div");o.className="code-block";const a=document.createElement("div");a.className="code-block-toolbar";const c=document.createElement("span");c.className="code-block-language",c.textContent=g(e,t);const n=document.createElement("button");n.type="button",n.className="code-copy-button",n.textContent="Copiar",n.setAttribute("aria-label","Copiar código");const r=document.createElement("span");r.className="sr-only",r.setAttribute("aria-live","polite"),n.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(t.textContent??""),u(n,r,"Copiado ✓","Código copiado")}catch(m){console.error("Não foi possível copiar o bloco de código:",m),u(n,r,"Não copiado","Não foi possível copiar o código")}}),e.dataset.codeEnhanced="true",e.replaceWith(o),a.append(c,r,n),o.append(a,e)}function b(){document.querySelectorAll(".prose-body pre").forEach(y),document.querySelectorAll(".prose-body").forEach(e=>{if(e.dataset.codeObserver==="true")return;e.dataset.codeObserver="true",new MutationObserver(()=>i()).observe(e,{childList:!0,subtree:!0})})}function i(){cancelAnimationFrame(l),l=requestAnimationFrame(b)}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",i,{once:!0}):i();document.addEventListener("astro:page-load",i);</script> </main> <footer class="border-t border-[var(--border-rule)] bg-[var(--bg-canvas)] py-12 px-4 sm:px-6"> <div class="mx-auto max-w-6xl"> <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-[var(--border-rule-subtle)]"> <div class="md:col-span-6 space-y-2"> <a href="/" class="font-code text-sm font-semibold text-[var(--text-primary)] hover:text-[var(--accent-signal)] transition-colors">
 ~/PauloGerm
 </a> <p class="text-xs sm:text-sm text-[var(--text-secondary)] max-w-md leading-relaxed">
 Caderno público de estudo e engenharia de software. Aprendendo em público, sem fingir experiência.
