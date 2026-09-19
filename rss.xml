@@ -9,14 +9,14 @@
       <description>Compatível toca direto via Range. Incompatível vira MP4 fragmentado com seek 416. Legenda é adicional: nunca await antes de video.play().</description>
       <link>https://ipaulogermano.github.io/blog/local-player-fallback-transcode-whisper-p0-p3/</link>
       <guid>https://ipaulogermano.github.io/blog/local-player-fallback-transcode-whisper-p0-p3/</guid>
-      <pubDate>Mon, 21 Sep 2026 00:00:00 GMT</pubDate>
+      <pubDate>Sat, 19 Sep 2026 00:00:00 GMT</pubDate>
     </item>
 <item>
       <title>Local Player: progresso atômico que viaja com o HD</title>
       <description>Como writeFileAtomic + fila serial + .bak + .corrupt-&lt;ts&gt; eliminaram perda de posição mesmo matando o servidor no meio do save.</description>
       <link>https://ipaulogermano.github.io/blog/local-player-progresso-atomico-portatil/</link>
       <guid>https://ipaulogermano.github.io/blog/local-player-progresso-atomico-portatil/</guid>
-      <pubDate>Sun, 20 Sep 2026 00:00:00 GMT</pubDate>
+      <pubDate>Sat, 19 Sep 2026 00:00:00 GMT</pubDate>
     </item>
 <item>
       <title>Local Player: vibecoding com invariantes e zero build step</title>
