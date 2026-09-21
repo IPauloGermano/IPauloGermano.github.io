@@ -195,6 +195,11 @@ Caderno público de estudo e engenharia de software. Aprendendo em público, sem
     if (countEl) countEl.textContent = `${filtered.length} ${filtered.length === 1 ? 'item' : 'itens'}`;
   };
 
+  const scrollSelectedIntoView = () => {
+    results?.querySelector(`.search-result[data-index="${selectedIndex}"]`)
+      ?.scrollIntoView({ block: 'nearest' });
+  };
+
   const openSearch = () => {
     if (!dialog) return;
     document.getElementById('site-header')?.classList.remove('is-hidden');
@@ -229,11 +234,13 @@ Caderno público de estudo e engenharia de software. Aprendendo em público, sem
       event.preventDefault();
       selectedIndex = Math.min(selectedIndex + 1, links.length - 1);
       renderResults();
+      scrollSelectedIntoView();
     }
     if (event.key === 'ArrowUp') {
       event.preventDefault();
       selectedIndex = Math.max(selectedIndex - 1, 0);
       renderResults();
+      scrollSelectedIntoView();
     }
     if (event.key === 'Enter' && links[selectedIndex]) {
       event.preventDefault();
