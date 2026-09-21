@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ipaulogermano.github.io/sitemap-index.xml
+Sitemap: https://paulogerm.dev/sitemap-index.xml
