@@ -1,0 +1,448 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Articles, projects, and notes on software development, ADS, and systems engineering."><meta name="theme-color" content="#1C1B19"><meta property="og:title" content="Software engineering notebook — Paulo Germano"><meta property="og:description" content="Articles, projects, and notes on software development, ADS, and systems engineering."><meta property="og:type" content="website"><meta property="og:url" content="https://paulogerm.dev/en/"><meta property="og:image" content="https://paulogerm.dev/images/og-default.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Software engineering notebook — Paulo Germano"><meta name="twitter:description" content="Articles, projects, and notes on software development, ADS, and systems engineering."><meta name="twitter:image" content="https://paulogerm.dev/images/og-default.png"><meta name="author" content="Paulo Germano"><meta property="og:locale" content="en_US"><meta property="og:site_name" content="PauloGerm.dev"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"PauloGerm.dev","url":"https://paulogerm.dev/","inLanguage":"pt-BR"},{"@type":"Person","name":"Paulo Germano","url":"https://paulogerm.dev/sobre/","sameAs":["https://github.com/IPauloGermano","https://www.linkedin.com/in/ipaulogermano/"]}]}</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Schibsted+Grotesk:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="canonical" href="https://paulogerm.dev/en/"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="PauloGerm.dev" href="/en/rss.xml"><link rel="alternate" hreflang="pt" href="https://paulogerm.dev/"><link rel="alternate" hreflang="en" href="https://paulogerm.dev/en/"><link rel="alternate" hreflang="x-default" href="https://paulogerm.dev/"><title>Software engineering notebook — Paulo Germano</title><script>
+      (() => {
+        const root = document.documentElement;
+        const themeColor = { dark: '#1C1B19', light: '#EFECE6' };
+        const getSystemTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+        let theme = getSystemTheme();
+        try {
+          const saved = localStorage.getItem('theme');
+          if (saved === 'light' || saved === 'dark') theme = saved;
+        } catch {
+          theme = getSystemTheme();
+        }
+
+        root.dataset.theme = theme;
+        root.style.colorScheme = theme;
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', themeColor[theme]);
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.BDCNtF8_.css"></head> <body> <div class="site-shell min-h-screen bg-[var(--bg-canvas)] text-[var(--text-primary)] selection:bg-[var(--accent-signal)] selection:text-white transition-colors duration-200"> <a class="skip-link sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--accent-signal)] focus:text-white focus:rounded" href="#conteudo">Skip to content</a> <header class="sticky top-0 z-40 w-full border-b border-[var(--border-rule)] bg-[var(--bg-canvas)]/90 backdrop-blur-md transition-colors duration-200" id="site-header"> <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">  <a href="/en/" class="group flex items-center gap-2 font-code text-xs font-semibold tracking-wide text-[var(--text-primary)] hover:text-[var(--accent-signal)] transition-colors" aria-label="Paulo Germano — home"> <span class="text-[var(--text-muted)] group-hover:text-[var(--accent-signal)] transition-colors">[</span> <svg class="h-3.5 w-3.5 text-[var(--accent-signal)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg> <span class="font-semibold text-sm">~/PauloGerm</span> <span class="text-[var(--text-muted)] group-hover:text-[var(--accent-signal)] transition-colors">]</span> </a>  <nav class="hidden md:flex items-center gap-6 text-xs font-medium tracking-wide uppercase font-code" aria-label="Primary navigation"> <a href="/blog" class="transition-colors hover:text-[var(--text-primary)] text-[var(--text-secondary)]"> Articles </a> <a href="/series" class="transition-colors hover:text-[var(--text-primary)] text-[var(--text-secondary)]"> Series </a> <a href="/en/projetos" class="transition-colors hover:text-[var(--text-primary)] text-[var(--text-secondary)]"> Projects </a>  <a href="/en/sobre" class="transition-colors hover:text-[var(--text-primary)] text-[var(--text-secondary)]"> About </a> </nav>  <div class="flex items-center gap-2 sm:gap-3">  <button id="search-trigger" type="button" aria-haspopup="dialog" aria-controls="search-dialog" aria-label="Search this site (Ctrl K)" class="flex min-h-[44px] sm:min-h-0 items-center gap-2 rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] px-3 py-2 sm:px-2.5 sm:py-1.5 text-xs text-[var(--text-secondary)] hover:border-[var(--text-muted)] hover:text-[var(--text-primary)] transition-all focus-visible:outline-none cursor-pointer"> <svg class="h-4 w-4 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> <span class="hidden sm:inline text-xs font-code">Search</span> <kbd class="hidden font-code text-[10px] sm:inline-flex items-center px-1.5 py-0.5 rounded border border-[var(--border-rule)] bg-[var(--bg-canvas)] text-[var(--text-muted)]"> ⌘K </kbd> </button>  <a href="https://github.com/IPauloGermano" target="_blank" rel="noreferrer" aria-label="Paulo Germano's GitHub" class="flex h-11 w-11 sm:h-8 sm:w-8 items-center justify-center rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] transition-all"> <svg class="h-4 w-4 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.3-.4 6.8-1.6 6.8-7A5.5 5.5 0 0 0 19.3 4 5.1 5.1 0 0 0 19.1.5S17.9.1 15 2a13.4 13.4 0 0 0-7 0C5.1.1 3.9.5 3.9.5A5.1 5.1 0 0 0 3.7 4a5.5 5.5 0 0 0-1.5 3.8c0 5.4 3.5 6.6 6.8 7A4.8 4.8 0 0 0 8 18v4"></path><path d="M8 19c-3 .9-3-1.5-4-2"></path></svg> </a>  <a href="/en/rss.xml" aria-label="RSS feed" class="flex h-11 w-11 sm:h-8 sm:w-8 items-center justify-center rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] transition-all"> <svg class="h-4 w-4 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg> </a>  <a href="/" data-lang-switch="pt" aria-label="Versão em português" class="flex h-11 w-11 sm:h-8 sm:w-8 items-center justify-center rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] font-code text-[11px] font-semibold text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] transition-colors">
+PT
+</a>  <button id="theme-toggle" type="button" aria-label="Toggle theme" class="flex h-11 w-11 sm:h-8 sm:w-8 items-center justify-center rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] transition-all cursor-pointer"> <svg class="theme-sun h-4 w-4 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> <svg class="theme-moon h-4 w-4 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> <span class="sr-only">Toggle theme</span> </button> </div> </div>  <nav class="flex md:hidden items-center justify-around border-t border-[var(--border-rule)] px-2 py-1 bg-[var(--bg-surface)] text-xs font-code" aria-label="Mobile navigation"> <a href="/blog" class="flex items-center justify-center min-h-[44px] px-3.5 rounded hover:text-[var(--text-primary)] transition-colors text-[var(--text-secondary)]">Articles</a> <a href="/series" class="flex items-center justify-center min-h-[44px] px-3.5 rounded hover:text-[var(--text-primary)] transition-colors text-[var(--text-secondary)]">Series</a> <a href="/en/projetos" class="flex items-center justify-center min-h-[44px] px-3.5 rounded hover:text-[var(--text-primary)] transition-colors text-[var(--text-secondary)]">Projects</a>  <a href="/en/sobre" class="flex items-center justify-center min-h-[44px] px-3.5 rounded hover:text-[var(--text-primary)] transition-colors text-[var(--text-secondary)]">About</a> </nav> </header> <main id="conteudo" class="site-main"> <div class="space-y-0">  <section id="top" class="border-b border-[var(--border-rule)] px-4 py-16 sm:px-6 sm:py-20"> <div class="mx-auto max-w-6xl"> <div class="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8 items-start">  <div class="lg:col-span-8 flex flex-col space-y-6"> <h1 class="font-editorial text-4xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[var(--text-primary)] leading-[1.05]">
+Software engineering with <em class="italic text-[var(--accent-signal)]">rigor</em>, simplicity, and auditable code.
+</h1> <p class="max-w-2xl text-lg sm:text-xl text-[var(--text-secondary)] leading-relaxed">
+Systems Analysis and Development student. I document studies on programming, software architecture, databases, and hands-on software construction.
+</p>  <div class="flex flex-wrap items-center gap-4 pt-2 font-code text-xs text-[var(--text-muted)]"> <div class="inline-flex items-center gap-2 rounded-full border border-[var(--border-rule)] bg-[var(--bg-surface)] px-3 py-1"> <span class="relative flex h-2 w-2"> <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent-signal)] opacity-75"></span> <span class="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent-signal)]"></span> </span> <span class="text-[var(--text-secondary)]">Available for internship opportunities</span> </div> <div class="inline-flex items-center gap-1.5 px-1"> <span>João Pessoa:</span> <span id="hero-live-clock" class="text-[var(--text-primary)] font-medium tabular-nums">--:--:-- BRT</span> </div> </div>  <div class="grid grid-cols-2 sm:flex sm:flex-wrap items-stretch sm:items-center gap-2.5 pt-4"> <a href="https://github.com/IPauloGermano" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center gap-2 rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] px-3 py-2.5 min-h-[44px] text-xs font-code font-medium text-[var(--text-primary)] hover:border-[var(--text-secondary)] hover:bg-[var(--bg-surface-hover)] transition-all"> <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg> <span>GitHub</span> <svg class="h-3 w-3 shrink-0 text-[var(--text-muted)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg> </a> <a href="#contato" class="inline-flex items-center justify-center gap-2 rounded-md border border-[var(--accent-signal)] bg-[var(--accent-signal-bg)] px-4 py-2.5 min-h-[44px] text-xs font-code font-semibold text-[var(--accent-signal)] hover:brightness-110 transition-all"> <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> <span>Start a Conversation</span> </a> </div> </div>  <div class="lg:col-span-4 border-t lg:border-t-0 lg:border-l border-[var(--border-rule)] pt-8 lg:pt-0 lg:pl-8 flex flex-col space-y-6"> <h2 class="font-editorial text-2xl font-normal text-[var(--text-primary)]">
+Engineering Principles
+</h2> <ul class="space-y-4 font-sans text-sm text-[var(--text-secondary)] leading-relaxed"> <li class="border-b border-[var(--border-rule-subtle)] pb-3"> <strong class="block text-xs font-code font-semibold uppercase tracking-wider text-[var(--text-primary)] mb-1">
+01. Learning in Public
+</strong>
+Learning in public, without faking experience. Unfinished projects appear as work in progress.
+</li> <li class="border-b border-[var(--border-rule-subtle)] pb-3"> <strong class="block text-xs font-code font-semibold uppercase tracking-wider text-[var(--text-primary)] mb-1">
+02. Operational Simplicity
+</strong>
+Avoiding the over-engineering trap. Strict relational modeling in PostgreSQL, separation of rules, and auditable code.
+</li> <li> <strong class="block text-xs font-code font-semibold uppercase tracking-wider text-[var(--text-primary)] mb-1">
+03. Radical Transparency
+</strong>
+Studies appear as studies. No fictional user counts, invented cases, or results that do not exist.
+</li> <li> <strong class="block text-xs font-code font-semibold uppercase tracking-wider text-[var(--text-primary)] mb-1">
+04. Applied AI, with Judgment
+</strong>
+AI as an engineering tool, with contracts, tests, and human review.
+</li> </ul> <div class="pt-2"> <a href="/en/sobre" class="inline-flex items-center gap-2 font-code text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"> <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> <span>Read the full editorial manifesto →</span> </a> </div> </div> </div> </div> </section>  <section id="projetos" class="scroll-mt-16 border-y border-[var(--border-rule)] bg-[var(--bg-surface)] px-4 py-16 sm:px-6 sm:py-20"> <div class="mx-auto max-w-6xl">  <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-[var(--border-rule)]"> <div> <h2 class="font-editorial text-3xl sm:text-5xl font-normal text-[var(--text-primary)]">
+Built Systems &amp; Tools
+</h2> <div aria-hidden="true" class="mt-4 h-0.5 w-12 rounded-full bg-[var(--accent-signal)]"></div> <p class="mt-2 text-sm sm:text-base text-[var(--text-secondary)] max-w-2xl">
+Original software, practical applications, and system prototypes built to practice business rules and real architecture.
+</p> </div>  <div class="flex flex-wrap gap-1.5 font-code text-xs" id="project-filter-pills"> <button type="button" class="project-filter-btn filter-btn-active px-2.5 py-1 rounded transition-colors border border-[var(--border-rule)] cursor-pointer" data-filter="all">All</button> <button type="button" class="project-filter-btn px-2.5 py-1 rounded transition-colors bg-[var(--bg-canvas)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-rule)] cursor-pointer" data-filter="saas">SaaS</button> <button type="button" class="project-filter-btn px-2.5 py-1 rounded transition-colors bg-[var(--bg-canvas)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-rule)] cursor-pointer" data-filter="banco">Databases</button> <button type="button" class="project-filter-btn px-2.5 py-1 rounded transition-colors bg-[var(--bg-canvas)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-rule)] cursor-pointer" data-filter="estudos">Studies</button> </div> </div>  <div class="divide-y divide-[var(--border-rule)]"> <article class="group py-8 transition-colors duration-150" data-category="saas"> <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 items-start">  <div class="lg:col-span-2 flex items-center gap-2.5 lg:block font-code text-xs text-[var(--text-muted)]"> <span class="tabular-nums font-bold text-[var(--text-primary)]">01</span> <span class="lg:hidden text-[var(--border-rule)]">·</span> <span>2026</span> <span class="lg:hidden text-[var(--border-rule)]">·</span> <span class="text-[var(--accent-signal)] font-medium">SaaS Product · Parking Operations</span> </div>  <div class="lg:col-span-6 space-y-2"> <h3 class="font-editorial text-2xl sm:text-3xl font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-signal)] transition-colors"> <a href="/blog/parkflow-do-levantamento-de-requisitos-ao-mvp/"> ParkFlow </a> </h3> <p class="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed"> SaaS for parking operations, with license-plate-driven flow, space control, monthly subscribers, and automations. </p>  <div class="inline-block font-code text-xs text-[var(--accent-signal)] bg-[var(--bg-canvas)] px-2.5 py-1 rounded border border-[var(--border-rule-subtle)] font-medium"> STUDY PROTOTYPE · AI-ASSISTED MVP </div> </div>  <div class="lg:col-span-4 flex flex-col sm:items-end justify-between space-y-4">  <div class="flex flex-wrap sm:justify-end gap-1.5 font-code text-[11px] text-[var(--text-secondary)]"> <span class="px-2 py-0.5 rounded border border-[var(--border-rule)] bg-[var(--bg-canvas)]"> React </span><span class="px-2 py-0.5 rounded border border-[var(--border-rule)] bg-[var(--bg-canvas)]"> TypeScript </span><span class="px-2 py-0.5 rounded border border-[var(--border-rule)] bg-[var(--bg-canvas)]"> PostgreSQL </span><span class="px-2 py-0.5 rounded border border-[var(--border-rule)] bg-[var(--bg-canvas)]"> Supabase </span><span class="px-2 py-0.5 rounded border border-[var(--border-rule)] bg-[var(--bg-canvas)]"> Relational Modeling </span><span class="px-2 py-0.5 rounded border border-[var(--border-rule)] bg-[var(--bg-canvas)]"> Plate-driven UX </span> </div>  <div class="flex flex-wrap sm:flex-nowrap items-center gap-2.5 pt-2 w-full sm:w-auto"> <button type="button" class="architecture-toggle-btn flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 font-code text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] rounded-md border border-[var(--border-rule)] bg-[var(--bg-canvas)] min-h-[44px] px-3.5 transition-colors cursor-pointer" data-target="arch-parkflow"> <svg class="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg> <span>Architecture</span> <svg class="h-3.5 w-3.5 shrink-0 toggle-chevron transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg> </button>  <a href="https://parkflow-sys.lovable.app/login" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 font-code text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] hover:-translate-y-px rounded-md border border-[var(--border-rule)] bg-[var(--bg-canvas)] min-h-[44px] px-3.5 transition-all hover:shadow-sm cursor-pointer"> <svg class="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg> <span>Demo</span> </a> <a href="/blog/parkflow-do-levantamento-de-requisitos-ao-mvp/" class="btn-primary flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 rounded-md border border-[var(--border-rule)] min-h-[44px] px-3.5 text-xs font-code font-semibold transition-opacity"> <span>Technical Journal</span> <svg class="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg> </a> </div> </div> </div>  <div id="arch-parkflow" class="hidden mt-6 border-t border-dashed border-[var(--border-rule)] bg-[var(--bg-canvas)] p-4 sm:p-6 rounded-md"> <h4 class="font-code text-xs uppercase tracking-wider text-[var(--accent-signal)] font-semibold mb-2">
+Architectural Decision &amp; Trade-offs
+</h4> <p class="font-sans text-sm sm:text-base text-[var(--text-primary)] leading-relaxed"> Strict relational modeling in PostgreSQL to guarantee integrity and stay history, with explicit separation between fractional pricing rules and the operational interface. </p> <div class="mt-4 flex flex-wrap items-center justify-between gap-2 font-code text-xs text-[var(--text-muted)] border-t border-[var(--border-rule-subtle)] pt-3"> <span>Core stack: React · TypeScript · PostgreSQL · Supabase</span> <span>Target: Web, Mobile PWA, Local Operation</span> </div> </div> </article><article class="group py-8 transition-colors duration-150" data-category="tooling"> <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 items-start">  <div class="lg:col-span-2 flex items-center gap-2.5 lg:block font-code text-xs text-[var(--text-muted)]"> <span class="tabular-nums font-bold text-[var(--text-primary)]">02</span> <span class="lg:hidden text-[var(--border-rule)]">·</span> <span>2026</span> <span class="lg:hidden text-[var(--border-rule)]">·</span> <span class="text-[var(--accent-signal)] font-medium">Local Tool · On-Disk Courses</span> </div>  <div class="lg:col-span-6 space-y-2"> <h3 class="font-editorial text-2xl sm:text-3xl font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-signal)] transition-colors"> <a href="/series/local-player-vibecoding/"> Local Player </a> </h3> <p class="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed"> Local/offline player in Node.js + Express + vanilla JS to organize and watch thousands of on-disk lessons, with no build step, portable progress, fallback transcoding, and local Whisper subtitles. </p>  <div class="inline-block font-code text-xs text-[var(--accent-signal)] bg-[var(--bg-canvas)] px-2.5 py-1 rounded border border-[var(--border-rule-subtle)] font-medium"> EVOLVING · LOCAL/OFFLINE PLAYER </div> </div>  <div class="lg:col-span-4 flex flex-col sm:items-end justify-between space-y-4">  <div class="flex flex-wrap sm:justify-end gap-1.5 font-code text-[11px] text-[var(--text-secondary)]"> <span class="px-2 py-0.5 rounded border border-[var(--border-rule)] bg-[var(--bg-canvas)]"> Node.js </span><span class="px-2 py-0.5 rounded border border-[var(--border-rule)] bg-[var(--bg-canvas)]"> Express </span><span class="px-2 py-0.5 rounded border border-[var(--border-rule)] bg-[var(--bg-canvas)]"> Vanilla JS </span><span class="px-2 py-0.5 rounded border border-[var(--border-rule)] bg-[var(--bg-canvas)]"> FFmpeg </span><span class="px-2 py-0.5 rounded border border-[var(--border-rule)] bg-[var(--bg-canvas)]"> whisper.cpp </span><span class="px-2 py-0.5 rounded border border-[var(--border-rule)] bg-[var(--bg-canvas)]"> Zero build step </span> </div>  <div class="flex flex-wrap sm:flex-nowrap items-center gap-2.5 pt-2 w-full sm:w-auto"> <button type="button" class="architecture-toggle-btn flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 font-code text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] rounded-md border border-[var(--border-rule)] bg-[var(--bg-canvas)] min-h-[44px] px-3.5 transition-colors cursor-pointer" data-target="arch-local-player"> <svg class="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg> <span>Architecture</span> <svg class="h-3.5 w-3.5 shrink-0 toggle-chevron transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg> </button> <a href="https://github.com/IPauloGermano/local-player" target="_blank" rel="noopener noreferrer" aria-label="View Local Player's code on GitHub" title="View code on GitHub" class="inline-flex items-center justify-center rounded-md border border-[var(--border-rule)] bg-[var(--bg-canvas)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] hover:-translate-y-px min-h-[44px] min-w-[44px] px-0 transition-all hover:shadow-sm cursor-pointer"> <svg class="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg> </a>  <a href="/series/local-player-vibecoding/" class="btn-primary flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 rounded-md border border-[var(--border-rule)] min-h-[44px] px-3.5 text-xs font-code font-semibold transition-opacity"> <span>Technical Journal</span> <svg class="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg> </a> </div> </div> </div>  <div id="arch-local-player" class="hidden mt-6 border-t border-dashed border-[var(--border-rule)] bg-[var(--bg-canvas)] p-4 sm:p-6 rounded-md"> <h4 class="font-code text-xs uppercase tracking-wider text-[var(--accent-signal)] font-semibold mb-2">
+Architectural Decision &amp; Trade-offs
+</h4> <p class="font-sans text-sm sm:text-base text-[var(--text-primary)] leading-relaxed"> Thin server.js with submodules, atomic writes with fsync + serial queue + dual backup, per-codec fallback with fragmented MP4, and a P0–P3 priority Whisper queue under a heavySlots semaphore. </p> <div class="mt-4 flex flex-wrap items-center justify-between gap-2 font-code text-xs text-[var(--text-muted)] border-t border-[var(--border-rule-subtle)] pt-3"> <span>Core stack: Node.js · Express · Vanilla JS · FFmpeg</span> <span>Target: Web, Mobile PWA, Local Operation</span> </div> </div> </article> </div> </div> </section>  <section id="caderno" class="scroll-mt-16 border-b border-[var(--border-rule)] px-4 py-16 sm:px-6 sm:py-20"> <div class="mx-auto max-w-6xl">  <div class="pb-8 border-b border-[var(--border-rule)] space-y-6"> <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4"> <div> <div class="flex flex-wrap items-baseline gap-3"> <h2 class="font-editorial text-3xl sm:text-5xl font-normal tracking-tight text-[var(--text-primary)]">
+Engineering Notebook
+</h2> <div aria-hidden="true" class="mt-4 h-0.5 w-12 rounded-full bg-[var(--accent-signal)]"></div> <a href="/en/blog/" class="hidden sm:inline-flex items-center gap-1 font-code text-xs text-[var(--accent-signal)] hover:underline font-medium whitespace-nowrap"> <span>Full archive (10) →</span> </a> </div> <p class="mt-2 text-sm sm:text-base text-[var(--text-secondary)] max-w-2xl">
+Recent articles, study notes, and hands-on analysis of programming, databases, and software architecture.
+</p> </div> <a href="/en/blog/" class="sm:hidden inline-flex items-center gap-1 font-code text-xs text-[var(--accent-signal)] hover:underline font-medium"> <span>Full archive (10) →</span> </a> </div>  <div class="flex items-center gap-1.5 font-code text-xs overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap sm:pb-0 scrollbar-none pt-2 border-t border-[var(--border-rule)]/50" id="tag-filter-pills"> <span class="text-[var(--text-muted)] mr-1 shrink-0 flex items-center gap-1"> <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> <span>Tags:</span> </span> <button type="button" class="tag-filter-btn filter-btn-active shrink-0 px-2.5 py-1 min-h-[36px] sm:min-h-0 rounded transition-colors border border-[var(--border-rule)] cursor-pointer" data-tag="all">All</button> <button type="button" class="tag-filter-btn shrink-0 px-2.5 py-1 min-h-[36px] sm:min-h-0 rounded transition-colors bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-rule)] cursor-pointer" data-tag="Software Engineering"> Software Engineering </button><button type="button" class="tag-filter-btn shrink-0 px-2.5 py-1 min-h-[36px] sm:min-h-0 rounded transition-colors bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-rule)] cursor-pointer" data-tag="Artificial Intelligence"> Artificial Intelligence </button><button type="button" class="tag-filter-btn shrink-0 px-2.5 py-1 min-h-[36px] sm:min-h-0 rounded transition-colors bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-rule)] cursor-pointer" data-tag="Node.js"> Node.js </button><button type="button" class="tag-filter-btn shrink-0 px-2.5 py-1 min-h-[36px] sm:min-h-0 rounded transition-colors bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-rule)] cursor-pointer" data-tag="Vibe coding"> Vibe coding </button><button type="button" class="tag-filter-btn shrink-0 px-2.5 py-1 min-h-[36px] sm:min-h-0 rounded transition-colors bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-rule)] cursor-pointer" data-tag="Java"> Java </button><button type="button" class="tag-filter-btn shrink-0 px-2.5 py-1 min-h-[36px] sm:min-h-0 rounded transition-colors bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-rule)] cursor-pointer" data-tag="JVM"> JVM </button><button type="button" class="tag-filter-btn shrink-0 px-2.5 py-1 min-h-[36px] sm:min-h-0 rounded transition-colors bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-rule)] cursor-pointer" data-tag="Portability"> Portability </button><button type="button" class="tag-filter-btn shrink-0 px-2.5 py-1 min-h-[36px] sm:min-h-0 rounded transition-colors bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-rule)] cursor-pointer" data-tag="Fundamentals"> Fundamentals </button> </div> </div>  <div class="divide-y divide-[var(--border-rule)]" id="articles-container"> <article class="article-row group py-8 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 items-baseline transition-colors" data-tags="Software Engineering,Artificial Intelligence">  <div class="lg:col-span-3 flex flex-col items-start gap-2 font-code text-xs text-[var(--text-muted)]"> <div class="flex flex-wrap items-center gap-x-2.5 gap-y-1"> <span class="whitespace-nowrap text-[var(--text-secondary)]">Sep 19, 2026</span> <span class="text-[var(--border-rule)]">·</span> <span class="inline-flex items-center gap-1 whitespace-nowrap"> <svg class="h-3 w-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <span>5 min</span> </span> </div> <div class="flex flex-wrap gap-1.5 pt-0.5"> <span class="px-2 py-0.5 rounded text-[11px] font-medium bg-[var(--bg-surface)] border border-[var(--border-rule)] text-[var(--text-secondary)]"> Software Engineering </span><span class="px-2 py-0.5 rounded text-[11px] font-medium bg-[var(--bg-surface)] border border-[var(--border-rule)] text-[var(--text-secondary)]"> Artificial Intelligence </span>  </div> </div>  <div class="lg:col-span-8 space-y-2"> <a href="/en/blog/local-player-fallback-transcode-whisper-p0-p3/" class="block group-hover:text-[var(--accent-signal)] transition-colors"> <h3 class="font-editorial text-2xl sm:text-3xl font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-signal)] transition-colors leading-snug"> Local Player: transcode fallback and Whisper in a P0-P3 queue </h3> </a> <p class="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed max-w-3xl"> Compatible files play directly via Range. Incompatible ones become fragmented MP4 with 416 seek. Subtitles are an add-on: never await before video.play(). </p> </div>  <div class="lg:col-span-1 flex lg:justify-end"> <a href="/en/blog/local-player-fallback-transcode-whisper-p0-p3/" class="inline-flex items-center gap-1 font-code text-xs font-semibold text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors"> <span class="lg:hidden">Read note</span> <svg class="h-4 w-4 text-[var(--text-muted)] group-hover:text-[var(--accent-signal)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg> </a> </div> </article><article class="article-row group py-8 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 items-baseline transition-colors" data-tags="Software Engineering,Node.js">  <div class="lg:col-span-3 flex flex-col items-start gap-2 font-code text-xs text-[var(--text-muted)]"> <div class="flex flex-wrap items-center gap-x-2.5 gap-y-1"> <span class="whitespace-nowrap text-[var(--text-secondary)]">Sep 19, 2026</span> <span class="text-[var(--border-rule)]">·</span> <span class="inline-flex items-center gap-1 whitespace-nowrap"> <svg class="h-3 w-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <span>4 min</span> </span> </div> <div class="flex flex-wrap gap-1.5 pt-0.5"> <span class="px-2 py-0.5 rounded text-[11px] font-medium bg-[var(--bg-surface)] border border-[var(--border-rule)] text-[var(--text-secondary)]"> Software Engineering </span><span class="px-2 py-0.5 rounded text-[11px] font-medium bg-[var(--bg-surface)] border border-[var(--border-rule)] text-[var(--text-secondary)]"> Node.js </span>  </div> </div>  <div class="lg:col-span-8 space-y-2"> <a href="/en/blog/local-player-progresso-atomico-portatil/" class="block group-hover:text-[var(--accent-signal)] transition-colors"> <h3 class="font-editorial text-2xl sm:text-3xl font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-signal)] transition-colors leading-snug"> Local Player: atomic progress that travels with the drive </h3> </a> <p class="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed max-w-3xl"> How writeFileAtomic + serial queue + .bak + .corrupt-&lt;ts&gt; eliminated position loss even when killing the server mid-save. </p> </div>  <div class="lg:col-span-1 flex lg:justify-end"> <a href="/en/blog/local-player-progresso-atomico-portatil/" class="inline-flex items-center gap-1 font-code text-xs font-semibold text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors"> <span class="lg:hidden">Read note</span> <svg class="h-4 w-4 text-[var(--text-muted)] group-hover:text-[var(--accent-signal)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg> </a> </div> </article><article class="article-row group py-8 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 items-baseline transition-colors" data-tags="Software Engineering,Node.js,Vibe coding">  <div class="lg:col-span-3 flex flex-col items-start gap-2 font-code text-xs text-[var(--text-muted)]"> <div class="flex flex-wrap items-center gap-x-2.5 gap-y-1"> <span class="whitespace-nowrap text-[var(--text-secondary)]">Sep 19, 2026</span> <span class="text-[var(--border-rule)]">·</span> <span class="inline-flex items-center gap-1 whitespace-nowrap"> <svg class="h-3 w-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <span>6 min</span> </span> </div> <div class="flex flex-wrap gap-1.5 pt-0.5"> <span class="px-2 py-0.5 rounded text-[11px] font-medium bg-[var(--bg-surface)] border border-[var(--border-rule)] text-[var(--text-secondary)]"> Software Engineering </span><span class="px-2 py-0.5 rounded text-[11px] font-medium bg-[var(--bg-surface)] border border-[var(--border-rule)] text-[var(--text-secondary)]"> Node.js </span><span class="px-2 py-0.5 rounded text-[11px] font-medium bg-[var(--bg-surface)] border border-[var(--border-rule)] text-[var(--text-secondary)]"> Vibe coding </span>  </div> </div>  <div class="lg:col-span-8 space-y-2"> <a href="/en/blog/local-player-vibecoding-sem-build-step/" class="block group-hover:text-[var(--accent-signal)] transition-colors"> <h3 class="font-editorial text-2xl sm:text-3xl font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-signal)] transition-colors leading-snug"> Local Player: vibecoding with invariants and zero build step </h3> </a> <p class="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed max-w-3xl"> How a local/offline player in Express + vanilla JS organizes thousands of lessons with no bundler: AGENTS.md as contract, physical structure as source of truth, and scan with on-disk cache. </p> </div>  <div class="lg:col-span-1 flex lg:justify-end"> <a href="/en/blog/local-player-vibecoding-sem-build-step/" class="inline-flex items-center gap-1 font-code text-xs font-semibold text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors"> <span class="lg:hidden">Read note</span> <svg class="h-4 w-4 text-[var(--text-muted)] group-hover:text-[var(--accent-signal)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg> </a> </div> </article><article class="article-row group py-8 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 items-baseline transition-colors" data-tags="Java,JVM,Portability">  <div class="lg:col-span-3 flex flex-col items-start gap-2 font-code text-xs text-[var(--text-muted)]"> <div class="flex flex-wrap items-center gap-x-2.5 gap-y-1"> <span class="whitespace-nowrap text-[var(--text-secondary)]">Jul 07, 2026</span> <span class="text-[var(--border-rule)]">·</span> <span class="inline-flex items-center gap-1 whitespace-nowrap"> <svg class="h-3 w-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <span>3 min</span> </span> </div> <div class="flex flex-wrap gap-1.5 pt-0.5"> <span class="px-2 py-0.5 rounded text-[11px] font-medium bg-[var(--bg-surface)] border border-[var(--border-rule)] text-[var(--text-secondary)]"> Java </span><span class="px-2 py-0.5 rounded text-[11px] font-medium bg-[var(--bg-surface)] border border-[var(--border-rule)] text-[var(--text-secondary)]"> JVM </span><span class="px-2 py-0.5 rounded text-[11px] font-medium bg-[var(--bg-surface)] border border-[var(--border-rule)] text-[var(--text-secondary)]"> Portability </span>  </div> </div>  <div class="lg:col-span-8 space-y-2"> <a href="/en/blog/java-fundamentos/java-fundamentos-por-que-o-java-deu-certo/" class="block group-hover:text-[var(--accent-signal)] transition-colors"> <h3 class="font-editorial text-2xl sm:text-3xl font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-signal)] transition-colors leading-snug"> Java Fundamentals: why Java succeeded </h3> </a> <p class="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed max-w-3xl"> Explanation of the technical reasons that helped Java grow, focusing on portability, the JVM, bytecode, and .class files. </p> </div>  <div class="lg:col-span-1 flex lg:justify-end"> <a href="/en/blog/java-fundamentos/java-fundamentos-por-que-o-java-deu-certo/" class="inline-flex items-center gap-1 font-code text-xs font-semibold text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors"> <span class="lg:hidden">Read note</span> <svg class="h-4 w-4 text-[var(--text-muted)] group-hover:text-[var(--accent-signal)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg> </a> </div> </article><article class="article-row group py-8 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 items-baseline transition-colors" data-tags="Java,Fundamentals">  <div class="lg:col-span-3 flex flex-col items-start gap-2 font-code text-xs text-[var(--text-muted)]"> <div class="flex flex-wrap items-center gap-x-2.5 gap-y-1"> <span class="whitespace-nowrap text-[var(--text-secondary)]">Jul 07, 2026</span> <span class="text-[var(--border-rule)]">·</span> <span class="inline-flex items-center gap-1 whitespace-nowrap"> <svg class="h-3 w-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <span>2 min</span> </span> </div> <div class="flex flex-wrap gap-1.5 pt-0.5"> <span class="px-2 py-0.5 rounded text-[11px] font-medium bg-[var(--bg-surface)] border border-[var(--border-rule)] text-[var(--text-secondary)]"> Java </span><span class="px-2 py-0.5 rounded text-[11px] font-medium bg-[var(--bg-surface)] border border-[var(--border-rule)] text-[var(--text-secondary)]"> Fundamentals </span>  </div> </div>  <div class="lg:col-span-8 space-y-2"> <a href="/en/blog/java-fundamentos/java-fundamentos-o-que-e-uma-linguagem-de-programacao/" class="block group-hover:text-[var(--accent-signal)] transition-colors"> <h3 class="font-editorial text-2xl sm:text-3xl font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-signal)] transition-colors leading-snug"> Java Fundamentals: what is a programming language </h3> </a> <p class="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed max-w-3xl"> Introductory explanation of programming languages, Java, bytecode, the JVM, and common areas where the language is used. </p> </div>  <div class="lg:col-span-1 flex lg:justify-end"> <a href="/en/blog/java-fundamentos/java-fundamentos-o-que-e-uma-linguagem-de-programacao/" class="inline-flex items-center gap-1 font-code text-xs font-semibold text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors"> <span class="lg:hidden">Read note</span> <svg class="h-4 w-4 text-[var(--text-muted)] group-hover:text-[var(--accent-signal)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg> </a> </div> </article> </div>  <div class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)]"> <div class="font-code text-xs text-[var(--text-secondary)] text-center sm:text-left">
+Showing the <strong class="text-[var(--text-primary)]">5</strong> most recent posts of <strong class="text-[var(--text-primary)]">10</strong> notes in the archive.
+</div> <a href="/en/blog/" class="btn-primary w-full sm:w-auto inline-flex items-center justify-center gap-1.5 rounded-md border border-[var(--border-rule)] min-h-[44px] px-4 text-xs font-code font-semibold transition-opacity shrink-0"> <span>See all 10 notes in the Notebook</span> <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> </a> </div>  <div class="mt-4 flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] font-code text-xs text-[var(--text-secondary)]"> <div class="flex items-center gap-2"> <svg class="h-4 w-4 text-[var(--accent-signal)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg> <span>All notes are written in Markdown and kept in a public repository.</span> </div> <a href="/en/rss.xml" class="text-[var(--accent-signal)] hover:underline font-semibold">
+feed.xml / RSS →
+</a> </div> </div> </section>  <section class="border-y border-[var(--border-rule)] bg-[var(--bg-surface)] px-4 py-16 sm:px-6 sm:py-20"> <div class="mx-auto max-w-6xl"> <div class="pb-8 border-b border-[var(--border-rule)]"> <h2 class="font-editorial text-3xl sm:text-5xl font-normal text-[var(--text-primary)]">
+Bookshelf &amp; Currently Studying
+</h2> <div aria-hidden="true" class="mt-4 h-0.5 w-12 rounded-full bg-[var(--accent-signal)]"></div> <p class="mt-2 text-sm sm:text-base text-[var(--text-secondary)] max-w-2xl">
+Reference technical books and topics currently being studied in depth.
+</p> </div> <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">  <div class="flex flex-col justify-between p-6 sm:p-8 rounded-md border border-[var(--border-rule)] bg-[var(--bg-canvas)] space-y-6"> <div class="space-y-4"> <div class="flex items-center justify-between"> <span class="text-[var(--accent-signal)] font-code text-xs font-semibold uppercase tracking-wider">
+Bookshelf
+</span> <a href="/en/estante" class="font-code text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
+See the full bookshelf →
+</a> </div> <ul class="space-y-4"> <li class="border-b border-[var(--border-rule-subtle)] pb-3 last:border-0 last:pb-0"> <div class="flex items-center gap-2"> <span class="px-1.5 py-0.5 rounded text-[10px] font-code bg-[var(--accent-signal-bg)] text-[var(--accent-signal)] font-semibold">
+READING NOW
+</span> <span class="font-editorial text-lg text-[var(--text-primary)] font-medium"> Entendendo Algoritmos </span> </div> <p class="text-xs font-code text-[var(--text-muted)] mt-0.5">Aditya Y. Bhargava</p> </li><li class="border-b border-[var(--border-rule-subtle)] pb-3 last:border-0 last:pb-0"> <div class="flex items-center gap-2">  <span class="font-editorial text-lg text-[var(--text-primary)] font-medium"> Refatoração - 2ª Edição </span> </div> <p class="text-xs font-code text-[var(--text-muted)] mt-0.5">Martin Fowler</p> </li><li class="border-b border-[var(--border-rule-subtle)] pb-3 last:border-0 last:pb-0"> <div class="flex items-center gap-2">  <span class="font-editorial text-lg text-[var(--text-primary)] font-medium"> O Programador Pragmático </span> </div> <p class="text-xs font-code text-[var(--text-muted)] mt-0.5">Andrew Hunt, David Thomas</p> </li><li class="border-b border-[var(--border-rule-subtle)] pb-3 last:border-0 last:pb-0"> <div class="flex items-center gap-2">  <span class="font-editorial text-lg text-[var(--text-primary)] font-medium"> Arquitetura Limpa </span> </div> <p class="text-xs font-code text-[var(--text-muted)] mt-0.5">Robert C. Martin</p> </li> </ul> </div> </div>  <div class="flex flex-col justify-between p-6 sm:p-8 rounded-md border border-[var(--border-rule)] bg-[var(--bg-canvas)] space-y-6"> <div class="space-y-4"> <span class="text-[var(--accent-signal)] font-code text-xs font-semibold uppercase tracking-wider">
+Continuously Studying
+</span> <ul class="space-y-3 font-sans text-sm text-[var(--text-secondary)]"> <li class="flex items-center justify-between p-2.5 rounded border border-[var(--border-rule-subtle)] bg-[var(--bg-surface)]"> <span class="font-medium text-[var(--text-primary)]">Python and programming logic</span> <span class="font-code text-[11px] text-[var(--text-muted)]">Fundamentals</span> </li> <li class="flex items-center justify-between p-2.5 rounded border border-[var(--border-rule-subtle)] bg-[var(--bg-surface)]"> <span class="font-medium text-[var(--text-primary)]">JavaScript and REST APIs</span> <span class="font-code text-[11px] text-[var(--text-muted)]">Web &amp; Integrations</span> </li> <li class="flex items-center justify-between p-2.5 rounded border border-[var(--border-rule-subtle)] bg-[var(--bg-surface)]"> <span class="font-medium text-[var(--text-primary)]">Databases &amp; SQL</span> <span class="font-code text-[11px] text-[var(--text-muted)]">PostgreSQL</span> </li> <li class="flex items-center justify-between p-2.5 rounded border border-[var(--border-rule-subtle)] bg-[var(--bg-surface)]"> <span class="font-medium text-[var(--text-primary)]">Software architecture</span> <span class="font-code text-[11px] text-[var(--text-muted)]">Clean Code &amp; OOP</span> </li> <li class="flex items-center justify-between p-2.5 rounded border border-[var(--border-rule-subtle)] bg-[var(--bg-surface)]"> <span class="font-medium text-[var(--text-primary)]">Docker and Linux</span> <span class="font-code text-[11px] text-[var(--text-muted)]">Environments &amp; DevOps</span> </li> </ul> </div> </div> </div> </div> </section>  <section id="contato" class="scroll-mt-16 border-b border-[var(--border-rule)] px-4 py-16 sm:px-6 sm:py-20"> <div class="mx-auto max-w-6xl"> <div class="pb-8 border-b border-[var(--border-rule)]"> <h2 class="font-editorial text-3xl sm:text-5xl font-normal text-[var(--text-primary)]">
+Availability &amp; Contact
+</h2> <div aria-hidden="true" class="mt-4 h-0.5 w-12 rounded-full bg-[var(--accent-signal)]"></div> <p class="mt-2 text-sm sm:text-base text-[var(--text-secondary)] max-w-2xl"> Looking for a software development internship to apply my knowledge, gain hands-on experience, and grow professionally. </p> </div>  <div class="mt-8 rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] p-6 sm:p-10"> <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"> <div class="lg:col-span-8 space-y-3"> <h3 class="font-editorial text-2xl sm:text-3xl font-normal text-[var(--text-primary)]">
+Have an internship opportunity or project?
+</h3> <p class="text-sm sm:text-base text-[var(--text-secondary)] max-w-xl">
+I usually reply with clarity, technical honesty, and promptness. João Pessoa, PB, or remote.
+</p> </div> <div class="lg:col-span-4 flex flex-col gap-3"> <button type="button" id="copy-email-btn" data-email="paulogermanoct@gmail.com" class="inline-flex items-center justify-center gap-2 rounded-md border border-[var(--border-rule)] bg-[var(--bg-canvas)] px-4 py-3 font-code text-xs font-semibold text-[var(--text-primary)] hover:border-[var(--text-secondary)] transition-all cursor-pointer"> <svg class="h-4 w-4 text-[var(--text-muted)] copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span class="copy-text">paulogermanoct@gmail.com</span> </button> <a href="mailto:paulogermanoct@gmail.com?subject=Contact%20via%20Portfolio" class="btn-primary inline-flex items-center justify-center gap-2 rounded-md px-4 py-3 font-code text-xs font-semibold transition-opacity"> <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> <span>Send Email Directly</span> <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg> </a> <a href="/curriculo/" class="inline-flex items-center justify-center gap-2 rounded-md border border-[var(--border-rule)] bg-[var(--bg-canvas)] px-4 py-2.5 font-code text-xs font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] transition-all"> <svg class="h-4 w-4 text-[var(--accent-signal)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> <span>View Résumé</span> <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg> </a> </div> </div> </div> </div> </section> </div> </main> <footer class="border-t border-[var(--border-rule)] bg-[var(--bg-canvas)] py-12 px-4 sm:px-6"> <div class="mx-auto max-w-6xl"> <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-[var(--border-rule-subtle)]"> <div class="md:col-span-6 space-y-2"> <a href="/en/" class="font-code text-sm font-semibold text-[var(--text-primary)] hover:text-[var(--accent-signal)] transition-colors">
+~/PauloGerm
+</a> <p class="text-xs sm:text-sm text-[var(--text-secondary)] max-w-md leading-relaxed"> Public notebook of software study and engineering. Learning in public, without faking experience. </p> </div> <div class="md:col-span-3 space-y-2"> <span class="font-code text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] block">Content</span> <ul class="space-y-1.5 text-xs font-code text-[var(--text-secondary)]"> <li><a href="/blog" class="hover:text-[var(--text-primary)] transition-colors">Articles</a></li> <li><a href="/series" class="hover:text-[var(--text-primary)] transition-colors">Series</a></li> <li><a href="/en/projetos" class="hover:text-[var(--text-primary)] transition-colors">Projects</a></li>  <li><a href="/en/sobre" class="hover:text-[var(--text-primary)] transition-colors">About</a></li> </ul> </div> <div class="md:col-span-3 space-y-2"> <span class="font-code text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] block">Channels</span> <ul class="space-y-1.5 text-xs font-code text-[var(--text-secondary)]"> <li><a href="https://github.com/IPauloGermano" target="_blank" rel="noreferrer" class="hover:text-[var(--text-primary)] transition-colors">GitHub ↗</a></li> <li><a href="https://www.linkedin.com/in/ipaulogermano/" target="_blank" rel="noreferrer" class="hover:text-[var(--text-primary)] transition-colors">LinkedIn ↗</a></li> <li><a href="/curriculo.pdf" target="_blank" rel="noreferrer" class="hover:text-[var(--accent-signal)] transition-colors flex items-center gap-1"><span>Résumé (PDF)</span><svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a></li> <li><a href="/en/rss.xml" class="hover:text-[var(--text-primary)] transition-colors">RSS feed</a></li> </ul> </div> </div> <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-code text-xs text-[var(--text-muted)]"> <span>© 2026 Paulo Germano · João Pessoa, PB, Brazil</span> <button type="button" class="back-to-top hover:text-[var(--text-primary)] cursor-pointer transition-colors" id="back-to-top" aria-label="Back to the top of the page"> <span>Back to top ↑</span> </button> </div> </div> </footer> </div> <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title"> <div class="fixed inset-0 z-50 flex items-start justify-center bg-black/60 p-4 pt-16 sm:pt-24 backdrop-blur-sm" id="search-modal-backdrop"> <div class="w-full max-w-xl rounded-lg border border-[var(--border-rule)] bg-[var(--bg-canvas)] shadow-2xl overflow-hidden" onclick="event.stopPropagation()"> <div class="flex items-center border-b border-[var(--border-rule)] px-4 py-3 bg-[var(--bg-surface)]"> <svg class="h-4 w-4 text-[var(--text-muted)] mr-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> <label class="sr-only" for="search-input" id="search-title">Search this site</label> <input id="search-input" type="search" placeholder="Search projects, articles, notes..." autocomplete="off" class="w-full bg-transparent text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none font-code"> <button id="search-close" type="button" aria-label="Close search" class="font-code text-[10px] text-[var(--text-muted)] border border-[var(--border-rule)] px-1.5 py-0.5 rounded cursor-pointer hover:text-[var(--text-primary)]">ESC</button> </div> <div class="max-h-[60vh] overflow-y-auto p-2 divide-y divide-[var(--border-rule-subtle)]" id="search-results" aria-live="polite"></div> <div class="flex items-center justify-between border-t border-[var(--border-rule)] px-4 py-2 bg-[var(--bg-surface)] font-code text-[11px] text-[var(--text-muted)]"> <span>↑↓ to navigate · Enter to open</span> <span id="search-count">8 items in the index</span> </div> </div> </div> </dialog> <script id="search-data" type="application/json">[{"title":"Local Player: transcode fallback and Whisper in a P0-P3 queue","description":"Compatible files play directly via Range. Incompatible ones become fragmented MP4 with 416 seek. Subtitles are an add-on: never await before video.play().","href":"/en/blog/local-player-fallback-transcode-whisper-p0-p3/","tags":["Software Engineering","Artificial Intelligence"],"series":"Local Player: vibecoding com invariantes","type":"Article"},{"title":"Local Player: atomic progress that travels with the drive","description":"How writeFileAtomic + serial queue + .bak + .corrupt-<ts> eliminated position loss even when killing the server mid-save.","href":"/en/blog/local-player-progresso-atomico-portatil/","tags":["Software Engineering","Node.js"],"series":"Local Player: vibecoding com invariantes","type":"Article"},{"title":"Local Player: vibecoding with invariants and zero build step","description":"How a local/offline player in Express + vanilla JS organizes thousands of lessons with no bundler: AGENTS.md as contract, physical structure as source of truth, and scan with on-disk cache.","href":"/en/blog/local-player-vibecoding-sem-build-step/","tags":["Software Engineering","Node.js","Vibe coding"],"series":"Local Player: vibecoding com invariantes","type":"Article"},{"title":"Java Fundamentals: why Java succeeded","description":"Explanation of the technical reasons that helped Java grow, focusing on portability, the JVM, bytecode, and .class files.","href":"/en/blog/java-fundamentos/java-fundamentos-por-que-o-java-deu-certo/","tags":["Java","JVM","Portability"],"series":"Java Fundamentos","type":"Article"},{"title":"Java Fundamentals: what is a programming language","description":"Introductory explanation of programming languages, Java, bytecode, the JVM, and common areas where the language is used.","href":"/en/blog/java-fundamentos/java-fundamentos-o-que-e-uma-linguagem-de-programacao/","tags":["Java","Fundamentals"],"series":"Java Fundamentos","type":"Article"},{"title":"Java Fundamentals: object-oriented principles","description":"Practical explanation of the main OOP concepts, such as abstraction, encapsulation, inheritance, polymorphism, association, composition, and modularization.","href":"/en/blog/java-fundamentos/java-fundamentos-principios-da-orientacao-a-objetos/","tags":["Java","Object-Oriented Programming","Fundamentals"],"series":"Java Fundamentos","type":"Article"},{"title":"Java Fundamentals: portability","description":"Introductory explanation of portability in Java, the JVM, bytecode, and execution across different environments.","href":"/en/blog/java-fundamentos/java-fundamentos-portabilidade/","tags":["Java","JVM","Portability"],"series":"Java Fundamentos","type":"Article"},{"title":"Java Fundamentals: the Java language","description":"Overview of the Java language, its relationship with object orientation, the internet, bytecode, and the Java Virtual Machine.","href":"/en/blog/java-fundamentos/java-fundamentos-linguagem-java/","tags":["Java","JVM","Fundamentals"],"series":"Java Fundamentos","type":"Article"},{"title":"Java Fundamentals: object orientation","description":"Introduction to the object-oriented paradigm and the idea of representing problems through entities, objects, classes, and interactions.","href":"/en/blog/java-fundamentos/java-fundamentos-orientacao-a-objetos/","tags":["Java","Fundamentals","Object-Oriented Programming"],"series":"Java Fundamentos","type":"Article"},{"title":"ParkFlow: From Requirements Gathering to an AI-Assisted MVP","description":"How we turned a real parking problem into an MVP with TypeScript, Supabase, license-plate-driven UX, and AI-assisted development.","href":"/en/blog/parkflow-do-levantamento-de-requisitos-ao-mvp/","tags":["Software Engineering","Artificial Intelligence","TypeScript","Vibe coding"],"series":"","type":"Article"},{"title":"ParkFlow — SaaS for Parking Operations","description":"SaaS with license-plate-driven flow, space control, monthly subscribers, and automations (React, TypeScript, PostgreSQL).","href":"/en/projetos","tags":["React","TypeScript","PostgreSQL","SaaS","Project"],"series":"Project in development","type":"Project"},{"title":"Résumé / CV — Paulo Germano","description":"Complete professional résumé in PDF: ADS degree (Unipê), projects (Library, ParkFlow), technical stack, and practices.","href":"/curriculo.pdf","tags":["Résumé","CV","Career","PDF","Profile","Education"],"series":"Document","type":"PDF"}]</script> <script>(function(){const chromeStrings = {"toDark":"Activate dark theme","toLight":"Activate light theme","empty":"No results found.","one":"item","many":"items","searchLocale":"en","articleType":"Article"};
+
+  const root = document.documentElement;
+  const themeButton = document.getElementById('theme-toggle');
+  const themeButtonText = themeButton?.querySelector('.sr-only');
+  const themeMedia = window.matchMedia('(prefers-color-scheme: dark)');
+  const themeColor = { dark: '#1C1B19', light: '#EFECE6' };
+  const isValidTheme = (value) => value === 'light' || value === 'dark';
+  const getSystemTheme = () => themeMedia.matches ? 'dark' : 'light';
+  const getSavedTheme = () => {
+    try {
+      const saved = localStorage.getItem('theme');
+      return isValidTheme(saved) ? saved : null;
+    } catch {
+      return null;
+    }
+  };
+  const updateThemeButton = (theme) => {
+    const label = theme === 'dark' ? chromeStrings.toLight : chromeStrings.toDark;
+    themeButton?.setAttribute('aria-label', label);
+    themeButton?.setAttribute('title', label);
+    if (themeButtonText) themeButtonText.textContent = label;
+  };
+  const applyTheme = (theme) => {
+    root.dataset.theme = theme;
+    root.style.colorScheme = theme;
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', themeColor[theme]);
+    updateThemeButton(theme);
+  };
+
+  applyTheme(getSavedTheme() || (isValidTheme(root.dataset.theme) ? root.dataset.theme : getSystemTheme()));
+
+  themeButton?.addEventListener('click', () => {
+    const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+    applyTheme(next);
+    try {
+      localStorage.setItem('theme', next);
+    } catch {}
+  });
+
+  const handleThemeMediaChange = (event) => {
+    if (!getSavedTheme()) applyTheme(event.matches ? 'dark' : 'light');
+  };
+  if (typeof themeMedia.addEventListener === 'function') {
+    themeMedia.addEventListener('change', handleThemeMediaChange);
+  } else {
+    themeMedia.addListener(handleThemeMediaChange);
+  }
+
+  const dialog = document.getElementById('search-dialog');
+  const trigger = document.getElementById('search-trigger');
+  const close = document.getElementById('search-close');
+  const input = document.getElementById('search-input');
+  const results = document.getElementById('search-results');
+  const dataNode = document.getElementById('search-data');
+  const searchItems = JSON.parse(dataNode?.textContent || '[]');
+  let selectedIndex = 0;
+
+  const normalize = (value) => value
+    .toLocaleLowerCase(chromeStrings.searchLocale)
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+
+  const renderResults = () => {
+    if (!results || !input) return;
+    const query = normalize(input.value.trim());
+    const filtered = searchItems.filter((item) => {
+      const haystack = normalize(`${item.title} ${item.description} ${item.tags.join(' ')} ${item.series || ''}`);
+      return !query || haystack.includes(query);
+    }).slice(0, 8);
+
+    selectedIndex = Math.min(selectedIndex, Math.max(filtered.length - 1, 0));
+    results.innerHTML = filtered.length
+      ? filtered.map((item, index) => `
+          <a class="search-result flex items-center justify-between p-3 rounded text-left transition-colors font-sans ${index === selectedIndex ? 'bg-[var(--bg-surface-hover)] text-[var(--text-primary)]' : 'text-[var(--text-secondary)] hover:bg-[var(--bg-surface)]'}" href="${item.href}" data-index="${index}">
+            <div class="flex items-center gap-3 overflow-hidden">
+              <svg class="h-4 w-4 shrink-0 ${index === selectedIndex ? 'text-[var(--accent-signal)]' : 'text-[var(--text-muted)]'}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              <div class="overflow-hidden">
+                <div class="text-sm font-medium truncate text-[var(--text-primary)]">
+                  ${item.title}
+                </div>
+                <div class="text-xs text-[var(--text-muted)] truncate font-code">
+                  ${item.description}
+                </div>
+              </div>
+            </div>
+            <span class="text-xs font-code px-1.5 py-0.5 rounded border border-[var(--border-rule-subtle)] text-[var(--text-muted)] ml-2 shrink-0">${item.type || chromeStrings.articleType}</span>
+          </a>`).join('')
+      : `<p class="py-8 text-center text-sm text-[var(--text-muted)] font-code">${chromeStrings.empty}</p>`;
+    const countEl = document.getElementById('search-count');
+    if (countEl) countEl.textContent = `${filtered.length} ${filtered.length === 1 ? chromeStrings.one : chromeStrings.many}`;
+  };
+
+  const scrollSelectedIntoView = () => {
+    results?.querySelector(`.search-result[data-index="${selectedIndex}"]`)
+      ?.scrollIntoView({ block: 'nearest' });
+  };
+
+  const openSearch = () => {
+    if (!dialog) return;
+    document.getElementById('site-header')?.classList.remove('is-hidden');
+    dialog.showModal();
+    selectedIndex = 0;
+    if (input) input.value = '';
+    renderResults();
+    requestAnimationFrame(() => input?.focus());
+  };
+
+  const closeSearch = () => dialog?.close();
+  trigger?.addEventListener('click', openSearch);
+  close?.addEventListener('click', closeSearch);
+  input?.addEventListener('input', () => { selectedIndex = 0; renderResults(); });
+  dialog?.addEventListener('click', (event) => {
+    if (event.target === dialog) closeSearch();
+  });
+  document.getElementById('search-modal-backdrop')?.addEventListener('click', (event) => {
+    if (event.target === event.currentTarget) closeSearch();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+      event.preventDefault();
+      openSearch();
+      return;
+    }
+    if (!dialog?.open) return;
+    const links = [...results.querySelectorAll('.search-result')];
+    if (event.key === 'Escape') closeSearch();
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      selectedIndex = Math.min(selectedIndex + 1, links.length - 1);
+      renderResults();
+      scrollSelectedIntoView();
+    }
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      selectedIndex = Math.max(selectedIndex - 1, 0);
+      renderResults();
+      scrollSelectedIntoView();
+    }
+    if (event.key === 'Enter' && links[selectedIndex]) {
+      event.preventDefault();
+      window.location.href = links[selectedIndex].href;
+    }
+  });
+
+  document.getElementById('back-to-top')?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();</script> <script>(function(){const redirectTarget = "/";
+const pageLocale = "en";
+
+  // Preferência de idioma PT/EN + redirect automático de primeira visita.
+  // - Sem preferência salva: infere de navigator.language, persiste e, se o
+  //   idioma inferido difere do da página E a contraparte existe
+  //   (redirectTarget calculado no build), redireciona com replace (sem
+  //   entrada no histórico — o voltar não prende em loop).
+  // - Com preferência salva: nunca redireciona (navegação explícita vence).
+  // - Bots (Googlebot tem navigator.language en-US): nunca redireciona, para
+  //   não empurrar o crawl para fora do PT. Conteúdo é o mesmo para todos.
+  (function () {
+    var KEY = 'site-lang';
+    var saved = null;
+    try {
+      saved = localStorage.getItem(KEY);
+    } catch {}
+    var nav = '';
+    try {
+      nav = (navigator.language || '').toLowerCase();
+    } catch {}
+    var navLocale = !nav ? pageLocale : (nav.indexOf('pt') === 0 ? 'pt' : 'en');
+    var isBot = /bot|crawl|spider|slurp|mediapartners|baidu|yandex|duckduck/i.test(
+      navigator.userAgent || ''
+    );
+    if (!saved) {
+      try {
+        localStorage.setItem(KEY, navLocale);
+      } catch {}
+      if (redirectTarget && navLocale !== pageLocale && !isBot) {
+        window.location.replace(redirectTarget + window.location.search + window.location.hash);
+        return;
+      }
+    }
+    document.querySelectorAll('[data-lang-switch]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        try {
+          localStorage.setItem(KEY, el.getAttribute('data-lang-switch'));
+        } catch {}
+      });
+    });
+  })();
+})();</script> <script>(function(){const readerSideToLeft = "Move mobile navigation to the left";
+const readerSideToRight = "Move mobile navigation to the right";
+
+    const readerSideMedia = window.matchMedia('(max-width: 1024px)');
+    if (readerSideMedia.matches) {
+      const readerSideRoot = document.documentElement;
+      const readerSideToggle = document.getElementById('reader-side-toggle');
+      const readerSideStorageKey = 'reader-side';
+      const readerSideCooldownMs = 3000;
+      const savedReaderSide = localStorage.getItem(readerSideStorageKey);
+      let readerSideCoolingDown = false;
+      const getReaderSide = (value) => value === 'right' ? 'right' : 'left';
+      const setReaderSide = (side) => {
+        const nextSide = getReaderSide(side);
+        readerSideRoot.dataset.readerSide = nextSide;
+        readerSideToggle?.setAttribute('aria-pressed', String(nextSide === 'right'));
+        readerSideToggle?.setAttribute(
+          'aria-label',
+          nextSide === 'right'
+            ? readerSideToLeft
+            : readerSideToRight
+        );
+      };
+      const startReaderSideCooldown = () => {
+        if (!readerSideToggle) return;
+        readerSideCoolingDown = true;
+        readerSideToggle.disabled = true;
+        readerSideToggle.setAttribute('aria-disabled', 'true');
+        readerSideToggle.classList.add('is-cooling-down');
+
+        window.setTimeout(() => {
+          readerSideCoolingDown = false;
+          readerSideToggle.disabled = false;
+          readerSideToggle.setAttribute('aria-disabled', 'false');
+          readerSideToggle.classList.remove('is-cooling-down');
+        }, readerSideCooldownMs);
+      };
+
+      setReaderSide(savedReaderSide);
+      readerSideToggle?.addEventListener('click', () => {
+        if (readerSideCoolingDown) return;
+        const nextSide = readerSideRoot.dataset.readerSide === 'right' ? 'left' : 'right';
+        setReaderSide(nextSide);
+        localStorage.setItem(readerSideStorageKey, nextSide);
+        startReaderSideCooldown();
+      });
+    }
+  })();</script> <script>
+    const autoHideMedia = window.matchMedia('(max-width: 1024px)');
+    if (autoHideMedia.matches) {
+      const autoHideHeader = document.getElementById('site-header');
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+      const minimumScroll = 120;
+      const directionThreshold = 8;
+
+      const hasOpenDialog = () => Boolean(document.querySelector('dialog[open]'));
+
+      const updateHeaderVisibility = () => {
+        ticking = false;
+        if (!autoHideHeader) return;
+
+        const currentScrollY = Math.max(window.scrollY, 0);
+        const delta = currentScrollY - lastScrollY;
+
+        if (currentScrollY <= minimumScroll || hasOpenDialog()) {
+          autoHideHeader.classList.remove('is-hidden');
+          lastScrollY = currentScrollY;
+          return;
+        }
+
+        if (Math.abs(delta) < directionThreshold) return;
+
+        if (delta > 0) autoHideHeader.classList.add('is-hidden');
+        else autoHideHeader.classList.remove('is-hidden');
+
+        lastScrollY = currentScrollY;
+      };
+
+      window.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(updateHeaderVisibility);
+      }, { passive: true });
+    }
+  </script> </body> </html> <script>
+  // Live Clock
+  const updateClock = () => {
+    try {
+      const now = new Date();
+      const clockEl = document.getElementById('hero-live-clock');
+      if (clockEl) {
+        clockEl.textContent = now.toLocaleTimeString('en-US', {
+          timeZone: 'America/Sao_Paulo',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        }) + ' BRT';
+      }
+    } catch {}
+  };
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  // Copy Email Button
+  const copyBtn = document.getElementById('copy-email-btn');
+  copyBtn?.addEventListener('click', async () => {
+    const email = copyBtn.getAttribute('data-email');
+    if (email) {
+      await navigator.clipboard.writeText(email);
+      const textEl = copyBtn.querySelector('.copy-text');
+      if (textEl) {
+        const original = textEl.textContent;
+        textEl.textContent = 'Email copied!';
+        setTimeout(() => {
+          textEl.textContent = original;
+        }, 2000);
+      }
+    }
+  });
+
+  // Architecture Drawer Toggle
+  document.querySelectorAll('.architecture-toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+      const drawer = document.getElementById(targetId);
+      if (drawer) {
+        drawer.classList.toggle('hidden');
+        const chevron = btn.querySelector('.toggle-chevron');
+        if (chevron) {
+          chevron.classList.toggle('rotate-180');
+        }
+      }
+    });
+  });
+
+  // Tag Filter Pills ("Featstags")
+  document.querySelectorAll('.tag-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tag = btn.getAttribute('data-tag');
+      document.querySelectorAll('.tag-filter-btn').forEach(b => {
+        b.className = 'tag-filter-btn px-2 py-0.5 rounded transition-colors bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-rule)] cursor-pointer';
+      });
+      btn.className = 'tag-filter-btn filter-btn-active px-2 py-0.5 rounded transition-colors border border-[var(--border-rule)] cursor-pointer';
+
+      document.querySelectorAll('.article-row').forEach(row => {
+        if (tag === 'all') {
+          row.classList.remove('hidden');
+        } else {
+          const rowTags = row.getAttribute('data-tags')?.split(',') || [];
+          if (rowTags.includes(tag)) {
+            row.classList.remove('hidden');
+          } else {
+            row.classList.add('hidden');
+          }
+        }
+      });
+    });
+  });
+
+  // Project Category Filter
+  document.querySelectorAll('.project-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+      document.querySelectorAll('.project-filter-btn').forEach(b => {
+        b.className = 'project-filter-btn px-2.5 py-1 rounded transition-colors bg-[var(--bg-canvas)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-rule)] cursor-pointer';
+      });
+      btn.className = 'project-filter-btn filter-btn-active px-2.5 py-1 rounded transition-colors border border-[var(--border-rule)] cursor-pointer';
+
+      document.querySelectorAll('#projetos article').forEach(row => {
+        if (filter === 'all' || row.getAttribute('data-category') === filter) {
+          row.classList.remove('hidden');
+        } else {
+          row.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>

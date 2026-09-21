@@ -1,0 +1,438 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Overview of the Java language, its relationship with object orientation, the internet, bytecode, and the Java Virtual Machine."><meta name="theme-color" content="#1C1B19"><meta property="og:title" content="Java Fundamentals: the Java language — PauloGerm.dev"><meta property="og:description" content="Overview of the Java language, its relationship with object orientation, the internet, bytecode, and the Java Virtual Machine."><meta property="og:type" content="article"><meta property="og:url" content="https://paulogerm.dev/en/blog/java-fundamentos/java-fundamentos-linguagem-java/"><meta property="og:image" content="https://paulogerm.dev/images/og-default.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Java Fundamentals: the Java language — PauloGerm.dev"><meta name="twitter:description" content="Overview of the Java language, its relationship with object orientation, the internet, bytecode, and the Java Virtual Machine."><meta name="twitter:image" content="https://paulogerm.dev/images/og-default.png"><meta name="author" content="Paulo Germano"><meta property="og:locale" content="en_US"><meta property="og:site_name" content="PauloGerm.dev"><meta property="article:published_time" content="2026-07-07T00:00:00.000Z"><meta property="article:author" content="Paulo Germano"><meta property="article:tag" content="Java"><meta property="article:tag" content="JVM"><meta property="article:tag" content="Fundamentals"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"PauloGerm.dev","url":"https://paulogerm.dev/","inLanguage":"pt-BR"},{"@type":"Person","name":"Paulo Germano","url":"https://paulogerm.dev/sobre/","sameAs":["https://github.com/IPauloGermano","https://www.linkedin.com/in/ipaulogermano/"]},{"@type":"BlogPosting","headline":"Java Fundamentals: the Java language — PauloGerm.dev","description":"Overview of the Java language, its relationship with object orientation, the internet, bytecode, and the Java Virtual Machine.","image":"https://paulogerm.dev/images/og-default.png","datePublished":"2026-07-07T00:00:00.000Z","inLanguage":"en","author":{"@type":"Person","name":"Paulo Germano","url":"https://paulogerm.dev/sobre/"},"mainEntityOfPage":"https://paulogerm.dev/en/blog/java-fundamentos/java-fundamentos-linguagem-java/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://paulogerm.dev/en/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://paulogerm.dev/en/blog/"},{"@type":"ListItem","position":3,"name":"Java Fundamentals: the Java language","item":"https://paulogerm.dev/en/blog/java-fundamentos/java-fundamentos-linguagem-java/"}]}]}</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Schibsted+Grotesk:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="canonical" href="https://paulogerm.dev/en/blog/java-fundamentos/java-fundamentos-linguagem-java/"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="PauloGerm.dev" href="/en/rss.xml"><link rel="alternate" hreflang="pt" href="https://paulogerm.dev/blog/java-fundamentos/java-fundamentos-linguagem-java/"><link rel="alternate" hreflang="en" href="https://paulogerm.dev/en/blog/java-fundamentos/java-fundamentos-linguagem-java/"><link rel="alternate" hreflang="x-default" href="https://paulogerm.dev/blog/java-fundamentos/java-fundamentos-linguagem-java/"><title>Java Fundamentals: the Java language — PauloGerm.dev</title><script>
+      (() => {
+        const root = document.documentElement;
+        const themeColor = { dark: '#1C1B19', light: '#EFECE6' };
+        const getSystemTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+        let theme = getSystemTheme();
+        try {
+          const saved = localStorage.getItem('theme');
+          if (saved === 'light' || saved === 'dark') theme = saved;
+        } catch {
+          theme = getSystemTheme();
+        }
+
+        root.dataset.theme = theme;
+        root.style.colorScheme = theme;
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', themeColor[theme]);
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.BDCNtF8_.css"><link rel="stylesheet" href="/_astro/_..CiDGko5d.css"></head> <body> <div class="site-shell min-h-screen bg-[var(--bg-canvas)] text-[var(--text-primary)] selection:bg-[var(--accent-signal)] selection:text-white transition-colors duration-200"> <a class="skip-link sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--accent-signal)] focus:text-white focus:rounded" href="#conteudo">Skip to content</a> <header class="sticky top-0 z-40 w-full border-b border-[var(--border-rule)] bg-[var(--bg-canvas)]/90 backdrop-blur-md transition-colors duration-200" id="site-header"> <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">  <a href="/en/" class="group flex items-center gap-2 font-code text-xs font-semibold tracking-wide text-[var(--text-primary)] hover:text-[var(--accent-signal)] transition-colors" aria-label="Paulo Germano — home"> <span class="text-[var(--text-muted)] group-hover:text-[var(--accent-signal)] transition-colors">[</span> <svg class="h-3.5 w-3.5 text-[var(--accent-signal)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg> <span class="font-semibold text-sm">~/PauloGerm</span> <span class="text-[var(--text-muted)] group-hover:text-[var(--accent-signal)] transition-colors">]</span> </a>  <nav class="hidden md:flex items-center gap-6 text-xs font-medium tracking-wide uppercase font-code" aria-label="Primary navigation"> <a href="/blog" class="transition-colors hover:text-[var(--text-primary)] text-[var(--text-primary)] font-semibold"> Articles </a> <a href="/series" class="transition-colors hover:text-[var(--text-primary)] text-[var(--text-secondary)]"> Series </a> <a href="/en/projetos" class="transition-colors hover:text-[var(--text-primary)] text-[var(--text-secondary)]"> Projects </a>  <a href="/en/sobre" class="transition-colors hover:text-[var(--text-primary)] text-[var(--text-secondary)]"> About </a> </nav>  <div class="flex items-center gap-2 sm:gap-3">  <button id="search-trigger" type="button" aria-haspopup="dialog" aria-controls="search-dialog" aria-label="Search this site (Ctrl K)" class="flex min-h-[44px] sm:min-h-0 items-center gap-2 rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] px-3 py-2 sm:px-2.5 sm:py-1.5 text-xs text-[var(--text-secondary)] hover:border-[var(--text-muted)] hover:text-[var(--text-primary)] transition-all focus-visible:outline-none cursor-pointer"> <svg class="h-4 w-4 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> <span class="hidden sm:inline text-xs font-code">Search</span> <kbd class="hidden font-code text-[10px] sm:inline-flex items-center px-1.5 py-0.5 rounded border border-[var(--border-rule)] bg-[var(--bg-canvas)] text-[var(--text-muted)]"> ⌘K </kbd> </button>  <a href="https://github.com/IPauloGermano" target="_blank" rel="noreferrer" aria-label="Paulo Germano's GitHub" class="flex h-11 w-11 sm:h-8 sm:w-8 items-center justify-center rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] transition-all"> <svg class="h-4 w-4 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.3-.4 6.8-1.6 6.8-7A5.5 5.5 0 0 0 19.3 4 5.1 5.1 0 0 0 19.1.5S17.9.1 15 2a13.4 13.4 0 0 0-7 0C5.1.1 3.9.5 3.9.5A5.1 5.1 0 0 0 3.7 4a5.5 5.5 0 0 0-1.5 3.8c0 5.4 3.5 6.6 6.8 7A4.8 4.8 0 0 0 8 18v4"></path><path d="M8 19c-3 .9-3-1.5-4-2"></path></svg> </a>  <a href="/en/rss.xml" aria-label="RSS feed" class="flex h-11 w-11 sm:h-8 sm:w-8 items-center justify-center rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] transition-all"> <svg class="h-4 w-4 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg> </a>  <a href="/blog/java-fundamentos/java-fundamentos-linguagem-java/" data-lang-switch="pt" aria-label="Versão em português" class="flex h-11 w-11 sm:h-8 sm:w-8 items-center justify-center rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] font-code text-[11px] font-semibold text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] transition-colors">
+PT
+</a>  <button id="theme-toggle" type="button" aria-label="Toggle theme" class="flex h-11 w-11 sm:h-8 sm:w-8 items-center justify-center rounded-md border border-[var(--border-rule)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] transition-all cursor-pointer"> <svg class="theme-sun h-4 w-4 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> <svg class="theme-moon h-4 w-4 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> <span class="sr-only">Toggle theme</span> </button> </div> </div>  <nav class="flex md:hidden items-center justify-around border-t border-[var(--border-rule)] px-2 py-1 bg-[var(--bg-surface)] text-xs font-code" aria-label="Mobile navigation"> <a href="/blog" class="flex items-center justify-center min-h-[44px] px-3.5 rounded hover:text-[var(--text-primary)] transition-colors text-[var(--text-primary)] font-semibold">Articles</a> <a href="/series" class="flex items-center justify-center min-h-[44px] px-3.5 rounded hover:text-[var(--text-primary)] transition-colors text-[var(--text-secondary)]">Series</a> <a href="/en/projetos" class="flex items-center justify-center min-h-[44px] px-3.5 rounded hover:text-[var(--text-primary)] transition-colors text-[var(--text-secondary)]">Projects</a>  <a href="/en/sobre" class="flex items-center justify-center min-h-[44px] px-3.5 rounded hover:text-[var(--text-primary)] transition-colors text-[var(--text-secondary)]">About</a> </nav> </header> <main id="conteudo" class="site-main"> <div class="article-layout" data-astro-cid-a4f3bigi> <article class="article-prose" data-astro-cid-a4f3bigi> <a class="back-link" href="/en/blog/" data-astro-cid-a4f3bigi>← Back to archive</a> <header class="article-header" data-astro-cid-a4f3bigi> <div class="article-meta" data-astro-cid-a4f3bigi><time data-astro-cid-a4f3bigi>July 07, 2026</time><span data-astro-cid-a4f3bigi>Java · JVM · Fundamentals</span></div> <h1 data-astro-cid-a4f3bigi>Java Fundamentals: the Java language</h1> <p data-astro-cid-a4f3bigi>Overview of the Java language, its relationship with object orientation, the internet, bytecode, and the Java Virtual Machine.</p> </header> <aside class="series-card" aria-label="Series Java Fundamentals"> <p>Series</p> <a href="/series/java-fundamentos-fiap/#parte-2">Java Fundamentals</a> <span>Part 2 of 6</span> </aside> <div class="prose-body" data-astro-cid-a4f3bigi><blockquote>
+<p>Java is a language closely associated with object orientation, portability, and execution through the JVM.</p>
+</blockquote>
+<h2 id="java-and-the-object-oriented-paradigm">Java and the object-oriented paradigm</h2>
+<p>There are several languages that allow applying Object-Oriented Programming.</p>
+<p>One of the best known is the <strong>Java</strong> language.</p>
+<p>Java became strongly associated with OOP because its way of structuring programs revolves largely around classes, objects, methods, attributes, and relationships between entities.</p>
+<h2 id="origin-and-context">Origin and context</h2>
+<p>Java was publicly introduced in 1995 by Sun Microsystems.</p>
+<p>The idea behind the language was tied to creating software capable of running in different environments, including devices and computers with distinct characteristics.</p>
+<p>This context helps explain why portability became one of Java’s strongest trademarks.</p>
+<h2 id="java-and-the-internet">Java and the internet</h2>
+<p>With the growth of the internet, Java gained a lot of attention.</p>
+<p>For a period, it was used in features embedded in web pages, at a time when the web was still evolving rapidly.</p>
+<p>Today, many of those old uses are no longer common, but Java remained relevant in other areas, mainly in enterprise systems, backend applications, APIs, banking systems, and large-scale applications.</p>
+<h2 id="how-java-works-in-general">How Java works in general</h2>
+<p>The basic flow is this:</p>
+<ol>
+<li>The programmer writes Java code.</li>
+<li>That code is compiled.</li>
+<li>Compilation generates <code>.class</code> files.</li>
+<li>These files contain bytecodes.</li>
+<li>The JVM executes those bytecodes in the environment where it is installed.</li>
+</ol>
+<p>In other words, Java code is not executed directly by the operating system the same way a regular native program is.</p>
+<p>It goes through an intermediate layer: the <strong>JVM</strong>, short for <strong>Java Virtual Machine</strong>.</p>
+<h2 id="the-role-of-the-jvm">The role of the JVM</h2>
+<p>The JVM is responsible for executing Java bytecode.</p>
+<p>As an initial explanation, we can say that it interprets this intermediate code.</p>
+<p>More precisely, modern JVMs can also optimize and compile parts of the program at runtime, depending on the implementation and the application’s behavior.</p>
+<p>For this first contact with Java, the main point is understanding that the JVM creates a layer between the Java program and the operating system.</p>
+<h2 id="why-this-mattered">Why this mattered</h2>
+<p>This structure helped Java be used in different environments.</p>
+<p>Instead of depending directly on a single operating system or a single hardware architecture, the Java program depends on a compatible JVM installed in that environment.</p>
+<p>This strengthened the idea of writing a program and running it on different platforms.</p>
+<h2 id="summary">Summary</h2>
+<p>Java is a programming language strongly tied to object orientation and portability.</p>
+<p>How it works involves compiling source code into bytecode and executing that bytecode on the JVM.</p>
+<p>This combination helped Java become a widely used language in large systems, backend applications, and enterprise environments.</p></div> <nav class="series-navigation" aria-labelledby="series-navigation-title"> <div class="series-navigation-head"> <p id="series-navigation-title">Continue in the series</p> <a class="series-index-link" href="/series/java-fundamentos-fiap/#parte-2">View the series index</a> </div> <div class="series-navigation-grid"> <div class="series-navigation-item"> <a href="/en/blog/java-fundamentos/java-fundamentos-orientacao-a-objetos/" rel="prev"> <span>← Previous part</span> <strong>Java Fundamentals: object orientation</strong> </a> </div> <div class="series-navigation-item series-navigation-item--next"> <a href="/en/blog/java-fundamentos/java-fundamentos-portabilidade/" rel="next"> <span>Next part →</span> <strong>Java Fundamentals: portability</strong> </a> </div> </div> </nav> <section class="related-articles" aria-labelledby="related-articles-title"> <h2 id="related-articles-title">Related readings</h2> <ul> <li> <a href="/en/blog/java-fundamentos/java-fundamentos-orientacao-a-objetos/"> <span aria-hidden="true">→</span> <span>Java Fundamentals: object orientation</span> </a> </li><li> <a href="/en/blog/java-fundamentos/java-fundamentos-portabilidade/"> <span aria-hidden="true">→</span> <span>Java Fundamentals: portability</span> </a> </li><li> <a href="/en/blog/java-fundamentos/java-fundamentos-principios-da-orientacao-a-objetos/"> <span aria-hidden="true">→</span> <span>Java Fundamentals: object-oriented principles</span> </a> </li> </ul> </section> </article> <aside class="article-toc" data-astro-cid-a4f3bigi> <p data-astro-cid-a4f3bigi>In this note</p> <nav data-astro-cid-a4f3bigi> <a class="depth-2" href="#java-and-the-object-oriented-paradigm" data-astro-cid-a4f3bigi>Java and the object-oriented paradigm</a><a class="depth-2" href="#origin-and-context" data-astro-cid-a4f3bigi>Origin and context</a><a class="depth-2" href="#java-and-the-internet" data-astro-cid-a4f3bigi>Java and the internet</a><a class="depth-2" href="#how-java-works-in-general" data-astro-cid-a4f3bigi>How Java works in general</a><a class="depth-2" href="#the-role-of-the-jvm" data-astro-cid-a4f3bigi>The role of the JVM</a><a class="depth-2" href="#why-this-mattered" data-astro-cid-a4f3bigi>Why this mattered</a><a class="depth-2" href="#summary" data-astro-cid-a4f3bigi>Summary</a> </nav> </aside> </div> <script type="module" src="/_astro/EmbedRenderer.astro_astro_type_script_index_0_lang.C2qQOIna.js"></script> <script type="module">var e={bash:`Bash`,css:`CSS`,html:`HTML`,javascript:`JavaScript`,js:`JavaScript`,json:`JSON`,mermaid:`Mermaid`,shell:`Shell`,sql:`SQL`,text:`Texto`,plaintext:`Texto`,ts:`TypeScript`,typescript:`TypeScript`,yaml:`YAML`,yml:`YAML`},t=new WeakMap,n=0;function r(t,n){if(t.closest(`.mermaid-error`))return`Mermaid`;let r=Array.from(n.classList).find(e=>e.startsWith(`language-`))?.replace(`language-`,``),i=(t.dataset.language||r||`text`).toLowerCase();return e[i]||i.toUpperCase()}function i(e,n,r,i){e.textContent=r,n.textContent=i;let a=t.get(e);a&&window.clearTimeout(a);let o=window.setTimeout(()=>{e.textContent=`Copiar`,n.textContent=``,t.delete(e)},2e3);t.set(e,o)}function a(e){if(e.dataset.codeEnhanced===`true`)return;let t=e.querySelector(`:scope > code`);if(!t||t.classList.contains(`language-mermaid`)&&!e.closest(`.mermaid-error`))return;let n=document.createElement(`div`);n.className=`code-block`;let a=document.createElement(`div`);a.className=`code-block-toolbar`;let o=document.createElement(`span`);o.className=`code-block-language`,o.textContent=r(e,t);let s=document.createElement(`button`);s.type=`button`,s.className=`code-copy-button`,s.textContent=`Copiar`,s.setAttribute(`aria-label`,`Copiar código`);let c=document.createElement(`span`);if(c.className=`sr-only`,c.setAttribute(`aria-live`,`polite`),e.querySelector(`:scope > code .spoiler`)!==null){let t=document.createElement(`button`);t.type=`button`,t.className=`code-copy-button code-spoiler-button`,t.textContent=`Spoiler`,t.setAttribute(`aria-expanded`,`false`),t.setAttribute(`aria-label`,`Revelar todos os trechos ocultos do bloco`),t.addEventListener(`click`,()=>{let n=e.dataset.spoilersRevealed===`true`;e.dataset.spoilersRevealed=String(!n),t.setAttribute(`aria-expanded`,String(!n)),t.setAttribute(`aria-label`,n?`Revelar todos os trechos ocultos do bloco`:`Ocultar os trechos revelados do bloco`)}),a.append(o,c,t,s)}else a.append(o,c,s);s.addEventListener(`click`,async()=>{try{await navigator.clipboard.writeText(t.textContent??``),i(s,c,`Copiado ✓`,`Código copiado`)}catch(e){console.error(`Não foi possível copiar o bloco de código:`,e),i(s,c,`Não copiado`,`Não foi possível copiar o código`)}}),e.dataset.codeEnhanced=`true`,e.replaceWith(n),n.append(a,e)}function o(){document.querySelectorAll(`.prose-body pre`).forEach(a),document.querySelectorAll(`.prose-body`).forEach(e=>{e.dataset.codeObserver!==`true`&&(e.dataset.codeObserver=`true`,new MutationObserver(()=>s()).observe(e,{childList:!0,subtree:!0}))})}function s(){cancelAnimationFrame(n),n=requestAnimationFrame(o)}document.readyState===`loading`?document.addEventListener(`DOMContentLoaded`,s,{once:!0}):s(),document.addEventListener(`astro:page-load`,s);</script> </main> <footer class="border-t border-[var(--border-rule)] bg-[var(--bg-canvas)] py-12 px-4 sm:px-6"> <div class="mx-auto max-w-6xl"> <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-[var(--border-rule-subtle)]"> <div class="md:col-span-6 space-y-2"> <a href="/en/" class="font-code text-sm font-semibold text-[var(--text-primary)] hover:text-[var(--accent-signal)] transition-colors">
+~/PauloGerm
+</a> <p class="text-xs sm:text-sm text-[var(--text-secondary)] max-w-md leading-relaxed"> Public notebook of software study and engineering. Learning in public, without faking experience. </p> </div> <div class="md:col-span-3 space-y-2"> <span class="font-code text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] block">Content</span> <ul class="space-y-1.5 text-xs font-code text-[var(--text-secondary)]"> <li><a href="/blog" class="hover:text-[var(--text-primary)] transition-colors">Articles</a></li> <li><a href="/series" class="hover:text-[var(--text-primary)] transition-colors">Series</a></li> <li><a href="/en/projetos" class="hover:text-[var(--text-primary)] transition-colors">Projects</a></li>  <li><a href="/en/sobre" class="hover:text-[var(--text-primary)] transition-colors">About</a></li> </ul> </div> <div class="md:col-span-3 space-y-2"> <span class="font-code text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] block">Channels</span> <ul class="space-y-1.5 text-xs font-code text-[var(--text-secondary)]"> <li><a href="https://github.com/IPauloGermano" target="_blank" rel="noreferrer" class="hover:text-[var(--text-primary)] transition-colors">GitHub ↗</a></li> <li><a href="https://www.linkedin.com/in/ipaulogermano/" target="_blank" rel="noreferrer" class="hover:text-[var(--text-primary)] transition-colors">LinkedIn ↗</a></li> <li><a href="/curriculo.pdf" target="_blank" rel="noreferrer" class="hover:text-[var(--accent-signal)] transition-colors flex items-center gap-1"><span>Résumé (PDF)</span><svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a></li> <li><a href="/en/rss.xml" class="hover:text-[var(--text-primary)] transition-colors">RSS feed</a></li> </ul> </div> </div> <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-code text-xs text-[var(--text-muted)]"> <span>© 2026 Paulo Germano · João Pessoa, PB, Brazil</span> <button type="button" class="back-to-top hover:text-[var(--text-primary)] cursor-pointer transition-colors" id="back-to-top" aria-label="Back to the top of the page"> <span>Back to top ↑</span> </button> </div> </div> </footer> </div> <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title"> <div class="fixed inset-0 z-50 flex items-start justify-center bg-black/60 p-4 pt-16 sm:pt-24 backdrop-blur-sm" id="search-modal-backdrop"> <div class="w-full max-w-xl rounded-lg border border-[var(--border-rule)] bg-[var(--bg-canvas)] shadow-2xl overflow-hidden" onclick="event.stopPropagation()"> <div class="flex items-center border-b border-[var(--border-rule)] px-4 py-3 bg-[var(--bg-surface)]"> <svg class="h-4 w-4 text-[var(--text-muted)] mr-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> <label class="sr-only" for="search-input" id="search-title">Search this site</label> <input id="search-input" type="search" placeholder="Search projects, articles, notes..." autocomplete="off" class="w-full bg-transparent text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none font-code"> <button id="search-close" type="button" aria-label="Close search" class="font-code text-[10px] text-[var(--text-muted)] border border-[var(--border-rule)] px-1.5 py-0.5 rounded cursor-pointer hover:text-[var(--text-primary)]">ESC</button> </div> <div class="max-h-[60vh] overflow-y-auto p-2 divide-y divide-[var(--border-rule-subtle)]" id="search-results" aria-live="polite"></div> <div class="flex items-center justify-between border-t border-[var(--border-rule)] px-4 py-2 bg-[var(--bg-surface)] font-code text-[11px] text-[var(--text-muted)]"> <span>↑↓ to navigate · Enter to open</span> <span id="search-count">8 items in the index</span> </div> </div> </div> </dialog> <script id="search-data" type="application/json">[{"title":"Local Player: transcode fallback and Whisper in a P0-P3 queue","description":"Compatible files play directly via Range. Incompatible ones become fragmented MP4 with 416 seek. Subtitles are an add-on: never await before video.play().","href":"/en/blog/local-player-fallback-transcode-whisper-p0-p3/","tags":["Software Engineering","Artificial Intelligence"],"series":"Local Player: vibecoding com invariantes","type":"Article"},{"title":"Local Player: atomic progress that travels with the drive","description":"How writeFileAtomic + serial queue + .bak + .corrupt-<ts> eliminated position loss even when killing the server mid-save.","href":"/en/blog/local-player-progresso-atomico-portatil/","tags":["Software Engineering","Node.js"],"series":"Local Player: vibecoding com invariantes","type":"Article"},{"title":"Local Player: vibecoding with invariants and zero build step","description":"How a local/offline player in Express + vanilla JS organizes thousands of lessons with no bundler: AGENTS.md as contract, physical structure as source of truth, and scan with on-disk cache.","href":"/en/blog/local-player-vibecoding-sem-build-step/","tags":["Software Engineering","Node.js","Vibe coding"],"series":"Local Player: vibecoding com invariantes","type":"Article"},{"title":"Java Fundamentals: why Java succeeded","description":"Explanation of the technical reasons that helped Java grow, focusing on portability, the JVM, bytecode, and .class files.","href":"/en/blog/java-fundamentos/java-fundamentos-por-que-o-java-deu-certo/","tags":["Java","JVM","Portability"],"series":"Java Fundamentos","type":"Article"},{"title":"Java Fundamentals: what is a programming language","description":"Introductory explanation of programming languages, Java, bytecode, the JVM, and common areas where the language is used.","href":"/en/blog/java-fundamentos/java-fundamentos-o-que-e-uma-linguagem-de-programacao/","tags":["Java","Fundamentals"],"series":"Java Fundamentos","type":"Article"},{"title":"Java Fundamentals: object-oriented principles","description":"Practical explanation of the main OOP concepts, such as abstraction, encapsulation, inheritance, polymorphism, association, composition, and modularization.","href":"/en/blog/java-fundamentos/java-fundamentos-principios-da-orientacao-a-objetos/","tags":["Java","Object-Oriented Programming","Fundamentals"],"series":"Java Fundamentos","type":"Article"},{"title":"Java Fundamentals: portability","description":"Introductory explanation of portability in Java, the JVM, bytecode, and execution across different environments.","href":"/en/blog/java-fundamentos/java-fundamentos-portabilidade/","tags":["Java","JVM","Portability"],"series":"Java Fundamentos","type":"Article"},{"title":"Java Fundamentals: the Java language","description":"Overview of the Java language, its relationship with object orientation, the internet, bytecode, and the Java Virtual Machine.","href":"/en/blog/java-fundamentos/java-fundamentos-linguagem-java/","tags":["Java","JVM","Fundamentals"],"series":"Java Fundamentos","type":"Article"},{"title":"Java Fundamentals: object orientation","description":"Introduction to the object-oriented paradigm and the idea of representing problems through entities, objects, classes, and interactions.","href":"/en/blog/java-fundamentos/java-fundamentos-orientacao-a-objetos/","tags":["Java","Fundamentals","Object-Oriented Programming"],"series":"Java Fundamentos","type":"Article"},{"title":"ParkFlow: From Requirements Gathering to an AI-Assisted MVP","description":"How we turned a real parking problem into an MVP with TypeScript, Supabase, license-plate-driven UX, and AI-assisted development.","href":"/en/blog/parkflow-do-levantamento-de-requisitos-ao-mvp/","tags":["Software Engineering","Artificial Intelligence","TypeScript","Vibe coding"],"series":"","type":"Article"},{"title":"ParkFlow — SaaS for Parking Operations","description":"SaaS with license-plate-driven flow, space control, monthly subscribers, and automations (React, TypeScript, PostgreSQL).","href":"/en/projetos","tags":["React","TypeScript","PostgreSQL","SaaS","Project"],"series":"Project in development","type":"Project"},{"title":"Résumé / CV — Paulo Germano","description":"Complete professional résumé in PDF: ADS degree (Unipê), projects (Library, ParkFlow), technical stack, and practices.","href":"/curriculo.pdf","tags":["Résumé","CV","Career","PDF","Profile","Education"],"series":"Document","type":"PDF"}]</script> <script>(function(){const chromeStrings = {"toDark":"Activate dark theme","toLight":"Activate light theme","empty":"No results found.","one":"item","many":"items","searchLocale":"en","articleType":"Article"};
+
+  const root = document.documentElement;
+  const themeButton = document.getElementById('theme-toggle');
+  const themeButtonText = themeButton?.querySelector('.sr-only');
+  const themeMedia = window.matchMedia('(prefers-color-scheme: dark)');
+  const themeColor = { dark: '#1C1B19', light: '#EFECE6' };
+  const isValidTheme = (value) => value === 'light' || value === 'dark';
+  const getSystemTheme = () => themeMedia.matches ? 'dark' : 'light';
+  const getSavedTheme = () => {
+    try {
+      const saved = localStorage.getItem('theme');
+      return isValidTheme(saved) ? saved : null;
+    } catch {
+      return null;
+    }
+  };
+  const updateThemeButton = (theme) => {
+    const label = theme === 'dark' ? chromeStrings.toLight : chromeStrings.toDark;
+    themeButton?.setAttribute('aria-label', label);
+    themeButton?.setAttribute('title', label);
+    if (themeButtonText) themeButtonText.textContent = label;
+  };
+  const applyTheme = (theme) => {
+    root.dataset.theme = theme;
+    root.style.colorScheme = theme;
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', themeColor[theme]);
+    updateThemeButton(theme);
+  };
+
+  applyTheme(getSavedTheme() || (isValidTheme(root.dataset.theme) ? root.dataset.theme : getSystemTheme()));
+
+  themeButton?.addEventListener('click', () => {
+    const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+    applyTheme(next);
+    try {
+      localStorage.setItem('theme', next);
+    } catch {}
+  });
+
+  const handleThemeMediaChange = (event) => {
+    if (!getSavedTheme()) applyTheme(event.matches ? 'dark' : 'light');
+  };
+  if (typeof themeMedia.addEventListener === 'function') {
+    themeMedia.addEventListener('change', handleThemeMediaChange);
+  } else {
+    themeMedia.addListener(handleThemeMediaChange);
+  }
+
+  const dialog = document.getElementById('search-dialog');
+  const trigger = document.getElementById('search-trigger');
+  const close = document.getElementById('search-close');
+  const input = document.getElementById('search-input');
+  const results = document.getElementById('search-results');
+  const dataNode = document.getElementById('search-data');
+  const searchItems = JSON.parse(dataNode?.textContent || '[]');
+  let selectedIndex = 0;
+
+  const normalize = (value) => value
+    .toLocaleLowerCase(chromeStrings.searchLocale)
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+
+  const renderResults = () => {
+    if (!results || !input) return;
+    const query = normalize(input.value.trim());
+    const filtered = searchItems.filter((item) => {
+      const haystack = normalize(`${item.title} ${item.description} ${item.tags.join(' ')} ${item.series || ''}`);
+      return !query || haystack.includes(query);
+    }).slice(0, 8);
+
+    selectedIndex = Math.min(selectedIndex, Math.max(filtered.length - 1, 0));
+    results.innerHTML = filtered.length
+      ? filtered.map((item, index) => `
+          <a class="search-result flex items-center justify-between p-3 rounded text-left transition-colors font-sans ${index === selectedIndex ? 'bg-[var(--bg-surface-hover)] text-[var(--text-primary)]' : 'text-[var(--text-secondary)] hover:bg-[var(--bg-surface)]'}" href="${item.href}" data-index="${index}">
+            <div class="flex items-center gap-3 overflow-hidden">
+              <svg class="h-4 w-4 shrink-0 ${index === selectedIndex ? 'text-[var(--accent-signal)]' : 'text-[var(--text-muted)]'}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              <div class="overflow-hidden">
+                <div class="text-sm font-medium truncate text-[var(--text-primary)]">
+                  ${item.title}
+                </div>
+                <div class="text-xs text-[var(--text-muted)] truncate font-code">
+                  ${item.description}
+                </div>
+              </div>
+            </div>
+            <span class="text-xs font-code px-1.5 py-0.5 rounded border border-[var(--border-rule-subtle)] text-[var(--text-muted)] ml-2 shrink-0">${item.type || chromeStrings.articleType}</span>
+          </a>`).join('')
+      : `<p class="py-8 text-center text-sm text-[var(--text-muted)] font-code">${chromeStrings.empty}</p>`;
+    const countEl = document.getElementById('search-count');
+    if (countEl) countEl.textContent = `${filtered.length} ${filtered.length === 1 ? chromeStrings.one : chromeStrings.many}`;
+  };
+
+  const scrollSelectedIntoView = () => {
+    results?.querySelector(`.search-result[data-index="${selectedIndex}"]`)
+      ?.scrollIntoView({ block: 'nearest' });
+  };
+
+  const openSearch = () => {
+    if (!dialog) return;
+    document.getElementById('site-header')?.classList.remove('is-hidden');
+    dialog.showModal();
+    selectedIndex = 0;
+    if (input) input.value = '';
+    renderResults();
+    requestAnimationFrame(() => input?.focus());
+  };
+
+  const closeSearch = () => dialog?.close();
+  trigger?.addEventListener('click', openSearch);
+  close?.addEventListener('click', closeSearch);
+  input?.addEventListener('input', () => { selectedIndex = 0; renderResults(); });
+  dialog?.addEventListener('click', (event) => {
+    if (event.target === dialog) closeSearch();
+  });
+  document.getElementById('search-modal-backdrop')?.addEventListener('click', (event) => {
+    if (event.target === event.currentTarget) closeSearch();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+      event.preventDefault();
+      openSearch();
+      return;
+    }
+    if (!dialog?.open) return;
+    const links = [...results.querySelectorAll('.search-result')];
+    if (event.key === 'Escape') closeSearch();
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      selectedIndex = Math.min(selectedIndex + 1, links.length - 1);
+      renderResults();
+      scrollSelectedIntoView();
+    }
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      selectedIndex = Math.max(selectedIndex - 1, 0);
+      renderResults();
+      scrollSelectedIntoView();
+    }
+    if (event.key === 'Enter' && links[selectedIndex]) {
+      event.preventDefault();
+      window.location.href = links[selectedIndex].href;
+    }
+  });
+
+  document.getElementById('back-to-top')?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();</script> <script>(function(){const redirectTarget = "/blog/java-fundamentos/java-fundamentos-linguagem-java/";
+const pageLocale = "en";
+
+  // Preferência de idioma PT/EN + redirect automático de primeira visita.
+  // - Sem preferência salva: infere de navigator.language, persiste e, se o
+  //   idioma inferido difere do da página E a contraparte existe
+  //   (redirectTarget calculado no build), redireciona com replace (sem
+  //   entrada no histórico — o voltar não prende em loop).
+  // - Com preferência salva: nunca redireciona (navegação explícita vence).
+  // - Bots (Googlebot tem navigator.language en-US): nunca redireciona, para
+  //   não empurrar o crawl para fora do PT. Conteúdo é o mesmo para todos.
+  (function () {
+    var KEY = 'site-lang';
+    var saved = null;
+    try {
+      saved = localStorage.getItem(KEY);
+    } catch {}
+    var nav = '';
+    try {
+      nav = (navigator.language || '').toLowerCase();
+    } catch {}
+    var navLocale = !nav ? pageLocale : (nav.indexOf('pt') === 0 ? 'pt' : 'en');
+    var isBot = /bot|crawl|spider|slurp|mediapartners|baidu|yandex|duckduck/i.test(
+      navigator.userAgent || ''
+    );
+    if (!saved) {
+      try {
+        localStorage.setItem(KEY, navLocale);
+      } catch {}
+      if (redirectTarget && navLocale !== pageLocale && !isBot) {
+        window.location.replace(redirectTarget + window.location.search + window.location.hash);
+        return;
+      }
+    }
+    document.querySelectorAll('[data-lang-switch]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        try {
+          localStorage.setItem(KEY, el.getAttribute('data-lang-switch'));
+        } catch {}
+      });
+    });
+  })();
+})();</script> <script>(function(){const readerSideToLeft = "Move mobile navigation to the left";
+const readerSideToRight = "Move mobile navigation to the right";
+
+    const readerSideMedia = window.matchMedia('(max-width: 1024px)');
+    if (readerSideMedia.matches) {
+      const readerSideRoot = document.documentElement;
+      const readerSideToggle = document.getElementById('reader-side-toggle');
+      const readerSideStorageKey = 'reader-side';
+      const readerSideCooldownMs = 3000;
+      const savedReaderSide = localStorage.getItem(readerSideStorageKey);
+      let readerSideCoolingDown = false;
+      const getReaderSide = (value) => value === 'right' ? 'right' : 'left';
+      const setReaderSide = (side) => {
+        const nextSide = getReaderSide(side);
+        readerSideRoot.dataset.readerSide = nextSide;
+        readerSideToggle?.setAttribute('aria-pressed', String(nextSide === 'right'));
+        readerSideToggle?.setAttribute(
+          'aria-label',
+          nextSide === 'right'
+            ? readerSideToLeft
+            : readerSideToRight
+        );
+      };
+      const startReaderSideCooldown = () => {
+        if (!readerSideToggle) return;
+        readerSideCoolingDown = true;
+        readerSideToggle.disabled = true;
+        readerSideToggle.setAttribute('aria-disabled', 'true');
+        readerSideToggle.classList.add('is-cooling-down');
+
+        window.setTimeout(() => {
+          readerSideCoolingDown = false;
+          readerSideToggle.disabled = false;
+          readerSideToggle.setAttribute('aria-disabled', 'false');
+          readerSideToggle.classList.remove('is-cooling-down');
+        }, readerSideCooldownMs);
+      };
+
+      setReaderSide(savedReaderSide);
+      readerSideToggle?.addEventListener('click', () => {
+        if (readerSideCoolingDown) return;
+        const nextSide = readerSideRoot.dataset.readerSide === 'right' ? 'left' : 'right';
+        setReaderSide(nextSide);
+        localStorage.setItem(readerSideStorageKey, nextSide);
+        startReaderSideCooldown();
+      });
+    }
+  })();</script> <script>
+    const autoHideMedia = window.matchMedia('(max-width: 1024px)');
+    if (autoHideMedia.matches) {
+      const autoHideHeader = document.getElementById('site-header');
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+      const minimumScroll = 120;
+      const directionThreshold = 8;
+
+      const hasOpenDialog = () => Boolean(document.querySelector('dialog[open]'));
+
+      const updateHeaderVisibility = () => {
+        ticking = false;
+        if (!autoHideHeader) return;
+
+        const currentScrollY = Math.max(window.scrollY, 0);
+        const delta = currentScrollY - lastScrollY;
+
+        if (currentScrollY <= minimumScroll || hasOpenDialog()) {
+          autoHideHeader.classList.remove('is-hidden');
+          lastScrollY = currentScrollY;
+          return;
+        }
+
+        if (Math.abs(delta) < directionThreshold) return;
+
+        if (delta > 0) autoHideHeader.classList.add('is-hidden');
+        else autoHideHeader.classList.remove('is-hidden');
+
+        lastScrollY = currentScrollY;
+      };
+
+      window.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(updateHeaderVisibility);
+      }, { passive: true });
+    }
+  </script> </body> </html>  <script>
+  // Impressão: troca players/avisos de embed por um cartão de referência
+  // (título + URL clicável), sem carregar o player no PDF.
+  (function () {
+    var swapped = [];
+
+    function watchUrl(platform, src) {
+      if (platform === 'youtube') {
+        var m = /\/embed\/([A-Za-z0-9_-]+)/.exec(src || '');
+        if (m) return 'https://www.youtube.com/watch?v=' + m[1];
+      }
+      return src;
+    }
+
+    function buildRef(label, title, url) {
+      var ref = document.createElement('figure');
+      ref.className = 'pg-print-ref';
+      var caption = document.createElement('figcaption');
+      var heading = document.createElement('strong');
+      heading.textContent = label + ': ' + title;
+      caption.appendChild(heading);
+      ref.appendChild(caption);
+      if (url) {
+        var link = document.createElement('a');
+        link.href = url;
+        link.textContent = url;
+        ref.appendChild(link);
+      }
+      return ref;
+    }
+
+    window.addEventListener('beforeprint', function () {
+      // Título do artigo vira link para a URL canônica no PDF.
+      var titleHeading = document.querySelector('.article-header h1');
+      var canonical = document.querySelector('link[rel="canonical"]');
+      if (titleHeading && canonical && canonical.href && !titleHeading.querySelector('a')) {
+        var titleLink = document.createElement('a');
+        titleLink.href = canonical.href;
+        titleLink.className = 'article-print-title-link';
+        while (titleHeading.firstChild) titleLink.appendChild(titleHeading.firstChild);
+        titleHeading.appendChild(titleLink);
+      }
+      var articleUrl = canonical && canonical.href ? canonical.href : window.location.href;
+      // Diagramas mermaid: fora do PDF, entra cartão "Visualizar diagrama".
+      var diagramIndex = 0;
+      document.querySelectorAll('.prose-body .mermaid-block').forEach(function (node) {
+        diagramIndex += 1;
+        var ref = document.createElement('figure');
+        ref.className = 'pg-print-ref';
+        var caption = document.createElement('figcaption');
+        var heading = document.createElement('strong');
+        heading.textContent = 'Diagram ' + diagramIndex;
+        caption.appendChild(heading);
+        ref.appendChild(caption);
+        var link = document.createElement('a');
+        link.href = articleUrl;
+        link.textContent = 'View diagram';
+        ref.appendChild(link);
+        swapped.push({ node: node, ref: ref });
+        node.replaceWith(ref);
+      });
+      document.querySelectorAll('.prose-body .pg-embed').forEach(function (node) {
+        var label = node.dataset.platform || 'Embed';
+        var title = 'Embedded content';
+        var url = '';
+        if (node.classList.contains('pg-embed--unsupported')) {
+          var original = node.querySelector('a');
+          var heading = node.querySelector('strong');
+          if (heading && heading.textContent) title = heading.textContent.trim();
+          if (original && original.getAttribute('href')) url = original.getAttribute('href');
+          label = 'Link';
+        } else {
+          var aria = node.getAttribute('aria-label') || '';
+          var parts = aria.split(':');
+          if (parts.length > 1) {
+            label = parts[0].trim() || label;
+            title = parts.slice(1).join(':').trim() || title;
+          }
+          var media = node.querySelector('iframe') || node.querySelector('video source') || node.querySelector('video');
+          var src = media ? media.getAttribute('src') || '' : '';
+          url = watchUrl(node.dataset.platform || '', src);
+        }
+        var ref = buildRef(label, title, url);
+        swapped.push({ node: node, ref: ref });
+        node.replaceWith(ref);
+      });
+    });
+
+    window.addEventListener('afterprint', function () {
+      var titleLink = document.querySelector('.article-print-title-link');
+      if (titleLink && titleLink.parentElement) {
+        var heading = titleLink.parentElement;
+        while (titleLink.firstChild) heading.insertBefore(titleLink.firstChild, titleLink);
+        titleLink.remove();
+      }
+      while (swapped.length) {
+        var entry = swapped.pop();
+        entry.ref.replaceWith(entry.node);
+      }
+    });
+  })();
+</script>

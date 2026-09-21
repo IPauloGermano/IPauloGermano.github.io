@@ -5,6 +5,20 @@
       <description>Caderno de desenvolvimento, projetos e estudos.</description>
       <link>https://paulogerm.dev/</link>
       <item>
+      <title>Exemplo: spoilers com blur</title>
+      <description>Página temporária para visualizar o efeito ||spoiler|| — apagar antes de publicar.</description>
+      <link>https://paulogerm.dev/blog/__exemplo-spoiler/</link>
+      <guid>https://paulogerm.dev/blog/__exemplo-spoiler/</guid>
+      <pubDate>Mon, 21 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>CS146S Parte 1: fundamentos de LLM e prompting experimental</title>
+      <description>Por que LLM erra e como transformar prompting em método hipótese-teste-iteração, com zero/few-shot, cadeia de pensamento e exercício week1.</description>
+      <link>https://paulogerm.dev/blog/stanford-cs146s-pratica/cs146s-01-fundamentos-llm-prompting/</link>
+      <guid>https://paulogerm.dev/blog/stanford-cs146s-pratica/cs146s-01-fundamentos-llm-prompting/</guid>
+      <pubDate>Mon, 21 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
       <title>Local Player: fallback de transcode e Whisper em fila P0-P3</title>
       <description>Compatível toca direto via Range. Incompatível vira MP4 fragmentado com seek 416. Legenda é adicional: nunca await antes de video.play().</description>
       <link>https://paulogerm.dev/blog/local-player-fallback-transcode-whisper-p0-p3/</link>

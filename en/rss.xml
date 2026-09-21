@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <rss version="2.0">
+    <channel>
+      <title>PauloGerm (EN)</title>
+      <description>Development notebook, projects and studies — English edition.</description>
+      <link>https://paulogerm.dev/en/</link>
+      <item>
+      <title>Local Player: transcode fallback and Whisper in a P0-P3 queue</title>
+      <description>Compatible files play directly via Range. Incompatible ones become fragmented MP4 with 416 seek. Subtitles are an add-on: never await before video.play().</description>
+      <link>https://paulogerm.dev/en/blog/local-player-fallback-transcode-whisper-p0-p3/</link>
+      <guid>https://paulogerm.dev/en/blog/local-player-fallback-transcode-whisper-p0-p3/</guid>
+      <pubDate>Sat, 19 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>Local Player: atomic progress that travels with the drive</title>
+      <description>How writeFileAtomic + serial queue + .bak + .corrupt-&lt;ts&gt; eliminated position loss even when killing the server mid-save.</description>
+      <link>https://paulogerm.dev/en/blog/local-player-progresso-atomico-portatil/</link>
+      <guid>https://paulogerm.dev/en/blog/local-player-progresso-atomico-portatil/</guid>
+      <pubDate>Sat, 19 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>Local Player: vibecoding with invariants and zero build step</title>
+      <description>How a local/offline player in Express + vanilla JS organizes thousands of lessons with no bundler: AGENTS.md as contract, physical structure as source of truth, and scan with on-disk cache.</description>
+      <link>https://paulogerm.dev/en/blog/local-player-vibecoding-sem-build-step/</link>
+      <guid>https://paulogerm.dev/en/blog/local-player-vibecoding-sem-build-step/</guid>
+      <pubDate>Sat, 19 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>Java Fundamentals: why Java succeeded</title>
+      <description>Explanation of the technical reasons that helped Java grow, focusing on portability, the JVM, bytecode, and .class files.</description>
+      <link>https://paulogerm.dev/en/blog/java-fundamentos/java-fundamentos-por-que-o-java-deu-certo/</link>
+      <guid>https://paulogerm.dev/en/blog/java-fundamentos/java-fundamentos-por-que-o-java-deu-certo/</guid>
+      <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>Java Fundamentals: what is a programming language</title>
+      <description>Introductory explanation of programming languages, Java, bytecode, the JVM, and common areas where the language is used.</description>
+      <link>https://paulogerm.dev/en/blog/java-fundamentos/java-fundamentos-o-que-e-uma-linguagem-de-programacao/</link>
+      <guid>https://paulogerm.dev/en/blog/java-fundamentos/java-fundamentos-o-que-e-uma-linguagem-de-programacao/</guid>
+      <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>Java Fundamentals: object-oriented principles</title>
+      <description>Practical explanation of the main OOP concepts, such as abstraction, encapsulation, inheritance, polymorphism, association, composition, and modularization.</description>
+      <link>https://paulogerm.dev/en/blog/java-fundamentos/java-fundamentos-principios-da-orientacao-a-objetos/</link>
+      <guid>https://paulogerm.dev/en/blog/java-fundamentos/java-fundamentos-principios-da-orientacao-a-objetos/</guid>
+      <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>Java Fundamentals: portability</title>
+      <description>Introductory explanation of portability in Java, the JVM, bytecode, and execution across different environments.</description>
+      <link>https://paulogerm.dev/en/blog/java-fundamentos/java-fundamentos-portabilidade/</link>
+      <guid>https://paulogerm.dev/en/blog/java-fundamentos/java-fundamentos-portabilidade/</guid>
+      <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>Java Fundamentals: the Java language</title>
+      <description>Overview of the Java language, its relationship with object orientation, the internet, bytecode, and the Java Virtual Machine.</description>
+      <link>https://paulogerm.dev/en/blog/java-fundamentos/java-fundamentos-linguagem-java/</link>
+      <guid>https://paulogerm.dev/en/blog/java-fundamentos/java-fundamentos-linguagem-java/</guid>
+      <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>Java Fundamentals: object orientation</title>
+      <description>Introduction to the object-oriented paradigm and the idea of representing problems through entities, objects, classes, and interactions.</description>
+      <link>https://paulogerm.dev/en/blog/java-fundamentos/java-fundamentos-orientacao-a-objetos/</link>
+      <guid>https://paulogerm.dev/en/blog/java-fundamentos/java-fundamentos-orientacao-a-objetos/</guid>
+      <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>ParkFlow: From Requirements Gathering to an AI-Assisted MVP</title>
+      <description>How we turned a real parking problem into an MVP with TypeScript, Supabase, license-plate-driven UX, and AI-assisted development.</description>
+      <link>https://paulogerm.dev/en/blog/parkflow-do-levantamento-de-requisitos-ao-mvp/</link>
+      <guid>https://paulogerm.dev/en/blog/parkflow-do-levantamento-de-requisitos-ao-mvp/</guid>
+      <pubDate>Mon, 22 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    </channel>
+  </rss>
