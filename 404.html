@@ -326,6 +326,12 @@ const readerSideToRight = "Mover navegação mobile para a direita";
     document.querySelectorAll('[data-404-link]').forEach(function (el) {
       var key = el.getAttribute('data-404-link');
       if (key && texts[key]) el.textContent = texts[key];
+      // Links internos acompanham o idioma: contrapartes pareadas existem
+      // para home/blog/projetos/series/sobre (blog e series têm índice EN).
+      var href = el.getAttribute('href') || '';
+      if (href === '/' || href === '/blog' || href === '/projetos' || href === '/series' || href === '/sobre') {
+        el.setAttribute('href', '/en' + (href === '/' ? '/' : href + '/'));
+      }
     });
   })();
 </script>
