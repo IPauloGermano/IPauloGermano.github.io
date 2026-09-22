@@ -5,6 +5,118 @@
       <description>Caderno de desenvolvimento, projetos e estudos.</description>
       <link>https://paulogerm.dev/</link>
       <item>
+      <title>Karpathy Parte 8: inteligência recortada, futuro e guia prático</title>
+      <description>Por que o modelo resolve olimpíada e erra 9.11 vs 9.9, o que vem por aí em agentes e ferramentas, onde acompanhar e onde usar LLMs hoje.</description>
+      <link>https://paulogerm.dev/blog/karpathy-llm-deep-dive/kllm-08-jagged-futuro-guia/</link>
+      <guid>https://paulogerm.dev/blog/karpathy-llm-deep-dive/kllm-08-jagged-futuro-guia/</guid>
+      <pubDate>Mon, 05 Oct 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>Karpathy Parte 7: de SFT a RL, R1 e RLHF</title>
+      <description>Por que imitar bons exemplos não basta: RL com recompensa verificável, raciocínio emergente do DeepSeek-R1, lição do Move 37 do AlphaGo e os limites do RLHF.</description>
+      <link>https://paulogerm.dev/blog/karpathy-llm-deep-dive/kllm-07-rl-r1-alphago-rlhf/</link>
+      <guid>https://paulogerm.dev/blog/karpathy-llm-deep-dive/kllm-07-rl-r1-alphago-rlhf/</guid>
+      <pubDate>Sun, 04 Oct 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>Karpathy Parte 6: alucinação, tools e memória de trabalho</title>
+      <description>Por que o LLM inventa resposta confiante, como tools e janela de contexto viram memória de trabalho, e os limites de contar, soletrar e dizer quem é.</description>
+      <link>https://paulogerm.dev/blog/karpathy-llm-deep-dive/kllm-06-alucinacao-tools-memoria/</link>
+      <guid>https://paulogerm.dev/blog/karpathy-llm-deep-dive/kllm-06-alucinacao-tools-memoria/</guid>
+      <pubDate>Sat, 03 Oct 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>Karpathy Parte 5: do pretraining ao assistente com SFT</title>
+      <description>Como o modelo base vira assistente: dados de conversa humano-IA, SFT no estilo InstructGPT e o templating que transforma diálogo em tokens.</description>
+      <link>https://paulogerm.dev/blog/karpathy-llm-deep-dive/kllm-05-post-training-sft/</link>
+      <guid>https://paulogerm.dev/blog/karpathy-llm-deep-dive/kllm-05-post-training-sft/</guid>
+      <pubDate>Fri, 02 Oct 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>Karpathy Parte 4: inferência com GPT-2 e Llama 3.1</title>
+      <description>Amostragem, temperatura e o salto do modelo base para o assistente, com demo de GPT-2 no llm.c e Llama 3.1 base no Hyperbolic.</description>
+      <link>https://paulogerm.dev/blog/karpathy-llm-deep-dive/kllm-04-inferencia-gpt2-llama/</link>
+      <guid>https://paulogerm.dev/blog/karpathy-llm-deep-dive/kllm-04-inferencia-gpt2-llama/</guid>
+      <pubDate>Thu, 01 Oct 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>Karpathy Parte 3: como a rede neural lê e escreve</title>
+      <description>Tokens entram, probabilidades saem: embeddings, Transformer e logits explicados sem mistério, com intuição certa e errada.</description>
+      <link>https://paulogerm.dev/blog/karpathy-llm-deep-dive/kllm-03-rede-neural/</link>
+      <guid>https://paulogerm.dev/blog/karpathy-llm-deep-dive/kllm-03-rede-neural/</guid>
+      <pubDate>Wed, 30 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>Karpathy Parte 2: tokenização na prática</title>
+      <description>Como texto vira sequência de tokens via BPE, por que vocab tem cerca de 100 mil símbolos e o que isso explica sobre custo, contagem e soletração.</description>
+      <link>https://paulogerm.dev/blog/karpathy-llm-deep-dive/kllm-02-tokenizacao/</link>
+      <guid>https://paulogerm.dev/blog/karpathy-llm-deep-dive/kllm-02-tokenizacao/</guid>
+      <pubDate>Tue, 29 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>Karpathy Parte 1: dados de pretraining e a internet curada</title>
+      <description>Por que LLM começa baixando a internet: quantidade, qualidade e diversidade de texto, pipeline FineWeb e o que isso explica sobre o modelo.</description>
+      <link>https://paulogerm.dev/blog/karpathy-llm-deep-dive/kllm-01-dados-pretraining/</link>
+      <guid>https://paulogerm.dev/blog/karpathy-llm-deep-dive/kllm-01-dados-pretraining/</guid>
+      <pubDate>Mon, 28 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>CS146S Parte 8: do protótipo à produção observável</title>
+      <description>6 checkpoints para sair da demo, SRE básico, logs, métricas e traces com resposta a incidente semi-automática.</description>
+      <link>https://paulogerm.dev/blog/stanford-cs146s-pratica/cs146s-08-prototipo-a-producao/</link>
+      <guid>https://paulogerm.dev/blog/stanford-cs146s-pratica/cs146s-08-prototipo-a-producao/</guid>
+      <pubDate>Mon, 28 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>Karpathy Deep Dive into LLMs: visão geral da série</title>
+      <description>Mapa em PT-BR do vídeo de 3h31 de Andrej Karpathy sobre LLMs: do pretraining na internet curada ao RL, com 8 capítulos resumidos e roteiro de estudo.</description>
+      <link>https://paulogerm.dev/blog/karpathy-llm-deep-dive/karpathy-llm-visao-geral/</link>
+      <guid>https://paulogerm.dev/blog/karpathy-llm-deep-dive/karpathy-llm-visao-geral/</guid>
+      <pubDate>Sun, 27 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>CS146S Parte 7: review de código gerado por IA</title>
+      <description>Cheiro do código IA, PR como conversa, entomologia de defeitos e checklist em 7 passos para week7.</description>
+      <link>https://paulogerm.dev/blog/stanford-cs146s-pratica/cs146s-07-review-codigo-gerado-por-ia/</link>
+      <guid>https://paulogerm.dev/blog/stanford-cs146s-pratica/cs146s-07-review-codigo-gerado-por-ia/</guid>
+      <pubDate>Sun, 27 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>CS146S Parte 6: segurança e secure vibe coding</title>
+      <description>Prompt injection até RCE, OWASP para agentes, limites de varredura com IA e checklist para week6.</description>
+      <link>https://paulogerm.dev/blog/stanford-cs146s-pratica/cs146s-06-seguranca-secure-vibe-coding/</link>
+      <guid>https://paulogerm.dev/blog/stanford-cs146s-pratica/cs146s-06-seguranca-secure-vibe-coding/</guid>
+      <pubDate>Sat, 26 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>CS146S Parte 5: terminal moderno com Warp e automação</title>
+      <description>Terminal + agente no mesmo lugar, CLI local, cloud com triggers e fluxos compartilháveis para week5.</description>
+      <link>https://paulogerm.dev/blog/stanford-cs146s-pratica/cs146s-05-terminal-warp-automacao/</link>
+      <guid>https://paulogerm.dev/blog/stanford-cs146s-pratica/cs146s-05-terminal-warp-automacao/</guid>
+      <pubDate>Fri, 25 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>CS146S Parte 4: padrões de agent manager</title>
+      <description>Calibrar autonomia, plano antes de codar, fatiar tarefas e verificação executável com Claude Code e subagentes.</description>
+      <link>https://paulogerm.dev/blog/stanford-cs146s-pratica/cs146s-04-agent-manager-padroes/</link>
+      <guid>https://paulogerm.dev/blog/stanford-cs146s-pratica/cs146s-04-agent-manager-padroes/</guid>
+      <pubDate>Thu, 24 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>CS146S Parte 3: engenharia de contexto que gera bom código</title>
+      <description>Specs como fonte da verdade, 4 falhas de contexto longo, compactação 40-60% e CLAUDE.md em camadas para week3.</description>
+      <link>https://paulogerm.dev/blog/stanford-cs146s-pratica/cs146s-03-engenharia-de-contexto/</link>
+      <guid>https://paulogerm.dev/blog/stanford-cs146s-pratica/cs146s-03-engenharia-de-contexto/</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>CS146S Parte 2: MCP — protocolo, servidor e boas tools</title>
+      <description>Cliente vs servidor MCP, stdio vs HTTP, OAuth remoto e por que API REST 1:1 vira tool ruim, com servidor mínimo em TypeScript.</description>
+      <link>https://paulogerm.dev/blog/stanford-cs146s-pratica/cs146s-02-mcp-protocolo-na-pratica/</link>
+      <guid>https://paulogerm.dev/blog/stanford-cs146s-pratica/cs146s-02-mcp-protocolo-na-pratica/</guid>
+      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
       <title>Exemplo: spoilers com blur</title>
       <description>Página temporária para visualizar o efeito ||spoiler|| — apagar antes de publicar.</description>
       <link>https://paulogerm.dev/blog/__exemplo-spoiler/</link>
@@ -17,6 +129,13 @@
       <link>https://paulogerm.dev/blog/stanford-cs146s-pratica/cs146s-01-fundamentos-llm-prompting/</link>
       <guid>https://paulogerm.dev/blog/stanford-cs146s-pratica/cs146s-01-fundamentos-llm-prompting/</guid>
       <pubDate>Mon, 21 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+<item>
+      <title>Stanford CS146S: visão geral do curso Modern Software Developer</title>
+      <description>Resumo adaptado em português do overview do Stanford CS146S: 10 semanas de LLM a agentes, segurança e produção, com convidados, avaliação e como estudar grátis.</description>
+      <link>https://paulogerm.dev/blog/stanford-cs146s-pratica/stanford-cs146s-visao-geral-do-curso/</link>
+      <guid>https://paulogerm.dev/blog/stanford-cs146s-pratica/stanford-cs146s-visao-geral-do-curso/</guid>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 GMT</pubDate>
     </item>
 <item>
       <title>Local Player: fallback de transcode e Whisper em fila P0-P3</title>
